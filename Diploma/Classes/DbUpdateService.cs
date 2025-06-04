@@ -330,9 +330,16 @@ WHERE  id_статуса = @id;";
             string first = _boxes["comboBox3"].Text.Trim();
             string mid = _boxes["comboBox4"].Text.Trim();
 
-            bool photoDone = bool.TryParse(_boxes["comboBox5"].Text, out var done)
-                ? done
-                : Convert.ToBoolean(row["Фото_сделано"]);
+            string doneTxt = _boxes["comboBox5"].Text.Trim();
+            bool photoDone;
+            if (bool.TryParse(doneTxt, out var parsed))
+                photoDone = parsed;
+            else if (string.Equals(doneTxt, "Да", StringComparison.OrdinalIgnoreCase))
+                photoDone = true;
+            else if (string.Equals(doneTxt, "Нет", StringComparison.OrdinalIgnoreCase))
+                photoDone = false;
+            else
+                photoDone = Convert.ToBoolean(row["Фото_сделано"]);
 
             int speciality = GetComboValue("comboBox6", Convert.ToInt32(row["id_специальности"]));
             int course = GetComboValue("comboBox7", Convert.ToInt32(row["id_курса"]));
