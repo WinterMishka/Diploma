@@ -29,6 +29,11 @@ namespace Diploma.Data
         DataTable GetStudentVisits();
         DataTable GetEmployeeVisits();
 
+        // Представления с удобочитаемыми колонками для DataGridView
+        DataTable GetGroupsReadable();
+        DataTable GetEmployeesReadable();
+        DataTable GetStudentsReadable();
+
         #endregion
 
         #region Добавление/редактирование лиц

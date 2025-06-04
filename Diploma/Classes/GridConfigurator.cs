@@ -41,10 +41,10 @@ namespace Diploma.Helpers
 
         public void ConfigureGroups(DataTable tbl)
         {
-            PrepareGrid(tbl, new[] { "id_код", "Год", "id_сотрудника" });
+            PrepareGrid(tbl, new[] { "id_группы", "id_код", "Код", "Год", "id_сотрудника", "Куратор" });
 
             // фильтры начинаются с label3/comboBox3
-            ShowSimpleFilters(new[] { "id_код", "Год", "id_сотрудника" }, 3);
+            ShowSimpleFilters(new[] { "Код", "Год", "Куратор" }, 3);
 
             /* ---------- заполняем из таблиц БД ---------- */
 
@@ -108,10 +108,10 @@ namespace Diploma.Helpers
         {
             PrepareGrid(tbl,
                 new[] { "id_сотрудника", "Фамилия", "Имя", "Отчество",
-                "id_статуса", "id_фото" });
+                "id_статуса", "Должность", "id_фото" });
 
             ShowSimpleFilters(
-                new[] { "Фамилия", "Имя", "Отчество", "id_статуса", "id_фото" },
+                new[] { "Фамилия", "Имя", "Отчество", "Должность", "id_фото" },
                 startIndex: 3);
 
             /* ----- id_статуса → comboBox6 из таблицы Статус_должность ----- */
@@ -157,13 +157,14 @@ namespace Diploma.Helpers
                 new[]
                 {
                     "id_учащегося", "Фамилия", "Имя", "Отчество", "Фото_сделано",
-                    "id_специальности", "id_курса", "id_группы", "id_фото"
+                    "id_специальности", "Специальность", "id_курса", "Курс",
+                    "id_группы", "Группа", "id_фото"
                 });
 
             ShowSimpleFilters(new[]
             {
                 "Фамилия", "Имя", "Отчество", "Фото_сделано",
-                "id_специальности", "id_курса", "id_группы", "id_фото"
+                "Специальность", "Курс", "Группа", "id_фото"
             });
         }
         #endregion
@@ -182,7 +183,8 @@ namespace Diploma.Helpers
                 {
                     DataPropertyName = col,
                     HeaderText = col,
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    Visible = !col.StartsWith("id_")
                 });
             }
         }
