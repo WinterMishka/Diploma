@@ -165,8 +165,7 @@ namespace Diploma
                             else if (int.TryParse(s, out var i))
                                 selected = i;
                         }
-
-                        box.SelectedValue = selected;
+                        box.SelectedValue = value;
                     }
                     catch (FormatException)
                     {
