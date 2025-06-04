@@ -46,6 +46,18 @@ namespace Diploma
         }
         #endregion
 
+        #region Управление подпиской
+        public void Suspend()
+        {
+            _grid.SelectionChanged -= OnGridSelectionChanged;
+        }
+
+        public void Resume()
+        {
+            _grid.SelectionChanged += OnGridSelectionChanged;
+        }
+        #endregion
+
         #region Привязка по выбору строки
         private void OnGridSelectionChanged(object sender, EventArgs e)
         {
@@ -136,9 +148,17 @@ namespace Diploma
             {
 
                 if (box.DropDownStyle == ComboBoxStyle.DropDownList &&
-            box.DataSource != null && !string.IsNullOrEmpty(box.ValueMember))
+                    box.DataSource != null && !string.IsNullOrEmpty(box.ValueMember))
                 {
-                    box.SelectedValue = value;
+                    try
+                    {
+                        box.SelectedValue = value;
+                    }
+                    catch (FormatException)
+                    {
+                        box.SelectedIndex = -1;
+                        box.Text = value.ToString();
+                    }
                 }
                 else if (box.Items.Contains(value))
                 {
