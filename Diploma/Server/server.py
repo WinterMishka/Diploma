@@ -86,7 +86,7 @@ def api_find_employee():
 
 @app.route('/api/groups_for_employee/<int:emp_id>')
 def api_groups_for_employee(emp_id):
-    query = '''SELECT g.id_группы, kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))
+    query = '''SELECT g.id_группы, kc.Код
                FROM Группа g
                JOIN Группа_код kc ON kc.id_код=g.id_код
                WHERE g.id_сотрудника=?'''
@@ -94,20 +94,18 @@ def api_groups_for_employee(emp_id):
         cur = con.cursor()
         cur.execute(query, emp_id)
         rows = cur.fetchall()
-    return jsonify([{'id': r[0], 'name': r[1]} for r in rows])
+
+    return jsonify([{'id': r[0], 'code': r[1]} for r in rows])
 
 
 @app.route('/api/all_groups')
 def api_all_groups():
-    query = '''SELECT DISTINCT g.id_группы,
-                      kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))
-               FROM Группа g
-               JOIN Группа_код kc ON kc.id_код=g.id_код'''
+    query = 'SELECT DISTINCT g.id_группы, kc.Код FROM Группа g JOIN Группа_код kc ON kc.id_код=g.id_код'
     with get_db_connection() as con:
         cur = con.cursor()
         cur.execute(query)
         rows = cur.fetchall()
-    return jsonify([{'id': r[0], 'name': r[1]} for r in rows])
+    return jsonify([{'id': r[0], 'code': r[1]} for r in rows])
 
 
 @app.route('/api/add_subscriber', methods=['POST'])
@@ -125,30 +123,6 @@ def api_add_subscriber():
                        VALUES(?, ?, ?, ?, 0)''', full_name, role, telegram_id, ','.join(groups))
         con.commit()
     return jsonify({'status': 'ok'})
-
-
-def send_test_notification(tg_id: int):
-    """Send a test message with the list of students for subscriber groups."""
-    with get_db_connection() as con:
-        cur = con.cursor()
-        cur.execute('SELECT [Группы] FROM [ПодписчикиТелеграм] WHERE [TelegramID]=?', tg_id)
-        row = cur.fetchone()
-        if not row:
-            return
-        group_names = [g.strip() for g in row[0].split(',') if g.strip()]
-        message_lines = ['Тестовое уведомление. Бот работает!']
-        for name in group_names:
-            cur.execute('''SELECT u.Фамилия + ' ' + u.Имя + ISNULL(' ' + u.Отчество, '')
-                           FROM Учащиеся u
-                           JOIN Группа g ON g.id_группы=u.id_группы
-                           JOIN Группа_код kc ON kc.id_код=g.id_код
-                           WHERE kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))=?''', name)
-            students = [r[0] for r in cur.fetchall()]
-            if students:
-                message_lines.append('\n' + name + ':')
-                message_lines.extend(students)
-        telegram_bot.bot.send_message(tg_id, '\n'.join(message_lines))
-
 
 @app.route('/api/confirmed_subscribers')
 def api_confirmed_subscribers():
@@ -205,14 +179,9 @@ def api_bot_settings():
     return jsonify(telegram_bot.load_settings())
 
 
-@app.route('/api/test_notify/<tg_id>')
-def api_test_notify(tg_id):
-    """Send a test notification to the selected Telegram user."""
-    try:
-        tg = int(tg_id)
-    except ValueError:
-        return jsonify({'error': 'invalid id'}), 400
-    send_test_notification(tg)
+@app.route('/api/test_notify')
+def api_test_notify():
+    telegram_bot.send_notifications()
     return jsonify({'status': 'ok'})
 
 
