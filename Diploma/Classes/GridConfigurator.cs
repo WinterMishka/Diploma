@@ -41,21 +41,19 @@ namespace Diploma.Helpers
 
         public void ConfigureGroups(DataTable tbl)
         {
-            PrepareGrid(tbl, new[] { "id_код", "Год", "id_сотрудника" });
+            PrepareGrid(tbl, new[] { "id_группы", "id_код", "Код", "Год", "id_сотрудника", "Куратор" });
 
             // фильтры начинаются с label3/comboBox3
-            ShowSimpleFilters(new[] { "id_код", "Год", "id_сотрудника" }, 3);
+            ShowSimpleFilters(new[] { "Код", "Год", "Куратор" }, 3);
 
             /* ---------- заполняем из таблиц БД ---------- */
 
             // id_код  → comboBox3 (DropDownList)
             var cbCode = _combo["comboBox3"];
             cbCode.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbCode.DataSource = _db.GetAllGroupCodes()
-                                   .AsEnumerable()
-                                   .Select(r => r.Field<int>("id_код"))
-                                   .Distinct()
-                                   .ToList();
+            cbCode.DataSource = _db.GetGroupCodes();
+            cbCode.DisplayMember = "Код";
+            cbCode.ValueMember = "id_код";
 
             // Год  → comboBox4  (оставляем текстовое поле - Simple)
             _combo["comboBox4"].DropDownStyle = ComboBoxStyle.Simple;
@@ -68,11 +66,22 @@ namespace Diploma.Helpers
             // id_сотрудника → comboBox5 (DropDownList)
             var cbEmp = _combo["comboBox5"];
             cbEmp.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbEmp.DataSource = _db.GetAllEmployeeIds()
-                                  .AsEnumerable()
-                                  .Select(r => r.Field<int>("id_сотрудника"))
-                                  .Distinct()
-                                  .ToList();
+            var empTbl = _db.GetEmployeesReadable();
+            var empList = empTbl.AsEnumerable()
+                                .Select(r => new
+                                {
+                                    Id = r.Field<int>("id_сотрудника"),
+                                    Name = string.Join(" ", new[]
+                                    {
+                                        r.Field<string>("Фамилия"),
+                                        r.Field<string>("Имя"),
+                                        r.Field<string>("Отчество")
+                                    }.Where(s => !string.IsNullOrWhiteSpace(s)))
+                                })
+                                .ToList();
+            cbEmp.DataSource = empList;
+            cbEmp.DisplayMember = "Name";
+            cbEmp.ValueMember = "Id";
         }
 
         public void ConfigureGroupCodes(DataTable tbl)
@@ -108,10 +117,10 @@ namespace Diploma.Helpers
         {
             PrepareGrid(tbl,
                 new[] { "id_сотрудника", "Фамилия", "Имя", "Отчество",
-                "id_статуса", "id_фото" });
+                "id_статуса", "Должность", "id_фото" });
 
             ShowSimpleFilters(
-                new[] { "Фамилия", "Имя", "Отчество", "id_статуса", "id_фото" },
+                new[] { "Фамилия", "Имя", "Отчество", "Должность", "id_фото" },
                 startIndex: 3);
 
             /* ----- id_статуса → comboBox6 из таблицы Статус_должность ----- */
@@ -157,14 +166,45 @@ namespace Diploma.Helpers
                 new[]
                 {
                     "id_учащегося", "Фамилия", "Имя", "Отчество", "Фото_сделано",
-                    "id_специальности", "id_курса", "id_группы", "id_фото"
+                    "id_специальности", "Специальность", "id_курса", "Курс",
+                    "id_группы", "Группа", "id_фото"
                 });
 
             ShowSimpleFilters(new[]
             {
                 "Фамилия", "Имя", "Отчество", "Фото_сделано",
-                "id_специальности", "id_курса", "id_группы", "id_фото"
+                "Специальность", "Курс", "Группа", "id_фото"
             });
+
+            /* ----- выпадающие списки для изменяемых полей ----- */
+            // Специальность → comboBox6 (DropDownList)
+            var cbSpec = _combo["comboBox6"];
+            cbSpec.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSpec.DataSource = _db.GetSpecialities();
+            cbSpec.DisplayMember = "Название";
+            cbSpec.ValueMember = "id_специальности";
+
+            // Курс → comboBox7 (DropDownList)
+            var cbCourse = _combo["comboBox7"];
+            cbCourse.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCourse.DataSource = _db.GetCourses();
+            cbCourse.DisplayMember = "Наименование";
+            cbCourse.ValueMember = "id_курса";
+
+            // Группа → comboBox8 (DropDownList)
+            var cbGroup = _combo["comboBox8"];
+            cbGroup.DropDownStyle = ComboBoxStyle.DropDownList;
+            var groupsTbl = _db.GetGroupsReadable();
+            var grpList = groupsTbl.AsEnumerable()
+                                   .Select(r => new
+                                   {
+                                       Id = r.Field<int>("id_группы"),
+                                       Name = r.Field<string>("Код") + "-" + r.Field<int>("Год")
+                                   })
+                                   .ToList();
+            cbGroup.DataSource = grpList;
+            cbGroup.DisplayMember = "Name";
+            cbGroup.ValueMember = "Id";
         }
         #endregion
 
@@ -182,7 +222,8 @@ namespace Diploma.Helpers
                 {
                     DataPropertyName = col,
                     HeaderText = col,
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    Visible = !col.StartsWith("id_")
                 });
             }
         }

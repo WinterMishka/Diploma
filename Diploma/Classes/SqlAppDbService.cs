@@ -363,6 +363,65 @@ WHERE  id_группы=@g;";
         {
             return LoadTable("SELECT * FROM vw_ПосещенияСотрудники ORDER BY Дата DESC, Время DESC");
         }
+
+        public DataTable GetGroupsReadable()
+        {
+            const string sql = @"
+SELECT g.id_группы,
+       g.id_код,
+       c.Код,
+       g.Год,
+       g.id_сотрудника,
+       CONCAT(emp.Фамилия, ' ', emp.Имя, ' ', ISNULL(emp.Отчество,'')) AS Куратор
+FROM   Группа AS g
+       INNER JOIN Группа_код AS c ON c.id_код = g.id_код
+       LEFT JOIN Сотрудники AS emp ON emp.id_сотрудника = g.id_сотрудника
+ORDER BY c.Код, g.Год;";
+
+            return LoadTable(sql);
+        }
+
+        public DataTable GetEmployeesReadable()
+        {
+            const string sql = @"
+SELECT e.id_сотрудника,
+       e.Фамилия,
+       e.Имя,
+       e.Отчество,
+       e.id_статуса,
+       s.Название AS Должность,
+       e.id_фото
+FROM   Сотрудники AS e
+       LEFT JOIN Статус_должность AS s ON s.id_статуса = e.id_статуса
+ORDER BY e.Фамилия, e.Имя;";
+
+            return LoadTable(sql);
+        }
+
+        public DataTable GetStudentsReadable()
+        {
+            const string sql = @"
+SELECT st.id_учащегося,
+       st.Фамилия,
+       st.Имя,
+       st.Отчество,
+       st.Фото_сделано,
+       st.id_специальности,
+       sp.Название         AS Специальность,
+       st.id_курса,
+       cr.Наименование     AS Курс,
+       st.id_группы,
+       gc.Код + '-' + CAST(gr.Год AS NVARCHAR(4)) AS Группа,
+       st.id_фото
+FROM   Учащиеся AS st
+       LEFT JOIN Специальность  AS sp ON sp.id_специальности = st.id_специальности
+       LEFT JOIN Курс           AS cr ON cr.id_курса = st.id_курса
+       LEFT JOIN Группа         AS gr ON gr.id_группы = st.id_группы
+       LEFT JOIN Группа_код     AS gc ON gc.id_код = gr.id_код
+ORDER BY st.Фамилия, st.Имя;";
+
+            return LoadTable(sql);
+        }
         #endregion
     }
 }
