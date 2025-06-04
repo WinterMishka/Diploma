@@ -33,5 +33,41 @@ namespace Diploma.Properties {
                 return ((string)(this["EducationAccessSystemConnectionString"]));
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("08:30")]
+        public string TelegramNotifyTime {
+            get {
+                return ((string)(this["TelegramNotifyTime"]));
+            }
+            set {
+                this["TelegramNotifyTime"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TelegramSendAbsentOnly {
+            get {
+                return ((bool)(this["TelegramSendAbsentOnly"]));
+            }
+            set {
+                this["TelegramSendAbsentOnly"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TelegramSendDailyUpdates {
+            get {
+                return ((bool)(this["TelegramSendDailyUpdates"]));
+            }
+            set {
+                this["TelegramSendDailyUpdates"] = value;
+            }
+        }
     }
 }
