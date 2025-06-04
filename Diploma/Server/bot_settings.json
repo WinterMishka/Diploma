@@ -1,0 +1,5 @@
+{
+  "notify_time": "08:30",
+  "send_absent_only": true,
+  "send_daily_updates": true
+}
