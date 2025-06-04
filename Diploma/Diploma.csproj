@@ -205,6 +205,7 @@
     <Compile Include="Classes\GridConfigurator.cs" />
     <Compile Include="Classes\GridSelectionBinder.cs" />
     <Compile Include="Classes\PhotoService.cs" />
+    <Compile Include="Classes\PersonRegistrationService.cs" />
     <Compile Include="Classes\RecognitionService.cs" />
     <Compile Include="Classes\SearchFilterManager.cs" />
     <Compile Include="Classes\SqlAppDbService.cs" />
