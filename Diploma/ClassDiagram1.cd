@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Diploma.ContentLoader">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\ContentLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.SidebarHighlighter">
+    <Position X="2.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAABAAAABAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Classes\UserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.NavButtonState">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAEAAAAAAAAAAIACAACAAA=</HashCode>
+      <FileName>Classes\UserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.UserInterfaceManager">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAAAAAiAAAQAAAAAhAABAgBAAAAAAAAgYAAAEABAA=</HashCode>
+      <FileName>Classes\UserInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.AddPersonControl">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAAgAUDOUIBAAJARGAkAQDBAgaCAEgiEjwAAIQALI=</HashCode>
+      <FileName>Controls\AddPersonControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.DatabaseControl">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CiCQAMAQCCYQRBAIAjCAEBiDBjgooAAArEAAEIoBACA=</HashCode>
+      <FileName>Controls\DatabaseControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EnableControl">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Diploma.EnableControl.RecognitionResult" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controls\EnableControl.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>FCqkACAUICICgEgAEwCAAAACgIhYCCAggCCAAAAAASA=</HashCode>
+      <FileName>Controls\EnableControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.ReportControl">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\ReportControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.SettingsControl">
+    <Position X="11" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\SettingsControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.TelegramBotControl">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\TelegramBotControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSet">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Diploma.EducationAccessSystemDataSet.vw_ПосещенияПолныеDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.СпециальностьRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.КурсDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.СотрудникиRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Diploma.EducationAccessSystemDataSet.Приход_уходRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ЛицоRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.УчащиесяRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.СотрудникиRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ГруппаDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.СпециальностьDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.Статус_должностьRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Diploma.EducationAccessSystemDataSet.СотрудникиDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.ЛицоRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.СпециальностьRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Diploma.EducationAccessSystemDataSet.КурсRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.vw_ПосещенияПолныеRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.КурсRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.ПолучитьПосещенияRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Diploma.EducationAccessSystemDataSet.Приход_уходDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.Приход_уходRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.vw_ПосещенияПолныеRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Diploma.EducationAccessSystemDataSet.СпециальностьRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ПолучитьПосещенияDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.vw_ПосещенияПолныеRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.ГруппаRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Diploma.EducationAccessSystemDataSet.Статус_должностьRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.УчащиесяRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.Статус_должностьRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.Статус_должностьDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ПолучитьПосещенияRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ГруппаRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.УчащиесяRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="Diploma.EducationAccessSystemDataSet.КурсRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="Diploma.EducationAccessSystemDataSet.СотрудникиRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ГруппаRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ЛицоRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ПолучитьПосещенияRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.ЛицоDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.УчащиесяDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Diploma.EducationAccessSystemDataSet.Приход_уходRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gBGEMUAAAwIBAGLQRAQ4wAAEABgGQliAAI0AAhEApBI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.FaceControl">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAhAAAQwBjAAAgIgAACAAhQiIECCAAAAAAcAAAIABIE=</HashCode>
+      <FileName>Forms\FaceControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Program">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.ГруппаTableAdapter">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.КурсTableAdapter">
+    <Position X="2.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.ЛицоTableAdapter">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.Приход_уходTableAdapter">
+    <Position X="9.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.СотрудникиTableAdapter">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.СпециальностьTableAdapter">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.Статус_должностьTableAdapter">
+    <Position X="7.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.УчащиесяTableAdapter">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EASAAGAAEAAAAAcAIAAAAAAAACEICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.vw_ПосещенияПолныеTableAdapter">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EACAAGAAEAAAAAcAIAAAAAAAACAICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.ПолучитьПосещенияTableAdapter">
+    <Position X="12.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EACAAGAAEAAAAAcAIAAAAAAAACAICAAAAAAAAAAABBA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.QueriesTableAdapter">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAIAAAAAAAAAAIAAAAAQAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.TableAdapterManager">
+    <Position X="14.25" Y="7" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Diploma.EducationAccessSystemDataSetTableAdapters.TableAdapterManager.UpdateOrderOption" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+      <Class Name="Diploma.EducationAccessSystemDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAAgDIgAgBIRAGBAAAAOAAgQAAKgGQAAAQIAAAABAU=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Properties.Resources">
+    <Position X="11" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAIAAIAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diploma.Properties.Settings">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
