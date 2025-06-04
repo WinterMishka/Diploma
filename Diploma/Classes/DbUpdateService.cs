@@ -11,7 +11,8 @@ namespace Diploma.Helpers
 {
     /// <summary>
     ///  Логика перезаписи данных в разных таблицах вкладки «Редактировать».
-    ///  Пока реализован **только** режим 0 — таблица «Группа».
+    ///  Поддерживается изменение большинства таблиц, включая группы,
+    ///  сотрудников и учащихся.
     /// </summary>
     public class DbUpdateService
     {
@@ -45,7 +46,8 @@ namespace Diploma.Helpers
                 [3] = UpdateFace,        // чек-бокс 4 — «Лицо»
                 [4] = UpdateEmployee,     // ←-- новый режим
                 [5] = UpdateSpeciality, // чекбокс 6 — "Специальность"
-                [6] = UpdateStatus
+                [6] = UpdateStatus,
+                [7] = UpdateStudent     // чекбокс 8 — «Учащиеся»
             };
         }
         #endregion
@@ -104,6 +106,17 @@ namespace Diploma.Helpers
             else if (mode == 6)
             {
                 AddChange(changes, "Название", row["Название"], _boxes["comboBox5"].Text);
+            }
+            else if (mode == 7)
+            {
+                AddChange(changes, "Фамилия", row["Фамилия"], _boxes["comboBox2"].Text);
+                AddChange(changes, "Имя", row["Имя"], _boxes["comboBox3"].Text);
+                AddChange(changes, "Отчество", row["Отчество"], _boxes["comboBox4"].Text);
+                AddChange(changes, "Фото_сделано", row["Фото_сделано"], _boxes["comboBox5"].Text);
+                AddChange(changes, "id_специальности", row["id_специальности"], GetComboValue("comboBox6", Convert.ToInt32(row["id_специальности"])));
+                AddChange(changes, "id_курса", row["id_курса"], GetComboValue("comboBox7", Convert.ToInt32(row["id_курса"])));
+                AddChange(changes, "id_группы", row["id_группы"], GetComboValue("comboBox8", Convert.ToInt32(row["id_группы"])));
+                AddChange(changes, "id_фото", row["id_фото"], _boxes["comboBox9"].Text);
             }
 
             if (changes.Count == 0)
@@ -303,6 +316,64 @@ SET    Название = @name
 WHERE  id_статуса = @id;";
                 cmd.Parameters.AddWithValue("@name", newName);
                 cmd.Parameters.AddWithValue("@id", idStatus);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+
+        #region Режим 7 — таблица «Учащиеся»
+        private void UpdateStudent(DataRowView row)
+        {
+            int idStudent = Convert.ToInt32(row["id_учащегося"]);
+            string last = _boxes["comboBox2"].Text.Trim();
+            string first = _boxes["comboBox3"].Text.Trim();
+            string mid = _boxes["comboBox4"].Text.Trim();
+
+            string doneTxt = _boxes["comboBox5"].Text.Trim();
+            bool photoDone;
+            if (bool.TryParse(doneTxt, out var parsed))
+                photoDone = parsed;
+            else if (string.Equals(doneTxt, "Да", StringComparison.OrdinalIgnoreCase))
+                photoDone = true;
+            else if (string.Equals(doneTxt, "Нет", StringComparison.OrdinalIgnoreCase))
+                photoDone = false;
+            else
+                photoDone = Convert.ToBoolean(row["Фото_сделано"]);
+
+            int speciality = GetComboValue("comboBox6", Convert.ToInt32(row["id_специальности"]));
+            int course = GetComboValue("comboBox7", Convert.ToInt32(row["id_курса"]));
+            int group = GetComboValue("comboBox8", Convert.ToInt32(row["id_группы"]));
+
+            int? photoId = string.IsNullOrWhiteSpace(_boxes["comboBox9"].Text)
+                ? (int?)null
+                : TryParseInt(_boxes["comboBox9"].Text, Convert.ToInt32(row["id_фото"]));
+
+            using (var con = new SqlConnection(_mgr.ConnStr))
+            using (var cmd = con.CreateCommand())
+            {
+                cmd.CommandText = @"
+UPDATE Учащиеся
+SET    Фамилия        = @last,
+       Имя            = @first,
+       Отчество       = @mid,
+       Фото_сделано   = @done,
+       id_специальности = @spec,
+       id_курса         = @course,
+       id_группы        = @group,
+       id_фото          = @photo
+WHERE  id_учащегося    = @id;";
+
+                cmd.Parameters.AddWithValue("@last", last);
+                cmd.Parameters.AddWithValue("@first", first);
+                cmd.Parameters.AddWithValue("@mid", string.IsNullOrWhiteSpace(mid) ? (object)DBNull.Value : mid);
+                cmd.Parameters.AddWithValue("@done", photoDone);
+                cmd.Parameters.AddWithValue("@spec", speciality);
+                cmd.Parameters.AddWithValue("@course", course);
+                cmd.Parameters.AddWithValue("@group", group);
+                cmd.Parameters.AddWithValue("@photo", photoId ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@id", idStudent);
+
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
