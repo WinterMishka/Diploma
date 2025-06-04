@@ -51,11 +51,9 @@ namespace Diploma.Helpers
             // id_код  → comboBox3 (DropDownList)
             var cbCode = _combo["comboBox3"];
             cbCode.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbCode.DataSource = _db.GetAllGroupCodes()
-                                   .AsEnumerable()
-                                   .Select(r => r.Field<int>("id_код"))
-                                   .Distinct()
-                                   .ToList();
+            cbCode.DataSource = _db.GetGroupCodes();
+            cbCode.DisplayMember = "Код";
+            cbCode.ValueMember = "id_код";
 
             // Год  → comboBox4  (оставляем текстовое поле - Simple)
             _combo["comboBox4"].DropDownStyle = ComboBoxStyle.Simple;
@@ -68,11 +66,22 @@ namespace Diploma.Helpers
             // id_сотрудника → comboBox5 (DropDownList)
             var cbEmp = _combo["comboBox5"];
             cbEmp.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbEmp.DataSource = _db.GetAllEmployeeIds()
-                                  .AsEnumerable()
-                                  .Select(r => r.Field<int>("id_сотрудника"))
-                                  .Distinct()
-                                  .ToList();
+            var empTbl = _db.GetEmployeesReadable();
+            var empList = empTbl.AsEnumerable()
+                                .Select(r => new
+                                {
+                                    Id = r.Field<int>("id_сотрудника"),
+                                    Name = string.Join(" ", new[]
+                                    {
+                                        r.Field<string>("Фамилия"),
+                                        r.Field<string>("Имя"),
+                                        r.Field<string>("Отчество")
+                                    }.Where(s => !string.IsNullOrWhiteSpace(s)))
+                                })
+                                .ToList();
+            cbEmp.DataSource = empList;
+            cbEmp.DisplayMember = "Name";
+            cbEmp.ValueMember = "Id";
         }
 
         public void ConfigureGroupCodes(DataTable tbl)
