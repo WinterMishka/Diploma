@@ -176,6 +176,17 @@ namespace Diploma.Helpers
                 "Специальность", "Курс", "Группа", "id_фото"
             });
 
+            // Фото_сделано → comboBox5 (DropDownList "Да"/"Нет")
+            var cbDone = _combo["comboBox5"];
+            cbDone.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDone.DataSource = new[]
+            {
+                new { Text = "Да",  Value = true  },
+                new { Text = "Нет", Value = false }
+            };
+            cbDone.DisplayMember = "Text";
+            cbDone.ValueMember = "Value";
+
             /* ----- выпадающие списки для изменяемых полей ----- */
             // Специальность → comboBox6 (DropDownList)
             var cbSpec = _combo["comboBox6"];
@@ -223,7 +234,7 @@ namespace Diploma.Helpers
                     DataPropertyName = col,
                     HeaderText = col,
                     AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                    Visible = !col.StartsWith("id_")
+                    Visible = !(col.StartsWith("id_") && col != "id_фото")
                 });
             }
         }
