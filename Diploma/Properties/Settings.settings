@@ -10,5 +10,14 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\EducationAccessSystem.mdf;Integrated Security=True;Connect Timeout=30</Value>
     </Setting>
+    <Setting Name="TelegramNotifyTime" Type="System.String" Scope="User">
+      <Value Profile="(Default)">08:30</Value>
+    </Setting>
+    <Setting Name="TelegramSendAbsentOnly" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="TelegramSendDailyUpdates" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
