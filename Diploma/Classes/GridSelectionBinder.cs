@@ -152,6 +152,20 @@ namespace Diploma
                 {
                     try
                     {
+                        object selected = value;
+
+                        if (selected is string s)
+                        {
+                            if (bool.TryParse(s, out var b))
+                                selected = b;
+                            else if (string.Equals(s, "Да", StringComparison.OrdinalIgnoreCase))
+                                selected = true;
+                            else if (string.Equals(s, "Нет", StringComparison.OrdinalIgnoreCase))
+                                selected = false;
+                            else if (int.TryParse(s, out var i))
+                                selected = i;
+                        }
+
                         box.SelectedValue = value;
                     }
                     catch (FormatException)
