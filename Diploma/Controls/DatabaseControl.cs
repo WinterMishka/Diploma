@@ -155,6 +155,7 @@ namespace Diploma
         #region Обновление таблицы на вкладке «Поиск»
         public void UpdateSearchGrid()
         {
+            _binder.Suspend();
             _gridCfg.HideAllFilters();
 
             if (guna2CheckBox1.Checked)                 // Группа
@@ -195,9 +196,10 @@ namespace Diploma
             else if (guna2CheckBox8.Checked)            // Учащиеся
             {
                 _gridCfg.ConfigureStudents(_db.GetStudentsReadable());
-                _filter.ApplyDropDownStyles(comboBox5, comboBox6, comboBox7, comboBox8, comboBox9); // Фото_сделано, id_специальности, id_курса, id_группы, id_фото
                 _filter.ApplyDropDownStyles(comboBox6, comboBox7, comboBox8, comboBox9); // id_специальности, id_курса, id_группы, id_фото
             }
+
+            _binder.Resume();
         }
 
         #endregion

@@ -339,7 +339,6 @@ WHERE  id_статуса = @id;";
             else if (string.Equals(doneTxt, "Нет", StringComparison.OrdinalIgnoreCase))
                 photoDone = false;
             else
-                photoDone = Convert.ToBoolean(row["Фото_сделано"]);
             bool photoDone = bool.TryParse(_boxes["comboBox5"].Text, out var done)
                 ? done
                 : Convert.ToBoolean(row["Фото_сделано"]);
