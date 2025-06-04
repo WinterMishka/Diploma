@@ -108,6 +108,7 @@ def handle_name(message):
         user_states.pop(message.chat.id, None)
         return
     markup = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
+
     for _, code in groups:
         markup.add(code)
     if role == 'Администратор':
