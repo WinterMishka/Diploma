@@ -196,6 +196,7 @@ namespace Diploma
             {
                 _gridCfg.ConfigureStudents(_db.GetStudentsReadable());
                 _filter.ApplyDropDownStyles(comboBox5, comboBox6, comboBox7, comboBox8, comboBox9); // Фото_сделано, id_специальности, id_курса, id_группы, id_фото
+                _filter.ApplyDropDownStyles(comboBox6, comboBox7, comboBox8, comboBox9); // id_специальности, id_курса, id_группы, id_фото
             }
         }
 
