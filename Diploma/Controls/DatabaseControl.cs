@@ -195,7 +195,7 @@ namespace Diploma
             else if (guna2CheckBox8.Checked)            // Учащиеся
             {
                 _gridCfg.ConfigureStudents(_db.GetStudentsReadable());
-                _filter.ApplyDropDownStyles(comboBox7, comboBox8, comboBox9); // id_курса, id_группы, id_фото
+                _filter.ApplyDropDownStyles(comboBox6, comboBox7, comboBox8, comboBox9); // id_специальности, id_курса, id_группы, id_фото
             }
         }
 
