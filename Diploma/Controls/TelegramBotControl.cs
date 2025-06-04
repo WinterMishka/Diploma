@@ -53,8 +53,24 @@ namespace Diploma
 
         private async void TelegramBotControl_Load(object sender, EventArgs e)
         {
+            LoadLocalSettings();
             await LoadSettings();
             await LoadSubscribers();
+        }
+
+        private void LoadLocalSettings()
+        {
+            maskedTextBox1.Text = Properties.Settings.Default.TelegramNotifyTime;
+            guna2CheckBox1.Checked = Properties.Settings.Default.TelegramSendAbsentOnly;
+            guna2CheckBox2.Checked = Properties.Settings.Default.TelegramSendDailyUpdates;
+        }
+
+        private void SaveLocalSettings()
+        {
+            Properties.Settings.Default.TelegramNotifyTime = maskedTextBox1.Text;
+            Properties.Settings.Default.TelegramSendAbsentOnly = guna2CheckBox1.Checked;
+            Properties.Settings.Default.TelegramSendDailyUpdates = guna2CheckBox2.Checked;
+            Properties.Settings.Default.Save();
         }
 
         private async Task LoadSettings()
@@ -68,6 +84,7 @@ namespace Diploma
                 maskedTextBox1.Text = (string)cfg.notify_time;
                 guna2CheckBox1.Checked = cfg.send_absent_only;
                 guna2CheckBox2.Checked = cfg.send_daily_updates;
+                SaveLocalSettings();
             }
             catch { }
         }
@@ -80,6 +97,7 @@ namespace Diploma
                 send_absent_only = guna2CheckBox1.Checked,
                 send_daily_updates = guna2CheckBox2.Checked
             };
+            SaveLocalSettings();
             var content = new StringContent(JsonConvert.SerializeObject(settings), Encoding.UTF8, "application/json");
             try { await client.PostAsync("/api/bot_settings", content); } catch { }
         }
