@@ -142,9 +142,13 @@ namespace Diploma.Helpers
             int oldYear = (int)row["Год"];
             int? oldEmp = row["id_сотрудника"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["id_сотрудника"]);
 
-            int newCode = TryParseInt(_boxes["comboBox4"].Text, oldCode);
-            int newYear = TryParseInt(_boxes["comboBox5"].Text, oldYear);
-            int? newEmp = string.IsNullOrWhiteSpace(_boxes["comboBox6"].Text) ? (int?)null : TryParseInt(_boxes["comboBox6"].Text, oldEmp ?? 0);
+            // Значения берём из тех же ComboBox, что и на этапе предварительной
+            // проверки изменений (AddChange выше)
+            int newCode = TryParseInt(_boxes["comboBox3"].Text, oldCode);
+            int newYear = TryParseInt(_boxes["comboBox4"].Text, oldYear);
+            int? newEmp = string.IsNullOrWhiteSpace(_boxes["comboBox5"].Text)
+                              ? (int?)null
+                              : TryParseInt(_boxes["comboBox5"].Text, oldEmp ?? 0);
 
             // Сохранение изменений в БД
             using (var con = new SqlConnection(_mgr.ConnStr))
