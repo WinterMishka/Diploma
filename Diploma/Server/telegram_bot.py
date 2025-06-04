@@ -64,12 +64,12 @@ def find_employee(full_name):
 
 def get_groups_for_employee(emp_id):
     data = api_get(f'/api/groups_for_employee/{emp_id}')
-    return [(g['id'], g['name']) for g in data] if data else []
+    return [(g['id'], g['code']) for g in data] if data else []
 
 
 def get_all_groups():
     data = api_get('/api/all_groups')
-    return [(g['id'], g['name']) for g in data] if data else []
+    return [(g['id'], g['code']) for g in data] if data else []
 
 
 def add_subscriber(full_name, role, telegram_id, groups):
@@ -108,8 +108,8 @@ def handle_name(message):
         user_states.pop(message.chat.id, None)
         return
     markup = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    for _, name in groups:
-        markup.add(name)
+    for _, code in groups:
+        markup.add(code)
     if role == 'Администратор':
         markup.add('Все')
     bot.send_message(message.chat.id, 'Выберите группу:', reply_markup=markup)
