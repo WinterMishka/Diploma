@@ -71,14 +71,11 @@ namespace Diploma.Helpers
             if (mode == 0)
             {
                 AddChange(changes, "Код группы", row["id_код"],
-                           TryParseInt(_boxes["comboBox3"].Text, (int)row["id_код"]));
+                           GetComboValue("comboBox3", (int)row["id_код"]));
                 AddChange(changes, "Год", row["Год"],
-                           TryParseInt(_boxes["comboBox4"].Text, (int)row["Год"]));
+                           GetComboValue("comboBox4", (int)row["Год"]));
                 AddChange(changes, "Сотрудник", row["id_сотрудника"],
-                           string.IsNullOrWhiteSpace(_boxes["comboBox5"].Text)
-                               ? (int?)null
-                               : (int?)TryParseInt(_boxes["comboBox5"].Text,
-                                                    Convert.ToInt32(row["id_сотрудника"])));
+                           GetComboValueNullable("comboBox5", row["id_сотрудника"] as int?));
             }
             else if (mode == 1)
             {
@@ -97,7 +94,7 @@ namespace Diploma.Helpers
                 AddChange(changes, "Фамилия", row["Фамилия"], _boxes["comboBox3"].Text);
                 AddChange(changes, "Имя", row["Имя"], _boxes["comboBox4"].Text);
                 AddChange(changes, "Отчество", row["Отчество"], _boxes["comboBox5"].Text);
-                AddChange(changes, "id_статуса", row["id_статуса"], _boxes["comboBox6"].Text);
+                AddChange(changes, "id_статуса", row["id_статуса"], GetComboValue("comboBox6", Convert.ToInt32(row["id_статуса"])));
                 AddChange(changes, "id_фото", row["id_фото"], _boxes["comboBox7"].Text);
             }
             else if (mode == 5)
@@ -142,9 +139,11 @@ namespace Diploma.Helpers
             int oldYear = (int)row["Год"];
             int? oldEmp = row["id_сотрудника"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["id_сотрудника"]);
 
-            int newCode = TryParseInt(_boxes["comboBox4"].Text, oldCode);
-            int newYear = TryParseInt(_boxes["comboBox5"].Text, oldYear);
-            int? newEmp = string.IsNullOrWhiteSpace(_boxes["comboBox6"].Text) ? (int?)null : TryParseInt(_boxes["comboBox6"].Text, oldEmp ?? 0);
+            // Значения берём из тех же ComboBox, что и на этапе предварительной
+            // проверки изменений (AddChange выше)
+            int newCode = GetComboValue("comboBox3", oldCode);
+            int newYear = GetComboValue("comboBox4", oldYear);
+            int? newEmp = GetComboValueNullable("comboBox5", oldEmp);
 
             // Сохранение изменений в БД
             using (var con = new SqlConnection(_mgr.ConnStr))
@@ -259,8 +258,7 @@ WHERE id_фото     = @id;";
             string last = _boxes["comboBox3"].Text.Trim();
             string first = _boxes["comboBox4"].Text.Trim();
             string mid = _boxes["comboBox5"].Text.Trim();
-            int status = TryParseInt(_boxes["comboBox6"].Text,
-                                       Convert.ToInt32(row["id_статуса"]));
+            int status = GetComboValue("comboBox6", Convert.ToInt32(row["id_статуса"]));
             int fotoId = TryParseInt(_boxes["comboBox7"].Text,
                                        Convert.ToInt32(row["id_фото"]));
 
@@ -314,6 +312,35 @@ WHERE  id_статуса = @id;";
         private static int TryParseInt(string txt, int fallback)
         {
             return int.TryParse(txt, out var v) ? v : fallback;
+        }
+
+        private int GetComboValue(string name, int fallback)
+        {
+            if (!_boxes.TryGetValue(name, out var cb))
+                return fallback;
+
+            if (cb.DropDownStyle == ComboBoxStyle.DropDownList &&
+                cb.SelectedValue != null)
+                return Convert.ToInt32(cb.SelectedValue);
+
+            return TryParseInt(cb.Text, fallback);
+        }
+
+        private int? GetComboValueNullable(string name, int? fallback)
+        {
+            if (!_boxes.TryGetValue(name, out var cb))
+                return fallback;
+
+            if (cb.DropDownStyle == ComboBoxStyle.DropDownList)
+                return cb.SelectedValue == null
+                    ? (int?)null
+                    : Convert.ToInt32(cb.SelectedValue);
+
+            string txt = cb.Text;
+            if (string.IsNullOrWhiteSpace(txt))
+                return null;
+
+            return TryParseInt(txt, fallback ?? 0);
         }
 
         private static void AddChange(List<string> diff, string cap, object oldV, object newV)

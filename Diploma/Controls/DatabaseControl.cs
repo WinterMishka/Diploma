@@ -155,7 +155,7 @@ namespace Diploma
 
             if (guna2CheckBox1.Checked)                 // Группа
             {
-                _gridCfg.ConfigureGroups(_db.GetGroups());
+                _gridCfg.ConfigureGroups(_db.GetGroupsReadable());
                 _filter.ApplyDropDownStyles(comboBox3, comboBox5);        // id_код, id_сотрудника
             }
             else if (guna2CheckBox2.Checked)            // Код
@@ -175,7 +175,7 @@ namespace Diploma
             }
             else if (guna2CheckBox5.Checked)            // Сотрудники
             {
-                _gridCfg.ConfigureEmployees(_db.GetEmployees());
+                _gridCfg.ConfigureEmployees(_db.GetEmployeesReadable());
                 _filter.ApplyDropDownStyles(comboBox6, comboBox7);
             }
             else if (guna2CheckBox6.Checked)            // Специальность
@@ -190,7 +190,7 @@ namespace Diploma
             }
             else if (guna2CheckBox8.Checked)            // Учащиеся
             {
-                _gridCfg.ConfigureStudents(_db.GetStudents());
+                _gridCfg.ConfigureStudents(_db.GetStudentsReadable());
                 _filter.ApplyDropDownStyles(comboBox7, comboBox8, comboBox9); // id_курса, id_группы, id_фото
             }
         }
