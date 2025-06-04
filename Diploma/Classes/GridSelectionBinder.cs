@@ -166,7 +166,7 @@ namespace Diploma
                                 selected = i;
                         }
 
-                        box.SelectedValue = selected;
+                        box.SelectedValue = value;
                     }
                     catch (FormatException)
                     {
