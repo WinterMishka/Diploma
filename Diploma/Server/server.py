@@ -180,8 +180,13 @@ def api_bot_settings():
 
 
 @app.route('/api/test_notify')
-def api_test_notify():
-    telegram_bot.send_notifications()
+@app.route('/api/test_notify/<tg_id>')
+    """Send a test notification to the selected Telegram user."""
+    try:
+        tg = int(tg_id)
+    except ValueError:
+        return jsonify({'error': 'invalid id'}), 400
+    send_test_notification(tg)
     return jsonify({'status': 'ok'})
 
 
