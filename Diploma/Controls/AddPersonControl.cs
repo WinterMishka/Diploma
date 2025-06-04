@@ -17,6 +17,7 @@ namespace Diploma
         private readonly PhotoService _photo = PhotoService.Instance;
         private readonly FaceStorageService _faces = FaceStorageService.Instance;
         private readonly IAppDbService _db;
+        private readonly PersonRegistrationService _personSvc;
         #endregion
 
         #region Поля
@@ -34,6 +35,7 @@ namespace Diploma
         {
             InitializeComponent();
             _db = db;
+            _personSvc = new PersonRegistrationService(_db, _photo, _faces);
 
             Disposed += (s, e) => DisposeCamera();
 
@@ -149,8 +151,8 @@ namespace Diploma
 
             var parts = comboBox1.Text.Trim().Split(' ');
             string fam = parts[0],
-                   im = parts.ElementAtOrDefault(1) ?? "",
-                   ot = parts.ElementAtOrDefault(2) ?? "";
+                   im = parts.ElementAtOrDefault(1) ?? string.Empty,
+                   ot = parts.ElementAtOrDefault(2) ?? string.Empty;
 
             var shots = flpThumbnails.Controls
                                      .OfType<PictureBox>()
@@ -158,37 +160,32 @@ namespace Diploma
                                      .Select(p => p.Image)
                                      .ToArray();
 
-            int photoId = _photo.Save(shots[0]);
-
-            bool isStudent = rdoStudent.Checked;
-            int personId;
-
-            if (isStudent)
+            var data = new PersonData
             {
-                if (guna2RadioButton2.Checked && comboBox1.SelectedValue != null)
-                {
-                    personId = (int)comboBox1.SelectedValue;
-                    _photo.AssignToStudent(personId, photoId);
-                }
-                else
-                {
-                    int sid = (int)((DataRowView)lstSpecialities.SelectedItem)["id_специальности"];
-                    int cid = (int)((DataRowView)lstCourses.SelectedItem)["id_курса"];
-                    int gid = (int)((DataRowView)lstGroups.SelectedItem)["id_группы"];
+                LastName = fam,
+                FirstName = im,
+                MiddleName = ot,
+                Photos = shots,
+                IsStudent = rdoStudent.Checked,
+                UseExisting = guna2RadioButton2.Checked,
+                ExistingPersonId = (guna2RadioButton2.Checked && comboBox1.SelectedValue != null)
+                                   ? (int?)comboBox1.SelectedValue
+                                   : null,
+                SpecialityId = lstSpecialities.SelectedItem == null
+                               ? (int?)null
+                               : (int)((DataRowView)lstSpecialities.SelectedItem)["id_специальности"],
+                CourseId = lstCourses.SelectedItem == null
+                           ? (int?)null
+                           : (int)((DataRowView)lstCourses.SelectedItem)["id_курса"],
+                GroupId = lstGroups.SelectedItem == null
+                          ? (int?)null
+                          : (int)((DataRowView)lstGroups.SelectedItem)["id_группы"],
+                StatusId = lstStatuses.SelectedItem == null
+                          ? (int?)null
+                          : (int)((DataRowView)lstStatuses.SelectedItem)["id_статуса"]
+            };
 
-                    personId = _db.AddStudent(fam, im, ot, sid, cid, gid);
-                    _photo.AssignToStudent(personId, photoId);
-                }
-            }
-            else
-            {
-                int statusId = (int)((DataRowView)lstStatuses.SelectedItem)["id_статуса"];
-                personId = _db.AddEmployee(fam, im, ot, statusId);
-                _photo.AssignToEmployee(personId, photoId);
-            }
-
-            bool ok = _faces.SaveSet(photoId, shots,
-                                      isStudent ? FaceRole.Student : FaceRole.Staff);
+            bool ok = _personSvc.Register(data);
 
             MessageBox.Show(ok ? "Данные успешно сохранены."
                                : "Не удалось сохранить фотографии в Faces.",
