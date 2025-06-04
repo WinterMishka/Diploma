@@ -70,12 +70,15 @@ namespace Diploma.Helpers
 
             if (mode == 0)
             {
-                AddChange(changes, "Код группы", row["id_код"], TryParseInt(_boxes["comboBox4"].Text, (int)row["id_код"]));
-                AddChange(changes, "Год", row["Год"], TryParseInt(_boxes["comboBox5"].Text, (int)row["Год"]));
+                AddChange(changes, "Код группы", row["id_код"],
+                           TryParseInt(_boxes["comboBox3"].Text, (int)row["id_код"]));
+                AddChange(changes, "Год", row["Год"],
+                           TryParseInt(_boxes["comboBox4"].Text, (int)row["Год"]));
                 AddChange(changes, "Сотрудник", row["id_сотрудника"],
-                    string.IsNullOrWhiteSpace(_boxes["comboBox6"].Text)
-                        ? (int?)null
-                        : (int?)TryParseInt(_boxes["comboBox6"].Text, Convert.ToInt32(row["id_сотрудника"])));
+                           string.IsNullOrWhiteSpace(_boxes["comboBox5"].Text)
+                               ? (int?)null
+                               : (int?)TryParseInt(_boxes["comboBox5"].Text,
+                                                    Convert.ToInt32(row["id_сотрудника"])));
             }
             else if (mode == 1)
             {
@@ -315,6 +318,9 @@ WHERE  id_статуса = @id;";
 
         private static void AddChange(List<string> diff, string cap, object oldV, object newV)
         {
+            if (oldV == DBNull.Value) oldV = null;
+            if (newV == DBNull.Value) newV = null;
+
             if (!Equals(oldV, newV))
             {
                 string o = oldV == null ? "—" : oldV.ToString();
