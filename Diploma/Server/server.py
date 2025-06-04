@@ -8,12 +8,28 @@ import pickle
 import subprocess
 import sys
 import time
+import threading
+import pyodbc
+import telegram_bot
+import json
 
 app = Flask(__name__)
 
 known_faces = {}
 last_seen = {}  # Кеш: id -> время последнего распознавания
 COOLDOWN_SECONDS = 30  # 2 минуты
+
+
+def get_db_connection():
+    conn_str = (
+        r"Driver={ODBC Driver 17 for SQL Server};"
+        r"Server=(localdb)\MSSQLLocalDB;"
+        r"Integrated Security=SSPI;"
+        r"AttachDbFilename=C:\Users\artyo\source\repos\Diploma\Diploma\bin\Debug\EducationAccessSystem.mdf;"
+    )
+    return pyodbc.connect(conn_str)
+
+
 
 @app.route('/recognize', methods=['POST'])
 def recognize():
@@ -49,6 +65,152 @@ def recognize():
     return jsonify({"id": "unknown", "face_image": ""})
 
 
+@app.route('/api/find_employee', methods=['POST'])
+def api_find_employee():
+    data = request.get_json()
+    full_name = data.get('full_name') if data else None
+    if not full_name:
+        return jsonify({'error': 'missing full_name'}), 400
+    query = '''SELECT s.id_сотрудника, st.Название
+               FROM Сотрудники s
+               JOIN Статус_должность st ON st.id_статуса=s.id_статуса
+               WHERE RTRIM(CONCAT(s.Фамилия,' ',s.Имя,' ',COALESCE(s.Отчество,''))) = ?'''
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute(query, full_name)
+        row = cur.fetchone()
+    if row:
+        return jsonify({'id': row[0], 'role': row[1]})
+    return jsonify({'id': None})
+
+
+@app.route('/api/groups_for_employee/<int:emp_id>')
+def api_groups_for_employee(emp_id):
+    query = '''SELECT g.id_группы, kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))
+               FROM Группа g
+               JOIN Группа_код kc ON kc.id_код=g.id_код
+               WHERE g.id_сотрудника=?'''
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute(query, emp_id)
+        rows = cur.fetchall()
+    return jsonify([{'id': r[0], 'name': r[1]} for r in rows])
+
+
+@app.route('/api/all_groups')
+def api_all_groups():
+    query = '''SELECT DISTINCT g.id_группы,
+                      kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))
+               FROM Группа g
+               JOIN Группа_код kc ON kc.id_код=g.id_код'''
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute(query)
+        rows = cur.fetchall()
+    return jsonify([{'id': r[0], 'name': r[1]} for r in rows])
+
+
+@app.route('/api/add_subscriber', methods=['POST'])
+def api_add_subscriber():
+    data = request.get_json() or {}
+    full_name = data.get('full_name')
+    role = data.get('role')
+    telegram_id = data.get('telegram_id')
+    groups = data.get('groups', [])
+    if not (full_name and role and telegram_id and groups):
+        return jsonify({'error': 'invalid data'}), 400
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute('''INSERT INTO [ПодписчикиТелеграм]([ФИО], [Роль], [TelegramID], [Группы], [Статус])
+                       VALUES(?, ?, ?, ?, 0)''', full_name, role, telegram_id, ','.join(groups))
+        con.commit()
+    return jsonify({'status': 'ok'})
+
+
+def send_test_notification(tg_id: int):
+    """Send a test message with the list of students for subscriber groups."""
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute('SELECT [Группы] FROM [ПодписчикиТелеграм] WHERE [TelegramID]=?', tg_id)
+        row = cur.fetchone()
+        if not row:
+            return
+        group_names = [g.strip() for g in row[0].split(',') if g.strip()]
+        message_lines = ['Тестовое уведомление. Бот работает!']
+        for name in group_names:
+            cur.execute('''SELECT u.Фамилия + ' ' + u.Имя + ISNULL(' ' + u.Отчество, '')
+                           FROM Учащиеся u
+                           JOIN Группа g ON g.id_группы=u.id_группы
+                           JOIN Группа_код kc ON kc.id_код=g.id_код
+                           WHERE kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))=?''', name)
+            students = [r[0] for r in cur.fetchall()]
+            if students:
+                message_lines.append('\n' + name + ':')
+                message_lines.extend(students)
+        telegram_bot.bot.send_message(tg_id, '\n'.join(message_lines))
+
+
+@app.route('/api/confirmed_subscribers')
+def api_confirmed_subscribers():
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute('SELECT [TelegramID], [Группы] FROM [ПодписчикиТелеграм] WHERE [Статус]=1')
+        rows = cur.fetchall()
+    return jsonify([{'telegram_id': r[0], 'groups': r[1]} for r in rows])
+
+
+@app.route('/api/subscribers')
+def api_subscribers():
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute('SELECT [id_подписчика], [ФИО], [Роль], [TelegramID], [Группы], [Статус] FROM [ПодписчикиТелеграм]')
+        rows = cur.fetchall()
+    return jsonify([
+        {
+            'id': r[0],
+            'full_name': r[1],
+            'role': r[2],
+            'telegram_id': r[3],
+            'groups': r[4],
+            'status': bool(r[5])
+        }
+        for r in rows
+    ])
+
+
+@app.route('/api/confirm_subscriber/<int:sub_id>', methods=['POST'])
+def api_confirm_subscriber(sub_id):
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute('UPDATE [ПодписчикиТелеграм] SET [Статус]=1 WHERE [id_подписчика]=?', sub_id)
+        con.commit()
+    return jsonify({'status': 'ok'})
+
+
+@app.route('/api/delete_subscriber/<int:sub_id>', methods=['POST'])
+def api_delete_subscriber(sub_id):
+    with get_db_connection() as con:
+        cur = con.cursor()
+        cur.execute('DELETE FROM [ПодписчикиТелеграм] WHERE [id_подписчика]=?', sub_id)
+        con.commit()
+    return jsonify({'status': 'ok'})
+
+
+@app.route('/api/bot_settings', methods=['GET', 'POST'])
+def api_bot_settings():
+    if request.method == 'POST':
+        data = request.get_json() or {}
+        telegram_bot.save_settings(data)
+        return jsonify({'status': 'ok'})
+    return jsonify(telegram_bot.load_settings())
+
+
+@app.route('/api/test_notify/<int:tg_id>')
+def api_test_notify(tg_id):
+    send_test_notification(tg_id)
+    return jsonify({'status': 'ok'})
+
+
 if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
@@ -63,6 +225,10 @@ if __name__ == '__main__':
 
     with open("encodings.pkl", "rb") as f:
         known_faces = pickle.load(f)
+
+    print("[INFO] Запускаем Telegram-бота...")
+    bot_thread = threading.Thread(target=telegram_bot.run_bot, daemon=True)
+    bot_thread.start()
 
     print("[INFO] Запускаем Flask сервер...")
     app.run(debug=False)
