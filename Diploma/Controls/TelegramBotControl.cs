@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -80,6 +80,7 @@ namespace Diploma
                 send_absent_only = guna2CheckBox1.Checked,
                 send_daily_updates = guna2CheckBox2.Checked
             };
+
             var content = new StringContent(JsonConvert.SerializeObject(settings), Encoding.UTF8, "application/json");
             try { await client.PostAsync("/api/bot_settings", content); } catch { }
         }

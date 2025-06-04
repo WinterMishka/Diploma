@@ -94,6 +94,7 @@ def api_groups_for_employee(emp_id):
         cur = con.cursor()
         cur.execute(query, emp_id)
         rows = cur.fetchall()
+
     return jsonify([{'id': r[0], 'code': r[1]} for r in rows])
 
 
@@ -122,7 +123,6 @@ def api_add_subscriber():
                        VALUES(?, ?, ?, ?, 0)''', full_name, role, telegram_id, ','.join(groups))
         con.commit()
     return jsonify({'status': 'ok'})
-
 
 @app.route('/api/confirmed_subscribers')
 def api_confirmed_subscribers():
