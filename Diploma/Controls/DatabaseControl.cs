@@ -41,6 +41,10 @@ namespace Diploma
         {
             InitializeComponent();
 
+            // запретим автоматическое создание колонок, чтобы
+            // вручную контролировать их видимость
+            dataGridView6.AutoGenerateColumns = false;
+
             _db = db;
             _mgr = new FormManager(Properties.Settings.Default.EducationAccessSystemConnectionString);
 

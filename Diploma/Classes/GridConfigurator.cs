@@ -175,6 +175,36 @@ namespace Diploma.Helpers
                 "Фамилия", "Имя", "Отчество", "Фото_сделано",
                 "Специальность", "Курс", "Группа", "id_фото"
             });
+
+            /* ----- выпадающие списки для изменяемых полей ----- */
+            // Специальность → comboBox6 (DropDownList)
+            var cbSpec = _combo["comboBox6"];
+            cbSpec.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSpec.DataSource = _db.GetSpecialities();
+            cbSpec.DisplayMember = "Название";
+            cbSpec.ValueMember = "id_специальности";
+
+            // Курс → comboBox7 (DropDownList)
+            var cbCourse = _combo["comboBox7"];
+            cbCourse.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbCourse.DataSource = _db.GetCourses();
+            cbCourse.DisplayMember = "Наименование";
+            cbCourse.ValueMember = "id_курса";
+
+            // Группа → comboBox8 (DropDownList)
+            var cbGroup = _combo["comboBox8"];
+            cbGroup.DropDownStyle = ComboBoxStyle.DropDownList;
+            var groupsTbl = _db.GetGroupsReadable();
+            var grpList = groupsTbl.AsEnumerable()
+                                   .Select(r => new
+                                   {
+                                       Id = r.Field<int>("id_группы"),
+                                       Name = r.Field<string>("Код") + "-" + r.Field<int>("Год")
+                                   })
+                                   .ToList();
+            cbGroup.DataSource = grpList;
+            cbGroup.DisplayMember = "Name";
+            cbGroup.ValueMember = "Id";
         }
         #endregion
 

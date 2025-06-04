@@ -1,4 +1,4 @@
-﻿#region using
+#region using
 using Diploma.Services;
 using System;
 using System.Collections.Generic;
@@ -141,13 +141,11 @@ namespace Diploma.Helpers
 
             // Значения берём из тех же ComboBox, что и на этапе предварительной
             // проверки изменений (AddChange выше)
-
           int newCode = TryParseInt(_boxes["comboBox3"].Text, oldCode);
           int newYear = TryParseInt(_boxes["comboBox4"].Text, oldYear);
           int? newEmp = string.IsNullOrWhiteSpace(_boxes["comboBox5"].Text)
               ? (int?)null
               : TryParseInt(_boxes["comboBox5"].Text, oldEmp ?? 0);
-
 
             // Сохранение изменений в БД
             using (var con = new SqlConnection(_mgr.ConnStr))
