@@ -282,6 +282,9 @@
     <EmbeddedResource Include="Controls\ReportControl.resx">
       <DependentUpon>ReportControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TelegramBotControl.resx">
+      <DependentUpon>TelegramBotControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FaceControl.resx">
       <DependentUpon>FaceControl.cs</DependentUpon>
     </EmbeddedResource>

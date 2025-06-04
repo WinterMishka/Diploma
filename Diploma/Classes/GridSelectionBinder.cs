@@ -136,17 +136,15 @@ namespace Diploma
 
             object value = row[columnName];
 
-
             if (value == DBNull.Value ||
-        (value is string s && string.IsNullOrWhiteSpace(s)) ||
-        (value is int i && i == 0))
+                (value is string str && string.IsNullOrWhiteSpace(str)) ||
+                (value is int intVal && intVal == 0))
             {
                 box.SelectedIndex = -1;
                 box.Text = string.Empty;
             }
             else
             {
-
                 if (box.DropDownStyle == ComboBoxStyle.DropDownList &&
                     box.DataSource != null && !string.IsNullOrEmpty(box.ValueMember))
                 {
@@ -154,18 +152,18 @@ namespace Diploma
                     {
                         object selected = value;
 
-                        if (selected is string s)
+                        if (selected is string strVal)
                         {
-                            if (bool.TryParse(s, out var b))
-                                selected = b;
-                            else if (string.Equals(s, "Да", StringComparison.OrdinalIgnoreCase))
+                            if (bool.TryParse(strVal, out var boolVal))
+                                selected = boolVal;
+                            else if (string.Equals(strVal, "Да", StringComparison.OrdinalIgnoreCase))
                                 selected = true;
-                            else if (string.Equals(s, "Нет", StringComparison.OrdinalIgnoreCase))
+                            else if (string.Equals(strVal, "Нет", StringComparison.OrdinalIgnoreCase))
                                 selected = false;
-                            else if (int.TryParse(s, out var i))
-                                selected = i;
+                            else if (int.TryParse(strVal, out var intParsed))
+                                selected = intParsed;
                         }
-                        box.SelectedValue = value;
+                        box.SelectedValue = selected;
                     }
                     catch (FormatException)
                     {
@@ -183,7 +181,6 @@ namespace Diploma
                 }
             }
         }
-
         #endregion
     }
 }
