@@ -15,16 +15,18 @@ namespace Diploma.Helpers
         #region Конструктор
         public CheckedStateManager(IEnumerable<Guna2CheckBox> checkBoxes)
         {
-            _checkBoxes = checkBoxes.ToList();
+            _checkBoxes = checkBoxes?.ToList() ?? new List<Guna2CheckBox>();
         }
         #endregion
 
         #region Методы проверки режима
-        public bool IsGroupMode() => _checkBoxes[0].Checked;
-        public bool IsCourseMode() => _checkBoxes[1].Checked;
-        public bool IsSpecialityMode() => _checkBoxes[2].Checked;
-        public bool IsStatusMode() => _checkBoxes[3].Checked;
-        public bool IsCuratorMode() => _checkBoxes[4].Checked;
+        private bool GetChecked(int index) =>
+            _checkBoxes.Count > index && _checkBoxes[index].Checked;
+        public bool IsGroupMode() => GetChecked(0);
+        public bool IsCourseMode() => GetChecked(1);
+        public bool IsSpecialityMode() => GetChecked(2);
+        public bool IsStatusMode() => GetChecked(3);
+        public bool IsCuratorMode() => GetChecked(4);
         #endregion
         #endregion
     }

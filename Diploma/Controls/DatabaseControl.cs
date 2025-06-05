@@ -160,6 +160,7 @@ namespace Diploma
             guna2CheckBox14.CheckedChanged += ModeCheckBox_CheckedChanged;
             guna2CheckBox15.CheckedChanged += ModeCheckBox_CheckedChanged;
 
+
             this.Load += (s, e) => UpdateSearchGrid();
             dataGridView2.DataSource = _db.GetStudentVisits();
         }
