@@ -206,6 +206,9 @@ namespace Diploma
             bool ok = _faces.SaveSet(photoId, shots,
                                       isStudent ? FaceRole.Student : FaceRole.Staff);
 
+            if (ok)
+                await ReloadEncodingsAsync();
+
             MessageBox.Show(ok ? "Данные успешно сохранены."
                                : "Не удалось сохранить фотографии в Faces.",
                             ok ? "Готово" : "Внимание",
@@ -316,6 +319,19 @@ namespace Diploma
                 {
                     return false;
                 }
+            }
+        }
+
+        private static async Task ReloadEncodingsAsync()
+        {
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(5) })
+            {
+                try
+                {
+                    var resp = await client.PostAsync("http://127.0.0.1:5000/api/reload_encodings", null);
+                    resp.EnsureSuccessStatusCode();
+                }
+                catch { }
             }
         }
         #endregion

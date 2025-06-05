@@ -85,6 +85,17 @@ def api_validate_photos():
             return jsonify({'ok': False})
     return jsonify({'ok': True})
 
+@app.route('/api/reload_encodings', methods=['POST'])
+def api_reload_encodings():
+    """Rebuild encodings.pkl and refresh in-memory data."""
+    global known_faces
+    try:
+        subprocess.run([sys.executable, 'build_known.py'], check=True)
+        with open('encodings.pkl', 'rb') as f:
+            known_faces = pickle.load(f)
+        return jsonify({'status': 'ok'})
+    except Exception as exc:
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 @app.route('/api/find_employee', methods=['POST'])
 def api_find_employee():
