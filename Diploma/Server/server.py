@@ -97,17 +97,20 @@ def api_groups_for_employee(emp_id):
     return jsonify([{'id': r[0], 'name': r[1]} for r in rows])
 
 
+
 @app.route('/api/all_groups')
 def api_all_groups():
     query = '''SELECT DISTINCT g.id_группы,
                       kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))
                FROM Группа g
                JOIN Группа_код kc ON kc.id_код=g.id_код'''
+
     with get_db_connection() as con:
         cur = con.cursor()
         cur.execute(query)
         rows = cur.fetchall()
     return jsonify([{'id': r[0], 'name': r[1]} for r in rows])
+
 
 
 @app.route('/api/add_subscriber', methods=['POST'])
@@ -125,7 +128,6 @@ def api_add_subscriber():
                        VALUES(?, ?, ?, ?, 0)''', full_name, role, telegram_id, ','.join(groups))
         con.commit()
     return jsonify({'status': 'ok'})
-
 
 def send_test_notification(tg_id: int):
     """Send a test message with the list of students for subscriber groups."""
