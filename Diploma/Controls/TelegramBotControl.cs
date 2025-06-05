@@ -77,6 +77,7 @@ namespace Diploma
             maskedTextBox1.Text = Properties.Settings.Default.TelegramNotifyTime;
             guna2CheckBox1.Checked = Properties.Settings.Default.TelegramSendAbsentOnly;
             guna2CheckBox2.Checked = Properties.Settings.Default.TelegramSendDailyUpdates;
+            guna2CheckBox2.Refresh();
         }
 
         private void SaveLocalSettings()
@@ -98,6 +99,7 @@ namespace Diploma
                 maskedTextBox1.Text = (string)cfg.notify_time;
                 guna2CheckBox1.Checked = cfg.send_absent_only;
                 guna2CheckBox2.Checked = cfg.send_daily_updates;
+                guna2CheckBox2.Refresh();
                 SaveLocalSettings();
             }
             catch { }
