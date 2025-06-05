@@ -42,6 +42,7 @@ namespace Diploma
         {
             InitializeComponent();
             CheckBoxUI.ApplyRecursive(this);
+            CheckBoxUI.ApplyStyle(checkedListBox1);
 
             // запретим автоматическое создание колонок, чтобы
             // вручную контролировать их видимость
