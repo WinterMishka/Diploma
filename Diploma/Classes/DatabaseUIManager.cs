@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using Diploma.Data;
+using Diploma.Classes;
 #endregion
 
 namespace Diploma.Helpers
@@ -44,6 +45,8 @@ namespace Diploma.Helpers
                 _grid.DataSource = _db.GetStatuses();
             else if (_state.IsCuratorMode())
                 _grid.DataSource = _db.GetGroupsWithoutCurator();
+
+            DataGridViewUI.BeautifyGrid(_grid);
         }
         #endregion
 
