@@ -35,7 +35,9 @@ namespace Diploma.Classes
                 gv.Columns["Сумма_пропусков"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             gv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            gv.RowHeadersVisible = false;
+            gv.RowHeadersVisible = true;
+            gv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gv.MultiSelect = false;
             gv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(0xE8, 0xF5, 0xE9);
         }
     }

@@ -250,6 +250,17 @@ def api_test_notify(tg_id):
     return jsonify({'status': 'ok'})
 
 
+@app.route('/api/notify_visit', methods=['POST'])
+def api_notify_visit():
+    data = request.get_json() or {}
+    full_name = data.get('full_name')
+    status = data.get('status')
+    if not full_name or not status:
+        return jsonify({'error': 'invalid data'}), 400
+    telegram_bot.notify_visit(full_name, status)
+    return jsonify({'status': 'ok'})
+
+
 if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:

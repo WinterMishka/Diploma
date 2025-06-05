@@ -5,6 +5,10 @@ using Diploma.Recognition;
 using Diploma.Services;
 using Diploma.Classes;
 using System;
+using System.ComponentModel;
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -18,7 +22,8 @@ namespace Diploma
     {
         #region Сервисы
         private readonly CameraService _cam = CameraService.Instance;
-        private readonly RecognitionService _recog;
+        private RecognitionService _recog;
+        private readonly HttpClient _http = new HttpClient { BaseAddress = new Uri("http://127.0.0.1:5000") };
         private readonly IAppDbService _db;
         private Bitmap latestFrame;
         #endregion
@@ -48,6 +53,12 @@ namespace Diploma
         #region Запуск / остановка распознавания
         private void guna2BtnStartRecognition_Click(object sender, EventArgs e)
         {
+            if (_recog == null)
+            {
+                _recog = new RecognitionService(_cam);
+                _recog.Recognized += OnRecognized;
+            }
+
             _cam.Subscribe(OnFrameArrived);
             _recog.Start();
             guna2CheckBox1.Enabled = guna2CheckBox2.Enabled = false;
@@ -55,7 +66,10 @@ namespace Diploma
 
         private void guna2BtnStopRecognition_Click(object sender, EventArgs e)
         {
-            _recog.Stop();
+            _recog?.Stop();
+            _recog?.Dispose();
+            _recog = null;
+
             _cam.Unsubscribe(OnFrameArrived);
             latestFrame?.Dispose();
             latestFrame = null;
@@ -73,14 +87,24 @@ namespace Diploma
             latestFrame?.Dispose();
             latestFrame = (Bitmap)frame.Clone();
 
-            if (guna2PictureBoxLiveCamera.IsHandleCreated)
+            if (guna2PictureBoxLiveCamera.IsHandleCreated &&
+                !guna2PictureBoxLiveCamera.IsDisposed &&
+                !guna2PictureBoxLiveCamera.Disposing)
             {
                 var copy = (Bitmap)frame.Clone();
-                guna2PictureBoxLiveCamera.Invoke((MethodInvoker)(() =>
+                try
                 {
-                    guna2PictureBoxLiveCamera.Image?.Dispose();
-                    guna2PictureBoxLiveCamera.Image = copy;
-                }));
+                    guna2PictureBoxLiveCamera.BeginInvoke((MethodInvoker)(() =>
+                    {
+                        if (guna2PictureBoxLiveCamera.IsDisposed) { copy.Dispose(); return; }
+                        guna2PictureBoxLiveCamera.Image?.Dispose();
+                        guna2PictureBoxLiveCamera.Image = copy;
+                    }));
+                }
+                catch (InvalidAsynchronousStateException)
+                {
+                    copy.Dispose();
+                }
             }
         }
         #endregion
@@ -92,7 +116,7 @@ namespace Diploma
 
             bool isDeparture = guna2CheckBox2.Checked;
 
-            BeginInvoke((MethodInvoker)(() =>
+            BeginInvoke(new MethodInvoker(async () =>
             {
                 _db.SaveVisit(id, !isDeparture);
                 ShowFaceFromBase64(res.face_image);
@@ -102,6 +126,19 @@ namespace Diploma
                 SelectRowById(id);
 
                 var info = _db.GetPersonInfo(id);
+
+                try
+                {
+                    var payload = JsonConvert.SerializeObject(new
+                    {
+                        full_name = info.FullName,
+                        status = isDeparture ? "Уход" : "Приход"
+                    });
+                    var content = new StringContent(payload, Encoding.UTF8, "application/json");
+                    await _http.PostAsync("/api/notify_visit", content);
+                }
+                catch { }
+
                 MessageBox.Show(
                     $"{info.FullName}\n{info.Status}\n{(isDeparture ? "Уход" : "Приход")}",
                     "Распознано",
