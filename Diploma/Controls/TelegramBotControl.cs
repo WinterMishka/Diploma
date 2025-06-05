@@ -29,6 +29,10 @@ namespace Diploma
             guna2CheckBox1.CheckedChanged += SettingsChanged;
             guna2CheckBox2.CheckedChanged += SettingsChanged;
             maskedTextBox1.Leave += SettingsChanged;
+
+            // save options when the control is closed so the latest values
+            // persist across application restarts
+            HandleDestroyed += (s, e) => SaveLocalSettings();
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
