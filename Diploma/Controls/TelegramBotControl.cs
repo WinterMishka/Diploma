@@ -72,6 +72,8 @@ namespace Diploma
 
         private void LoadLocalSettings()
         {
+            // reload to ensure we read the latest persisted user values
+            Properties.Settings.Default.Reload();
             maskedTextBox1.Text = Properties.Settings.Default.TelegramNotifyTime;
             guna2CheckBox1.Checked = Properties.Settings.Default.TelegramSendAbsentOnly;
             guna2CheckBox2.Checked = Properties.Settings.Default.TelegramSendDailyUpdates;
