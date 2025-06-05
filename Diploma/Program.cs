@@ -68,5 +68,21 @@ namespace Diploma
                 return null;
             }
         }
+
+        private static bool PingServer()
+        {
+            try
+            {
+                using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(5) })
+                {
+                    var resp = client.GetAsync("http://127.0.0.1:5000/ping").Result;
+                    return resp.IsSuccessStatusCode;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
