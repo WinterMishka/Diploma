@@ -154,7 +154,6 @@ namespace Diploma
             guna2CheckBox6.CheckedChanged += (s, e) => UpdateSearchGrid();
             guna2CheckBox7.CheckedChanged += (s, e) => UpdateSearchGrid();
             guna2CheckBox8.CheckedChanged += (s, e) => UpdateSearchGrid();
-
             guna2CheckBox11.CheckedChanged += ModeCheckBox_CheckedChanged;
             guna2CheckBox12.CheckedChanged += ModeCheckBox_CheckedChanged;
             guna2CheckBox13.CheckedChanged += ModeCheckBox_CheckedChanged;
