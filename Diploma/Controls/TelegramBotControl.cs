@@ -68,27 +68,37 @@ namespace Diploma
         {
             LoadLocalSettings();
 
+            // Отключаем обработчики
+            guna2CheckBox1.CheckedChanged -= SettingsChanged;
+            guna2CheckBox2.CheckedChanged -= SettingsChanged;
+
             await LoadSettings();
+
+            // Включаем обратно после загрузки настроек с сервера
+            guna2CheckBox1.CheckedChanged += SettingsChanged;
+            guna2CheckBox2.CheckedChanged += SettingsChanged;
+
             await LoadSubscribers();
         }
 
         private void LoadLocalSettings()
         {
-            // reload to ensure we read the latest persisted user values
             Properties.Settings.Default.Reload();
+
+            // Отключаем обработчики перед массовым применением локальных настроек
+            guna2CheckBox1.CheckedChanged -= SettingsChanged;
+            guna2CheckBox2.CheckedChanged -= SettingsChanged;
+
             maskedTextBox1.Text = Properties.Settings.Default.TelegramNotifyTime;
             guna2CheckBox1.Checked = Properties.Settings.Default.TelegramSendAbsentOnly;
             guna2CheckBox2.Checked = Properties.Settings.Default.TelegramSendDailyUpdates;
+
             guna2CheckBox1.Refresh();
             guna2CheckBox2.Refresh();
-        }
 
-        private void SaveLocalSettings()
-        {
-            Properties.Settings.Default.TelegramNotifyTime = maskedTextBox1.Text;
-            Properties.Settings.Default.TelegramSendAbsentOnly = guna2CheckBox1.Checked;
-            Properties.Settings.Default.TelegramSendDailyUpdates = guna2CheckBox2.Checked;
-            Properties.Settings.Default.Save();
+            // Включаем обратно
+            guna2CheckBox1.CheckedChanged += SettingsChanged;
+            guna2CheckBox2.CheckedChanged += SettingsChanged;
         }
 
         private async Task LoadSettings()
@@ -99,14 +109,34 @@ namespace Diploma
                 if (!resp.IsSuccessStatusCode) return;
                 var json = await resp.Content.ReadAsStringAsync();
                 dynamic cfg = JsonConvert.DeserializeObject(json);
+
+                // Отключаем обработчики чтобы не триггерить SettingsChanged
+                guna2CheckBox1.CheckedChanged -= SettingsChanged;
+                guna2CheckBox2.CheckedChanged -= SettingsChanged;
+
                 maskedTextBox1.Text = (string)cfg.notify_time;
                 guna2CheckBox1.Checked = cfg.send_absent_only;
                 guna2CheckBox2.Checked = cfg.send_daily_updates;
+
                 guna2CheckBox1.Refresh();
                 guna2CheckBox2.Refresh();
+
+                // Включаем обратно
+                guna2CheckBox1.CheckedChanged += SettingsChanged;
+                guna2CheckBox2.CheckedChanged += SettingsChanged;
+
                 SaveLocalSettings();
             }
             catch { }
+        }
+
+
+        private void SaveLocalSettings()
+        {
+            Properties.Settings.Default.TelegramNotifyTime = maskedTextBox1.Text;
+            Properties.Settings.Default.TelegramSendAbsentOnly = guna2CheckBox1.Checked;
+            Properties.Settings.Default.TelegramSendDailyUpdates = guna2CheckBox2.Checked;
+            Properties.Settings.Default.Save();
         }
 
         private async void SettingsChanged(object sender, EventArgs e)

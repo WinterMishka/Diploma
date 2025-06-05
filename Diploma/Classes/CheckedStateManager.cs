@@ -28,6 +28,5 @@ namespace Diploma.Helpers
         public bool IsStatusMode() => GetChecked(3);
         public bool IsCuratorMode() => GetChecked(4);
         #endregion
-        #endregion
     }
 }

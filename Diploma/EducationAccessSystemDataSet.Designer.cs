@@ -5937,7 +5937,7 @@ namespace Diploma {
             
             private global::System.Data.DataColumn columnДаты_отсутствия;
             
-            private global::System.Data.DataColumn columnСумма_пропусков;
+            private global::System.Data.DataColumn columnКоличество_пропусков;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -5998,9 +5998,9 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Сумма_пропусковColumn {
+            public global::System.Data.DataColumn Количество_пропусковColumn {
                 get {
-                    return this.columnСумма_пропусков;
+                    return this.columnКоличество_пропусков;
                 }
             }
             
@@ -6041,13 +6041,13 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public usp_Отсутствия_ГруппыRow Addusp_Отсутствия_ГруппыRow(string ФИО, string Даты_отсутствия, int Сумма_пропусков) {
+            public usp_Отсутствия_ГруппыRow Addusp_Отсутствия_ГруппыRow(string ФИО, string Даты_отсутствия, int Количество_пропусков) {
                 usp_Отсутствия_ГруппыRow rowusp_Отсутствия_ГруппыRow = ((usp_Отсутствия_ГруппыRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ФИО,
                         Даты_отсутствия,
-                        Сумма_пропусков};
+                        Количество_пропусков};
                 rowusp_Отсутствия_ГруппыRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowusp_Отсутствия_ГруппыRow);
                 return rowusp_Отсутствия_ГруппыRow;
@@ -6080,7 +6080,7 @@ namespace Diploma {
                 this.columnid_учащегося = base.Columns["id_учащегося"];
                 this.columnФИО = base.Columns["ФИО"];
                 this.columnДаты_отсутствия = base.Columns["Даты_отсутствия"];
-                this.columnСумма_пропусков = base.Columns["Сумма_пропусков"];
+                this.columnКоличество_пропусков = base.Columns["Количество_пропусков"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6092,8 +6092,8 @@ namespace Diploma {
                 base.Columns.Add(this.columnФИО);
                 this.columnДаты_отсутствия = new global::System.Data.DataColumn("Даты_отсутствия", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnДаты_отсутствия);
-                this.columnСумма_пропусков = new global::System.Data.DataColumn("Сумма_пропусков", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnСумма_пропусков);
+                this.columnКоличество_пропусков = new global::System.Data.DataColumn("Количество_пропусков", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnКоличество_пропусков);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_учащегося}, true));
                 this.columnid_учащегося.AutoIncrement = true;
@@ -6104,7 +6104,7 @@ namespace Diploma {
                 this.columnФИО.MaxLength = 302;
                 this.columnДаты_отсутствия.ReadOnly = true;
                 this.columnДаты_отсутствия.MaxLength = 4000;
-                this.columnСумма_пропусков.ReadOnly = true;
+                this.columnКоличество_пропусков.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6244,7 +6244,7 @@ namespace Diploma {
             
             private global::System.Data.DataColumn columnДаты_отсутствия;
             
-            private global::System.Data.DataColumn columnСумма_пропусков;
+            private global::System.Data.DataColumn columnКоличество_пропусков;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -6305,9 +6305,9 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Сумма_пропусковColumn {
+            public global::System.Data.DataColumn Количество_пропусковColumn {
                 get {
-                    return this.columnСумма_пропусков;
+                    return this.columnКоличество_пропусков;
                 }
             }
             
@@ -6348,13 +6348,13 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public usp_ОтсутствияЗаПериодRow Addusp_ОтсутствияЗаПериодRow(string ФИО, string Даты_отсутствия, int Сумма_пропусков) {
+            public usp_ОтсутствияЗаПериодRow Addusp_ОтсутствияЗаПериодRow(string ФИО, string Даты_отсутствия, int Количество_пропусков) {
                 usp_ОтсутствияЗаПериодRow rowusp_ОтсутствияЗаПериодRow = ((usp_ОтсутствияЗаПериодRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ФИО,
                         Даты_отсутствия,
-                        Сумма_пропусков};
+                        Количество_пропусков};
                 rowusp_ОтсутствияЗаПериодRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowusp_ОтсутствияЗаПериодRow);
                 return rowusp_ОтсутствияЗаПериодRow;
@@ -6387,7 +6387,7 @@ namespace Diploma {
                 this.columnid_учащегося = base.Columns["id_учащегося"];
                 this.columnФИО = base.Columns["ФИО"];
                 this.columnДаты_отсутствия = base.Columns["Даты_отсутствия"];
-                this.columnСумма_пропусков = base.Columns["Сумма_пропусков"];
+                this.columnКоличество_пропусков = base.Columns["Количество_пропусков"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6399,8 +6399,8 @@ namespace Diploma {
                 base.Columns.Add(this.columnФИО);
                 this.columnДаты_отсутствия = new global::System.Data.DataColumn("Даты_отсутствия", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnДаты_отсутствия);
-                this.columnСумма_пропусков = new global::System.Data.DataColumn("Сумма_пропусков", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnСумма_пропусков);
+                this.columnКоличество_пропусков = new global::System.Data.DataColumn("Количество_пропусков", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnКоличество_пропусков);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_учащегося}, true));
                 this.columnid_учащегося.AutoIncrement = true;
@@ -6411,7 +6411,7 @@ namespace Diploma {
                 this.columnФИО.MaxLength = 302;
                 this.columnДаты_отсутствия.ReadOnly = true;
                 this.columnДаты_отсутствия.MaxLength = 4000;
-                this.columnСумма_пропусков.ReadOnly = true;
+                this.columnКоличество_пропусков.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8334,18 +8334,18 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Сумма_пропусков {
+            public int Количество_пропусков {
                 get {
                     try {
-                        return ((int)(this[this.tableusp_Отсутствия_Группы.Сумма_пропусковColumn]));
+                        return ((int)(this[this.tableusp_Отсутствия_Группы.Количество_пропусковColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Сумма_пропусков\' в таблице \'usp_Отсутствия_Группы\' равно DB" +
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Количество_пропусков\' в таблице \'usp_Отсутствия_Группы\' равно DB" +
                                 "Null.", e);
                     }
                 }
                 set {
-                    this[this.tableusp_Отсутствия_Группы.Сумма_пропусковColumn] = value;
+                    this[this.tableusp_Отсутствия_Группы.Количество_пропусковColumn] = value;
                 }
             }
             
@@ -8375,14 +8375,14 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsСумма_пропусковNull() {
-                return this.IsNull(this.tableusp_Отсутствия_Группы.Сумма_пропусковColumn);
+            public bool IsКоличество_пропусковNull() {
+                return this.IsNull(this.tableusp_Отсутствия_Группы.Количество_пропусковColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetСумма_пропусковNull() {
-                this[this.tableusp_Отсутствия_Группы.Сумма_пропусковColumn] = global::System.Convert.DBNull;
+            public void SetКоличество_пропусковNull() {
+                this[this.tableusp_Отсутствия_Группы.Количество_пропусковColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8446,18 +8446,18 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Сумма_пропусков {
+            public int Количество_пропусков {
                 get {
                     try {
-                        return ((int)(this[this.tableusp_ОтсутствияЗаПериод.Сумма_пропусковColumn]));
+                        return ((int)(this[this.tableusp_ОтсутствияЗаПериод.Количество_пропусковColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Сумма_пропусков\' в таблице \'usp_ОтсутствияЗаПериод\' равно D" +
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Количество_пропусков\' в таблице \'usp_ОтсутствияЗаПериод\' равно D" +
                                 "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tableusp_ОтсутствияЗаПериод.Сумма_пропусковColumn] = value;
+                    this[this.tableusp_ОтсутствияЗаПериод.Количество_пропусковColumn] = value;
                 }
             }
             
@@ -8487,14 +8487,14 @@ namespace Diploma {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsСумма_пропусковNull() {
-                return this.IsNull(this.tableusp_ОтсутствияЗаПериод.Сумма_пропусковColumn);
+            public bool IsКоличество_пропусковNull() {
+                return this.IsNull(this.tableusp_ОтсутствияЗаПериод.Количество_пропусковColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetСумма_пропусковNull() {
-                this[this.tableusp_ОтсутствияЗаПериод.Сумма_пропусковColumn] = global::System.Convert.DBNull;
+            public void SetКоличество_пропусковNull() {
+                this[this.tableusp_ОтсутствияЗаПериод.Количество_пропусковColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13770,7 +13770,7 @@ SELECT id_учащегося, Фамилия, Имя, Отчество, Фото
             tableMapping.ColumnMappings.Add("id_учащегося", "id_учащегося");
             tableMapping.ColumnMappings.Add("ФИО", "ФИО");
             tableMapping.ColumnMappings.Add("Даты_отсутствия", "Даты_отсутствия");
-            tableMapping.ColumnMappings.Add("Сумма_пропусков", "Сумма_пропусков");
+            tableMapping.ColumnMappings.Add("Количество_пропусков", "Количество_пропусков");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13980,7 +13980,7 @@ SELECT id_учащегося, Фамилия, Имя, Отчество, Фото
             tableMapping.ColumnMappings.Add("id_учащегося", "id_учащегося");
             tableMapping.ColumnMappings.Add("ФИО", "ФИО");
             tableMapping.ColumnMappings.Add("Даты_отсутствия", "Даты_отсутствия");
-            tableMapping.ColumnMappings.Add("Сумма_пропусков", "Сумма_пропусков");
+            tableMapping.ColumnMappings.Add("Количество_пропусков", "Количество_пропусков");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

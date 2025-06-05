@@ -703,7 +703,7 @@ SELECT id_учащегося, Фамилия, Имя, Отчество, Фото
               <Mapping SourceColumn="id_учащегося" DataSetColumn="id_учащегося" />
               <Mapping SourceColumn="ФИО" DataSetColumn="ФИО" />
               <Mapping SourceColumn="Даты_отсутствия" DataSetColumn="Даты_отсутствия" />
-              <Mapping SourceColumn="Сумма_пропусков" DataSetColumn="Сумма_пропусков" />
+              <Mapping SourceColumn="Количество_пропусков" DataSetColumn="Количество_пропусков" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -726,7 +726,7 @@ SELECT id_учащегося, Фамилия, Имя, Отчество, Фото
               <Mapping SourceColumn="id_учащегося" DataSetColumn="id_учащегося" />
               <Mapping SourceColumn="ФИО" DataSetColumn="ФИО" />
               <Mapping SourceColumn="Даты_отсутствия" DataSetColumn="Даты_отсутствия" />
-              <Mapping SourceColumn="Сумма_пропусков" DataSetColumn="Сумма_пропусков" />
+              <Mapping SourceColumn="Количество_пропусков" DataSetColumn="Количество_пропусков" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1128,7 +1128,7 @@ SELECT id_учащегося, Фамилия, Имя, Отчество, Фото
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Сумма_пропусков" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Сумма_пропусков" msprop:Generator_ColumnPropNameInTable="Сумма_пропусковColumn" msprop:Generator_ColumnVarNameInTable="columnСумма_пропусков" msprop:Generator_UserColumnName="Сумма_пропусков" type="xs:int" minOccurs="0" />
+              <xs:element name="Количество_пропусков" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Количество_пропусков" msprop:Generator_ColumnPropNameInTable="Количество_пропусковColumn" msprop:Generator_ColumnVarNameInTable="columnКоличество_пропусков" msprop:Generator_UserColumnName="Количество_пропусков" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1150,7 +1150,7 @@ SELECT id_учащегося, Фамилия, Имя, Отчество, Фото
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Сумма_пропусков" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Сумма_пропусков" msprop:Generator_ColumnPropNameInTable="Сумма_пропусковColumn" msprop:Generator_ColumnVarNameInTable="columnСумма_пропусков" msprop:Generator_UserColumnName="Сумма_пропусков" type="xs:int" minOccurs="0" />
+              <xs:element name="Количество_пропусков" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Количество_пропусков" msprop:Generator_ColumnPropNameInTable="Количество_пропусковColumn" msprop:Generator_ColumnVarNameInTable="columnКоличество_пропусков" msprop:Generator_UserColumnName="Количество_пропусков" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

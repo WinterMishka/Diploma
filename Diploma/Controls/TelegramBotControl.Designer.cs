@@ -33,14 +33,14 @@
             this.guna2CheckBox2 = new Guna.UI2.WinForms.Guna2CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -135,16 +135,29 @@
             this.guna2CheckBox1.UncheckedState.BorderThickness = 0;
             this.guna2CheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maskedTextBox1.Location = new System.Drawing.Point(200, 31);
+            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(200, 0, 200, 0);
+            this.maskedTextBox1.Mask = "00:00";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.PromptChar = 'X';
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 31);
+            this.maskedTextBox1.TabIndex = 4;
+            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
+            // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 62);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1000, 372);
             this.dataGridView1.TabIndex = 4;
             // 
@@ -167,6 +180,23 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1000, 62);
             this.tableLayoutPanel2.TabIndex = 5;
+            // 
+            // guna2Button4
+            // 
+            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Button4.Font = new System.Drawing.Font("Verdana", 14.25F);
+            this.guna2Button4.ForeColor = System.Drawing.Color.White;
+            this.guna2Button4.Location = new System.Drawing.Point(750, 0);
+            this.guna2Button4.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2Button4.Name = "guna2Button4";
+            this.guna2Button4.Size = new System.Drawing.Size(250, 62);
+            this.guna2Button4.TabIndex = 3;
+            this.guna2Button4.Text = "Тестовое уведомление";
+            this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
             // 
             // guna2Button3
             // 
@@ -228,40 +258,10 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(1000, 124);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Инструкция:\r\n1. Перейдите в Telegram-бота @YourBotName\r\n2. Нажмите /start и отпра" +
-    "вьте сообщение: Иванов Иван Иванович, 1ИВТ-23\r\n3. После подтверждения заявки вы " +
-    "начнёте получать уведомления.";
+            this.label2.Text = "Инструкция:\r\n1. Перейдите в Telegram-бота @SGKReportBot\r\n2. Нажмите /start и отпр" +
+    "авьте сообщение. Пример: Иванов Иван Иванович.\r\n3. После подтверждения заявки вы" +
+    " начнёте получать уведомления.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // guna2Button4
-            // 
-            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Button4.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2Button4.ForeColor = System.Drawing.Color.White;
-            this.guna2Button4.Location = new System.Drawing.Point(750, 0);
-            this.guna2Button4.Margin = new System.Windows.Forms.Padding(0);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.Size = new System.Drawing.Size(250, 62);
-            this.guna2Button4.TabIndex = 3;
-            this.guna2Button4.Text = "Тестовое уведомление";
-            this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.maskedTextBox1.Location = new System.Drawing.Point(200, 31);
-            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(200, 0, 200, 0);
-            this.maskedTextBox1.Mask = "00:00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.PromptChar = 'X';
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 31);
-            this.maskedTextBox1.TabIndex = 4;
-            this.maskedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             // 
             // TelegramBotControl
             // 

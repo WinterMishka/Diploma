@@ -101,13 +101,11 @@ namespace Diploma
             // 
             // guna2BtnSnap
             // 
-            this.guna2BtnSnap.BorderRadius = 30;
             this.guna2BtnSnap.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnSnap.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnSnap.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2BtnSnap.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnSnap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2BtnSnap.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(64)))), ((int)(((byte)(40)))));
             this.guna2BtnSnap.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.guna2BtnSnap.ForeColor = System.Drawing.Color.White;
             this.guna2BtnSnap.Location = new System.Drawing.Point(0, 279);
@@ -348,13 +346,11 @@ namespace Diploma
             // 
             // guna2BtnSave
             // 
-            this.guna2BtnSave.BorderRadius = 30;
             this.guna2BtnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2BtnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2BtnSave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(64)))), ((int)(((byte)(40)))));
             this.guna2BtnSave.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.guna2BtnSave.ForeColor = System.Drawing.Color.White;
             this.guna2BtnSave.Location = new System.Drawing.Point(0, 455);
@@ -367,13 +363,11 @@ namespace Diploma
             // 
             // guna2BtnClear
             // 
-            this.guna2BtnClear.BorderRadius = 30;
             this.guna2BtnClear.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnClear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnClear.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2BtnClear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2BtnClear.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(64)))), ((int)(((byte)(40)))));
             this.guna2BtnClear.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.guna2BtnClear.ForeColor = System.Drawing.Color.White;
             this.guna2BtnClear.Location = new System.Drawing.Point(350, 455);

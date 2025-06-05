@@ -29,8 +29,8 @@
           <DataField>Даты_отсутствия</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Сумма_пропусков">
-          <DataField>Сумма_пропусков</DataField>
+        <Field Name="Количество_пропусков">
+          <DataField>Количество_пропусков</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
@@ -238,7 +238,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Сумма пропусков</Value>
+                                  <Value>Количество_пропусков</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -359,21 +359,21 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Сумма_пропусков1">
+                        <Textbox Name="Количество_пропусков1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Сумма_пропусков.Value</Value>
+                                  <Value>=Fields!Количество_пропусков.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Сумма_пропусков1</rd:DefaultName>
+                          <rd:DefaultName>Количество_пропусков1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>

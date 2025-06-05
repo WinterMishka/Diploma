@@ -246,25 +246,33 @@ namespace Diploma
         private void ModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             var clicked = sender as Guna2CheckBox;
-            var checkBoxes = tableLayoutPanel14.Controls
-                .OfType<Guna2CheckBox>()
-                .ToList();
 
-            if (!clicked.Checked && checkBoxes.Count(cb => cb.Checked) == 1)
-            {
-                clicked.CheckedChanged -= ModeCheckBox_CheckedChanged;
-                clicked.Checked = true;
-                clicked.CheckedChanged += ModeCheckBox_CheckedChanged;
-                return;
-            }
+            // Жёстко задаём нужную группу чекбоксов
+            var checkBoxes = new List<Guna2CheckBox>
+    {
+        guna2CheckBox11,
+        guna2CheckBox12,
+        guna2CheckBox13,
+        guna2CheckBox14,
+        guna2CheckBox15
+    };
 
-            foreach (var cb in checkBoxes) cb.CheckedChanged -= ModeCheckBox_CheckedChanged;
-            foreach (var cb in checkBoxes) cb.Checked = cb == clicked;
-            foreach (var cb in checkBoxes) cb.CheckedChanged += ModeCheckBox_CheckedChanged;
+            // Отключаем обработчик, чтобы избежать лишних срабатываний
+            foreach (var cb in checkBoxes)
+                cb.CheckedChanged -= ModeCheckBox_CheckedChanged;
+
+            // Только выбранный должен быть true, остальные false
+            foreach (var cb in checkBoxes)
+                cb.Checked = (cb == clicked);
+
+            // Включаем обратно обработчик
+            foreach (var cb in checkBoxes)
+                cb.CheckedChanged += ModeCheckBox_CheckedChanged;
 
             _ui.UpdateGrid();
             _ui.UpdateComboBoxAfterCheck();
         }
+
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {

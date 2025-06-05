@@ -31,8 +31,8 @@ namespace Diploma.Classes
                 gv.Columns["Даты_отсутствия"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             }
 
-            if (gv.Columns.Contains("Сумма_пропусков"))
-                gv.Columns["Сумма_пропусков"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            if (gv.Columns.Contains("Количество_пропусков"))
+                gv.Columns["Количество_пропусков"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             gv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             gv.RowHeadersVisible = true;
