@@ -155,10 +155,16 @@ def send_notifications():
         return
     if not settings.get('send_absent_only'):
         return
-    absent_list = f'Список отсутствующих после {notify_time.strftime("%H:%M")}'
     subs = api_get('/api/confirmed_subscribers') or []
     for sub in subs:
-        bot.send_message(sub['telegram_id'], absent_list)
+        groups = [g.strip() for g in sub.get('groups', '').split(',') if g.strip()]
+        data = api_post('/api/absent_students', {'groups': groups, 'date': now.date().isoformat()}) or {}
+        lines = [f'Список отсутствующих после {notify_time.strftime("%H:%M")}' ]
+        for name, students in data.items():
+            if students:
+                lines.append('\n' + name + ':')
+                lines.extend(students)
+        bot.send_message(sub['telegram_id'], '\n'.join(lines))
     last_notification_date = now.date()
 
 

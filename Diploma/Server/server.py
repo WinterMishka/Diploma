@@ -8,6 +8,7 @@ import pickle
 import subprocess
 import sys
 import time
+from datetime import datetime
 import threading
 import pyodbc
 import telegram_bot
@@ -182,6 +183,39 @@ def send_test_notification(tg_id: int):
                 message_lines.append('\n' + name + ':')
                 message_lines.extend(students)
         telegram_bot.bot.send_message(tg_id, '\n'.join(message_lines))
+
+
+@app.route('/api/absent_students', methods=['POST'])
+def api_absent_students():
+    """Return list of absent students for the given groups and date."""
+    data = request.get_json() or {}
+    groups = data.get('groups') or []
+    if isinstance(groups, str):
+        groups = [groups]
+    date_str = data.get('date')
+    try:
+        qdate = datetime.fromisoformat(date_str).date() if date_str else datetime.now().date()
+    except ValueError:
+        return jsonify({'error': 'invalid date'}), 400
+
+    results = {}
+    with get_db_connection() as con:
+        cur = con.cursor()
+        for name in groups:
+            cur.execute('''
+                SELECT u.Фамилия + ' ' + u.Имя + ISNULL(' ' + u.Отчество, '')
+                FROM Учащиеся u
+                JOIN Группа g ON g.id_группы=u.id_группы
+                JOIN Группа_код kc ON kc.id_код=g.id_код
+                LEFT JOIN (
+                    SELECT DISTINCT id_учащегося FROM Приход_уход
+                    WHERE дата_прихода=? AND id_учащегося IS NOT NULL
+                ) v ON v.id_учащегося=u.id_учащегося
+                WHERE kc.Код + '-' + CAST(g.Год AS NVARCHAR(4))=? AND v.id_учащегося IS NULL
+                ORDER BY u.Фамилия, u.Имя
+            ''', qdate, name)
+            results[name] = [r[0] for r in cur.fetchall()]
+    return jsonify(results)
 
 
 @app.route('/api/confirmed_subscribers')
