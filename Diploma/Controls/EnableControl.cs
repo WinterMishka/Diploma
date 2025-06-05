@@ -6,6 +6,9 @@ using Diploma.Services;
 using Diploma.Classes;
 using System;
 using System.ComponentModel;
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -20,6 +23,7 @@ namespace Diploma
         #region Сервисы
         private readonly CameraService _cam = CameraService.Instance;
         private RecognitionService _recog;
+        private readonly HttpClient _http = new HttpClient { BaseAddress = new Uri("http://127.0.0.1:5000") };
         private readonly IAppDbService _db;
         private Bitmap latestFrame;
         #endregion
@@ -112,7 +116,7 @@ namespace Diploma
 
             bool isDeparture = guna2CheckBox2.Checked;
 
-            BeginInvoke((MethodInvoker)(() =>
+            BeginInvoke(new MethodInvoker(async () =>
             {
                 _db.SaveVisit(id, !isDeparture);
                 ShowFaceFromBase64(res.face_image);
@@ -122,6 +126,19 @@ namespace Diploma
                 SelectRowById(id);
 
                 var info = _db.GetPersonInfo(id);
+
+                try
+                {
+                    var payload = JsonConvert.SerializeObject(new
+                    {
+                        full_name = info.FullName,
+                        status = isDeparture ? "Уход" : "Приход"
+                    });
+                    var content = new StringContent(payload, Encoding.UTF8, "application/json");
+                    await _http.PostAsync("/api/notify_visit", content);
+                }
+                catch { }
+
                 MessageBox.Show(
                     $"{info.FullName}\n{info.Status}\n{(isDeparture ? "Уход" : "Приход")}",
                     "Распознано",
