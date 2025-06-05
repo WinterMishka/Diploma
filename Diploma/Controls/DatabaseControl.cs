@@ -1,6 +1,7 @@
 ﻿#region using
 using Diploma.Data;
 using Diploma.Helpers;
+using Diploma.Classes;
 using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
@@ -319,6 +320,7 @@ namespace Diploma
                            : _db.GetEmployeeVisits();
 
             dataGridView2.DataSource = _currentView;
+            DataGridViewUI.BeautifyGrid(dataGridView2);
             ApplySearchFilter();
         }
 

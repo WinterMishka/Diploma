@@ -30,6 +30,11 @@ def get_db_connection():
     return pyodbc.connect(conn_str)
 
 
+@app.route('/ping')
+def ping():
+    return jsonify({'status': 'ok'})
+
+
 
 @app.route('/recognize', methods=['POST'])
 def recognize():
@@ -62,7 +67,36 @@ def recognize():
             face_b64 = base64.b64encode(buffer).decode('utf-8')
             return jsonify({"id": face_id, "face_image": face_b64})
 
+
     return jsonify({"id": "unknown", "face_image": ""})
+
+
+@app.route('/api/validate_photos', methods=['POST'])
+def api_validate_photos():
+    photos = request.files.getlist('photos')
+    if not photos:
+        return jsonify({'ok': False, 'error': 'no_photos'}), 400
+    for f in photos:
+        npimg = np.frombuffer(f.read(), np.uint8)
+        frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+        rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        boxes = face_recognition.face_locations(rgb)
+        if len(boxes) == 0:
+            return jsonify({'ok': False})
+    return jsonify({'ok': True})
+
+
+@app.route('/api/reload_encodings', methods=['POST'])
+def api_reload_encodings():
+    """Rebuild encodings.pkl and refresh in-memory data."""
+    global known_faces
+    try:
+        subprocess.run([sys.executable, 'build_known.py'], check=True)
+        with open('encodings.pkl', 'rb') as f:
+            known_faces = pickle.load(f)
+        return jsonify({'status': 'ok'})
+    except Exception as exc:
+        return jsonify({'status': 'error', 'message': str(exc)}), 500
 
 
 @app.route('/api/find_employee', methods=['POST'])
