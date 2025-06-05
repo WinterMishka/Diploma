@@ -38,6 +38,17 @@ namespace Diploma
             return false;
         }
 
+        private static bool WaitForServer(int attempts = 30, int delayMs = 1000)
+        {
+            for (int i = 0; i < attempts; i++)
+            {
+                if (PingServer())
+                    return true;
+                Task.Delay(delayMs).Wait();
+            }
+            return false;
+        }
+
         private static bool PingServer()
         {
             try
