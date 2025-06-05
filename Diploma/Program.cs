@@ -18,7 +18,7 @@ namespace Diploma
         static void Main()
         {
             var proc = StartServer();
-            if (!PingServer())
+            if (!WaitForServer())
             {
                 MessageBox.Show("Сервер не доступен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 try { proc?.Kill(); } catch { }
@@ -32,21 +32,6 @@ namespace Diploma
             try { proc?.Kill(); } catch { }
         }
 
-        private static bool PingServer()
-        {
-            try
-            {
-                using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(5) })
-                {
-                    var resp = client.GetAsync("http://127.0.0.1:5000/ping").Result;
-                    return resp.IsSuccessStatusCode;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
         private static Process StartServer()
         {
@@ -67,6 +52,17 @@ namespace Diploma
             {
                 return null;
             }
+        }
+
+        private static bool WaitForServer(int attempts = 30, int delayMs = 1000)
+        {
+            for (int i = 0; i < attempts; i++)
+            {
+                if (PingServer())
+                    return true;
+                Task.Delay(delayMs).Wait();
+            }
+            return false;
         }
 
         private static bool PingServer()
