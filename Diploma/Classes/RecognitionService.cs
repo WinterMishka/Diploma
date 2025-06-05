@@ -18,6 +18,7 @@ namespace Diploma.Recognition
         private readonly System.Timers.Timer _timer;
         private Bitmap _latest;
         private bool _disposed;
+        private volatile bool _running;
         #endregion
 
         #region ctor
@@ -32,8 +33,17 @@ namespace Diploma.Recognition
         #endregion
 
         #region API
-        public void Start() => _timer.Start();
-        public void Stop() => _timer.Stop();
+        public void Start()
+        {
+            _running = true;
+            _timer.Start();
+        }
+
+        public void Stop()
+        {
+            _running = false;
+            _timer.Stop();
+        }
         #endregion
 
         #region События
@@ -49,6 +59,13 @@ namespace Diploma.Recognition
 
         private async System.Threading.Tasks.Task SendFrame()
         {
+            if (!_running || _disposed)
+            {
+                var tmp = Interlocked.Exchange(ref _latest, null);
+                tmp?.Dispose();
+                return;
+            }
+
             var frame = Interlocked.Exchange(ref _latest, null);
             if (frame == null) return;
 
@@ -84,6 +101,7 @@ namespace Diploma.Recognition
         public void Dispose()
         {
             if (_disposed) return;
+            _running = false;
             _timer?.Stop();
             _timer?.Dispose();
             _cam.Unsubscribe(OnFrameArrived);
