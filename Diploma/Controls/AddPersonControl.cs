@@ -2,8 +2,14 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Diploma.Data;
 using Diploma.Services;
 #endregion
@@ -42,6 +48,9 @@ namespace Diploma
 
             flpThumbnails.FlowDirection = FlowDirection.LeftToRight;
             flpThumbnails.WrapContents = true;
+
+            // ensure controls locked according to initial mode
+            rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
             _cam.Subscribe(OnFrame);
         }
@@ -137,7 +146,7 @@ namespace Diploma
         #endregion
 
         #region Сохранение
-        private void guna2BtnSave_Click(object sender, EventArgs e)
+        private async void guna2BtnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(comboBox1.Text) ||
                 flpThumbnails.Controls.OfType<PictureBox>().Count(pb => pb.Image != null) < 3)
@@ -157,6 +166,13 @@ namespace Diploma
                                      .Take(3)
                                      .Select(p => p.Image)
                                      .ToArray();
+
+            if (!await ValidatePhotosAsync(shots))
+            {
+                MessageBox.Show("Фотографии не прошли проверку на сервере.",
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             int photoId = _photo.Save(shots[0]);
 
@@ -267,6 +283,40 @@ namespace Diploma
             comboBox1.DataSource = tbl;
             comboBox1.DisplayMember = "ФИО";
             comboBox1.ValueMember = "id_учащегося";
+        }
+        #endregion
+
+        #region Валидация фотографий
+        private async Task<bool> ValidatePhotosAsync(Image[] shots)
+        {
+            using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(5) })
+            using (var content = new MultipartFormDataContent())
+            {
+                for (int i = 0; i < shots.Length; i++)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        shots[i].Save(ms, ImageFormat.Jpeg);
+                        var bytes = ms.ToArray();
+                        var part = new ByteArrayContent(bytes);
+                        part.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+                        content.Add(part, "photos", $"shot{i}.jpg");
+                    }
+                }
+
+                try
+                {
+                    var resp = await client.PostAsync("http://127.0.0.1:5000/api/validate_photos", content);
+                    resp.EnsureSuccessStatusCode();
+                    var json = await resp.Content.ReadAsStringAsync();
+                    dynamic obj = JsonConvert.DeserializeObject(json);
+                    return obj != null && obj.ok == true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
         #endregion
     }
