@@ -134,6 +134,8 @@ namespace Diploma
                     dataGridView1.Columns.Add("Groups", "Группа(-ы)");
                     dataGridView1.Columns.Add("Status", "Статус");
                     dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dataGridView1.MultiSelect = false;
                 }
 
                 dataGridView1.Rows.Clear();
@@ -142,6 +144,7 @@ namespace Diploma
                 {
                     dataGridView1.Rows.Add(s.id, i++, s.full_name, s.role, s.telegram_id, s.groups, s.status ? "Подтверждён" : "Не подтверждён");
                 }
+                Classes.DataGridViewUI.BeautifyGrid(dataGridView1);
             }
             catch { }
         }
