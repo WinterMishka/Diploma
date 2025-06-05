@@ -96,8 +96,8 @@ namespace Diploma.Helpers
                 AddChange(changes, "Фамилия", row["Фамилия"], _boxes["comboBox3"].Text);
                 AddChange(changes, "Имя", row["Имя"], _boxes["comboBox4"].Text);
                 AddChange(changes, "Отчество", row["Отчество"], _boxes["comboBox5"].Text);
-                AddChange(changes, "id_статуса", row["id_статуса"], GetComboValue("comboBox6", Convert.ToInt32(row["id_статуса"])));
-                AddChange(changes, "id_фото", row["id_фото"], _boxes["comboBox7"].Text);
+                AddChange(changes, "Должность", row["Должность"], _boxes["comboBox6"].Text);
+                AddChange(changes, "id_фото", row["id_фото"], TryParseInt(_boxes["comboBox7"].Text, Convert.ToInt32(row["id_фото"])));
             }
             else if (mode == 5)
             {
@@ -113,10 +113,10 @@ namespace Diploma.Helpers
                 AddChange(changes, "Имя", row["Имя"], _boxes["comboBox3"].Text);
                 AddChange(changes, "Отчество", row["Отчество"], _boxes["comboBox4"].Text);
                 AddChange(changes, "Фото_сделано", row["Фото_сделано"], _boxes["comboBox5"].Text);
-                AddChange(changes, "id_специальности", row["id_специальности"], GetComboValue("comboBox6", Convert.ToInt32(row["id_специальности"])));
-                AddChange(changes, "id_курса", row["id_курса"], GetComboValue("comboBox7", Convert.ToInt32(row["id_курса"])));
-                AddChange(changes, "id_группы", row["id_группы"], GetComboValue("comboBox8", Convert.ToInt32(row["id_группы"])));
-                AddChange(changes, "id_фото", row["id_фото"], _boxes["comboBox9"].Text);
+                AddChange(changes, "Специальность", row["Специальность"], _boxes["comboBox6"].Text);
+                AddChange(changes, "Курс", row["Курс"], _boxes["comboBox7"].Text);
+                AddChange(changes, "Группа", row["Группа"], _boxes["comboBox8"].Text);
+                AddChange(changes, "id_фото", row["id_фото"], TryParseInt(_boxes["comboBox9"].Text, Convert.ToInt32(row["id_фото"])));
             }
 
             if (changes.Count == 0)

@@ -3,6 +3,7 @@ using Diploma.Data;
 using Diploma.Helpers;
 using Diploma.Recognition;
 using Diploma.Services;
+using Diploma.Classes;
 using System;
 using System.Data;
 using System.Drawing;
@@ -138,6 +139,8 @@ namespace Diploma
                 dataGridView1.Columns["Дата"].HeaderText = "Дата";
             if (dataGridView1.Columns.Contains("Время"))
                 dataGridView1.Columns["Время"].HeaderText = "Время";
+
+            DataGridViewUI.BeautifyGrid(dataGridView1);
         }
 
         private void SelectRowById(int photoId)
