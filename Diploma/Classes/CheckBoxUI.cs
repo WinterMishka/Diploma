@@ -27,7 +27,6 @@ namespace Diploma.Classes
                         ApplyStyle(clb);
                         break;
                 }
-
                 if (c.HasChildren)
                     ApplyRecursive(c);
             }
