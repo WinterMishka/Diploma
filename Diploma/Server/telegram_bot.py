@@ -1,5 +1,7 @@
 import os
 import json
+import threading
+import time
 from datetime import datetime, time as dt_time
 
 import telebot
@@ -19,6 +21,7 @@ STATE_WAIT_GROUP = 'wait_group'
 API_BASE = os.getenv('SERVER_URL', 'http://127.0.0.1:5000')
 
 user_states = {}
+last_notification_date = None
 
 
 def load_settings():
@@ -132,23 +135,48 @@ def handle_group(message):
     user_states.pop(message.chat.id, None)
 
 
+def notify_visit(full_name, status):
+    settings = load_settings()
+    if not settings.get('send_daily_updates'):
+        return
+    subs = api_get('/api/confirmed_subscribers') or []
+    for sub in subs:
+        bot.send_message(sub['telegram_id'], f'{full_name}: {status}')
+
+
 def send_notifications():
     settings = load_settings()
     notify_time = dt_time.fromisoformat(settings['notify_time'])
-    now = datetime.now().time()
-    if now < notify_time:
+    now = datetime.now()
+    if now.time() < notify_time:
         return
-    # Placeholder: получение списка отсутствующих
-    absent_list = 'Список отсутствующих после 8:30'
+    global last_notification_date
+    if last_notification_date == now.date():
+        return
+    if not settings.get('send_absent_only'):
+        return
+    absent_list = f'Список отсутствующих после {notify_time.strftime("%H:%M")}'
     subs = api_get('/api/confirmed_subscribers') or []
     for sub in subs:
         bot.send_message(sub['telegram_id'], absent_list)
+    last_notification_date = now.date()
 
 
 def run_bot():
-    """Initialize DB and start polling."""
+    """Initialize DB and start polling with background scheduler."""
+
+    def scheduler():
+        while True:
+            try:
+                send_notifications()
+            except Exception:
+                pass
+            time.sleep(60)
+
+    threading.Thread(target=scheduler, daemon=True).start()
     bot.polling(none_stop=True)
 
 
 if __name__ == '__main__':
     run_bot()
+
