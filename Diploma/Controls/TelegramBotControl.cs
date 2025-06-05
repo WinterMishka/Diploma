@@ -128,6 +128,7 @@ namespace Diploma
                     dataGridView1.Columns.Add("TelegramID", "TelegramID");
                     dataGridView1.Columns.Add("Groups", "Группа(-ы)");
                     dataGridView1.Columns.Add("Status", "Статус");
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 }
 
                 dataGridView1.Rows.Clear();
