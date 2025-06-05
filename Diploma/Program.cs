@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,9 +15,31 @@ namespace Diploma
         [STAThread]
         static void Main()
         {
+            if (!PingServer())
+            {
+                MessageBox.Show("Сервер не доступен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FaceControl());
+        }
+
+        private static bool PingServer()
+        {
+            try
+            {
+                using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(5) })
+                {
+                    var resp = client.GetAsync("http://127.0.0.1:5000/ping").Result;
+                    return resp.IsSuccessStatusCode;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

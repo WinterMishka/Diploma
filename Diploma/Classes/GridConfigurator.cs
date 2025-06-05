@@ -1,5 +1,6 @@
 ﻿#region using
 using Diploma.Data;
+using Diploma.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -237,6 +238,8 @@ namespace Diploma.Helpers
                     Visible = !(col.StartsWith("id_") && col != "id_фото")
                 });
             }
+
+            DataGridViewUI.BeautifyGrid(_grid);
         }
         private void ShowSimpleFilters(string[] captions, int startIndex = 2)
         {
