@@ -272,11 +272,13 @@ namespace Diploma
             {
                 _entry.AssignCuratorIfConfirmed(dataGridView1, comboBox1);
                 _ui.UpdateGrid();
+                UpdateSearchGrid();
                 return;
             }
 
             _ui.HandleAdd();
             _ui.UpdateGrid();
+            UpdateSearchGrid();
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -295,6 +297,9 @@ namespace Diploma
 
                 MessageBox.Show($"Импорт завершён. Добавлено: {added}",
                                 "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _ui.UpdateGrid();
+                UpdateSearchGrid();
             }
         }
 
