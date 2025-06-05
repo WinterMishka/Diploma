@@ -42,7 +42,6 @@ namespace Diploma
         {
             InitializeComponent();
             CheckBoxUI.ApplyRecursive(this);
-            CheckBoxUI.ApplyStyle(checkedListBox1);
 
             // запретим автоматическое создание колонок, чтобы
             // вручную контролировать их видимость
@@ -51,7 +50,14 @@ namespace Diploma
             _db = db;
             _mgr = new FormManager(Properties.Settings.Default.EducationAccessSystemConnectionString);
 
-            _state = new CheckedStateManager(checkedListBox1);
+            _state = new CheckedStateManager(new[]
+            {
+                guna2CheckBox11,
+                guna2CheckBox12,
+                guna2CheckBox13,
+                guna2CheckBox14,
+                guna2CheckBox15
+            });
             _ui = new DatabaseUIManager(_db, _mgr, _state, comboBox1, dataGridView1);
             _entry = new DbEntryService(_db);
             _deleter = new DbDeleteService(_mgr, dataGridView6);
@@ -138,7 +144,6 @@ namespace Diploma
             };
             _updater = new DbUpdateService(_mgr, dataGridView6, combosForUpdate, _editState, this);
 
-            checkedListBox1.CheckOnClick = true;
             _ui.UpdateGrid();
 
             guna2CheckBox1.CheckedChanged += (s, e) => UpdateSearchGrid();
@@ -149,6 +154,12 @@ namespace Diploma
             guna2CheckBox6.CheckedChanged += (s, e) => UpdateSearchGrid();
             guna2CheckBox7.CheckedChanged += (s, e) => UpdateSearchGrid();
             guna2CheckBox8.CheckedChanged += (s, e) => UpdateSearchGrid();
+
+            guna2CheckBox11.CheckedChanged += ModeCheckBox_CheckedChanged;
+            guna2CheckBox12.CheckedChanged += ModeCheckBox_CheckedChanged;
+            guna2CheckBox13.CheckedChanged += ModeCheckBox_CheckedChanged;
+            guna2CheckBox14.CheckedChanged += ModeCheckBox_CheckedChanged;
+            guna2CheckBox15.CheckedChanged += ModeCheckBox_CheckedChanged;
 
             this.Load += (s, e) => UpdateSearchGrid();
             dataGridView2.DataSource = _db.GetStudentVisits();
@@ -231,15 +242,28 @@ namespace Diploma
         }
         #endregion
 
-        #region Обработчики кнопок
-        private void CheckedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        #region Обработчики режимных чекбоксов
+        private void ModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            _state.EnforceSingleCheck(e);
-            BeginInvoke(new MethodInvoker(() =>
+            var clicked = sender as Guna2CheckBox;
+            var checkBoxes = tableLayoutPanel14.Controls
+                .OfType<Guna2CheckBox>()
+                .ToList();
+
+            if (!clicked.Checked && checkBoxes.Count(cb => cb.Checked) == 1)
             {
-                _ui.UpdateGrid();
-                _ui.UpdateComboBoxAfterCheck();
-            }));
+                clicked.CheckedChanged -= ModeCheckBox_CheckedChanged;
+                clicked.Checked = true;
+                clicked.CheckedChanged += ModeCheckBox_CheckedChanged;
+                return;
+            }
+
+            foreach (var cb in checkBoxes) cb.CheckedChanged -= ModeCheckBox_CheckedChanged;
+            foreach (var cb in checkBoxes) cb.Checked = cb == clicked;
+            foreach (var cb in checkBoxes) cb.CheckedChanged += ModeCheckBox_CheckedChanged;
+
+            _ui.UpdateGrid();
+            _ui.UpdateComboBoxAfterCheck();
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
