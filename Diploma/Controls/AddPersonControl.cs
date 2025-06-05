@@ -97,14 +97,24 @@ namespace Diploma
             latestFrame?.Dispose();
             latestFrame = (Bitmap)bmp.Clone();
 
-            if (guna2PbLiveCamera.IsHandleCreated)
+            if (guna2PbLiveCamera.IsHandleCreated &&
+                !guna2PbLiveCamera.IsDisposed &&
+                !guna2PbLiveCamera.Disposing)
             {
                 var disp = (Bitmap)bmp.Clone();
-                guna2PbLiveCamera.Invoke((Action)(() =>
+                try
                 {
-                    guna2PbLiveCamera.Image?.Dispose();
-                    guna2PbLiveCamera.Image = disp;
-                }));
+                    guna2PbLiveCamera.BeginInvoke((Action)(() =>
+                    {
+                        if (guna2PbLiveCamera.IsDisposed) { disp.Dispose(); return; }
+                        guna2PbLiveCamera.Image?.Dispose();
+                        guna2PbLiveCamera.Image = disp;
+                    }));
+                }
+                catch (InvalidAsynchronousStateException)
+                {
+                    disp.Dispose();
+                }
             }
         }
 
