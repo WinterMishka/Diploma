@@ -32,7 +32,12 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2CheckBox11 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.guna2CheckBox12 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.guna2CheckBox13 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.guna2CheckBox14 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.guna2CheckBox15 = new Guna.UI2.WinForms.Guna2CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -88,6 +93,7 @@
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -170,7 +176,7 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.checkedListBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel14, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.guna2Button3, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.comboBox1, 0, 2);
@@ -185,27 +191,130 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(275, 572);
             this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(193)))), ((int)(((byte)(131)))));
-            this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.checkedListBox1.CheckOnClick = true;
-            this.checkedListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Группа",
-            "Курс",
-            "Специальность",
-            "Статус",
-            "Куратора для группы"});
-            this.checkedListBox1.Location = new System.Drawing.Point(0, 0);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(275, 143);
-            this.checkedListBox1.TabIndex = 0;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CheckedListBox1_ItemCheck);
-            // 
+            //
+            // tableLayoutPanel14
+            //
+            this.tableLayoutPanel14.ColumnCount = 1;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel14.Controls.Add(this.guna2CheckBox11, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.guna2CheckBox12, 0, 1);
+            this.tableLayoutPanel14.Controls.Add(this.guna2CheckBox13, 0, 2);
+            this.tableLayoutPanel14.Controls.Add(this.guna2CheckBox14, 0, 3);
+            this.tableLayoutPanel14.Controls.Add(this.guna2CheckBox15, 0, 4);
+            this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 5;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(275, 143);
+            this.tableLayoutPanel14.TabIndex = 0;
+            //
+            // guna2CheckBox11
+            //
+            this.guna2CheckBox11.AutoSize = true;
+            this.guna2CheckBox11.Checked = true;
+            this.guna2CheckBox11.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox11.CheckedState.BorderRadius = 0;
+            this.guna2CheckBox11.CheckedState.BorderThickness = 0;
+            this.guna2CheckBox11.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox11.Location = new System.Drawing.Point(0, 0);
+            this.guna2CheckBox11.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2CheckBox11.Name = "guna2CheckBox11";
+            this.guna2CheckBox11.Size = new System.Drawing.Size(275, 28);
+            this.guna2CheckBox11.TabIndex = 0;
+            this.guna2CheckBox11.Text = "Группа";
+            this.guna2CheckBox11.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox11.UncheckedState.BorderRadius = 0;
+            this.guna2CheckBox11.UncheckedState.BorderThickness = 0;
+            this.guna2CheckBox11.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox11.CheckedChanged += new System.EventHandler(this.ModeCheckBox_CheckedChanged);
+            //
+            // guna2CheckBox12
+            //
+            this.guna2CheckBox12.AutoSize = true;
+            this.guna2CheckBox12.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox12.CheckedState.BorderRadius = 0;
+            this.guna2CheckBox12.CheckedState.BorderThickness = 0;
+            this.guna2CheckBox12.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox12.Location = new System.Drawing.Point(0, 28);
+            this.guna2CheckBox12.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2CheckBox12.Name = "guna2CheckBox12";
+            this.guna2CheckBox12.Size = new System.Drawing.Size(275, 28);
+            this.guna2CheckBox12.TabIndex = 1;
+            this.guna2CheckBox12.Text = "Курс";
+            this.guna2CheckBox12.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox12.UncheckedState.BorderRadius = 0;
+            this.guna2CheckBox12.UncheckedState.BorderThickness = 0;
+            this.guna2CheckBox12.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox12.CheckedChanged += new System.EventHandler(this.ModeCheckBox_CheckedChanged);
+            //
+            // guna2CheckBox13
+            //
+            this.guna2CheckBox13.AutoSize = true;
+            this.guna2CheckBox13.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox13.CheckedState.BorderRadius = 0;
+            this.guna2CheckBox13.CheckedState.BorderThickness = 0;
+            this.guna2CheckBox13.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox13.Location = new System.Drawing.Point(0, 56);
+            this.guna2CheckBox13.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2CheckBox13.Name = "guna2CheckBox13";
+            this.guna2CheckBox13.Size = new System.Drawing.Size(275, 28);
+            this.guna2CheckBox13.TabIndex = 2;
+            this.guna2CheckBox13.Text = "Специальность";
+            this.guna2CheckBox13.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox13.UncheckedState.BorderRadius = 0;
+            this.guna2CheckBox13.UncheckedState.BorderThickness = 0;
+            this.guna2CheckBox13.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox13.CheckedChanged += new System.EventHandler(this.ModeCheckBox_CheckedChanged);
+            //
+            // guna2CheckBox14
+            //
+            this.guna2CheckBox14.AutoSize = true;
+            this.guna2CheckBox14.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox14.CheckedState.BorderRadius = 0;
+            this.guna2CheckBox14.CheckedState.BorderThickness = 0;
+            this.guna2CheckBox14.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox14.Location = new System.Drawing.Point(0, 84);
+            this.guna2CheckBox14.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2CheckBox14.Name = "guna2CheckBox14";
+            this.guna2CheckBox14.Size = new System.Drawing.Size(275, 28);
+            this.guna2CheckBox14.TabIndex = 3;
+            this.guna2CheckBox14.Text = "Статус";
+            this.guna2CheckBox14.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox14.UncheckedState.BorderRadius = 0;
+            this.guna2CheckBox14.UncheckedState.BorderThickness = 0;
+            this.guna2CheckBox14.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox14.CheckedChanged += new System.EventHandler(this.ModeCheckBox_CheckedChanged);
+            //
+            // guna2CheckBox15
+            //
+            this.guna2CheckBox15.AutoSize = true;
+            this.guna2CheckBox15.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox15.CheckedState.BorderRadius = 0;
+            this.guna2CheckBox15.CheckedState.BorderThickness = 0;
+            this.guna2CheckBox15.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2CheckBox15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox15.Location = new System.Drawing.Point(0, 112);
+            this.guna2CheckBox15.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2CheckBox15.Name = "guna2CheckBox15";
+            this.guna2CheckBox15.Size = new System.Drawing.Size(275, 31);
+            this.guna2CheckBox15.TabIndex = 4;
+            this.guna2CheckBox15.Text = "Куратора для группы";
+            this.guna2CheckBox15.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox15.UncheckedState.BorderRadius = 0;
+            this.guna2CheckBox15.UncheckedState.BorderThickness = 0;
+            this.guna2CheckBox15.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2CheckBox15.CheckedChanged += new System.EventHandler(this.ModeCheckBox_CheckedChanged);
+            //
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1029,6 +1138,8 @@
             this.guna2TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel14.ResumeLayout(false);
+            this.tableLayoutPanel14.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -1065,7 +1176,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox11;
+        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox12;
+        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox13;
+        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox14;
+        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox15;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;

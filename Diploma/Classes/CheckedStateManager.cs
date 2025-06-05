@@ -1,6 +1,7 @@
 ﻿#region using
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
+using Guna.UI2.WinForms;
 #endregion
 
 namespace Diploma.Helpers
@@ -8,36 +9,26 @@ namespace Diploma.Helpers
     public class CheckedStateManager
     {
         #region Поля
-        private readonly CheckedListBox _checkedList;
+        private readonly IList<Guna2CheckBox> _checkBoxes;
         #endregion
 
         #region Конструктор
-        public CheckedStateManager(CheckedListBox checkedList)
+        public CheckedStateManager(IEnumerable<Guna2CheckBox> checkBoxes)
         {
-            _checkedList = checkedList;
+            _checkBoxes = checkBoxes?.ToList() ?? new List<Guna2CheckBox>();
         }
         #endregion
 
         #region Методы проверки режима
-        public bool IsGroupMode() => _checkedList.GetItemChecked(0);
-        public bool IsCourseMode() => _checkedList.GetItemChecked(1);
-        public bool IsSpecialityMode() => _checkedList.GetItemChecked(2);
-        public bool IsStatusMode() => _checkedList.GetItemChecked(3);
-        public bool IsCuratorMode() => _checkedList.GetItemChecked(4);
-        #endregion
+        private bool GetChecked(int index) =>
+            _checkBoxes.Count > index && _checkBoxes[index].Checked;
 
-        #region Метод переключения одного чекбокса
-        public void EnforceSingleCheck(ItemCheckEventArgs e)
-        {
-            if (e.NewValue == CheckState.Checked)
-            {
-                for (int i = 0; i < _checkedList.Items.Count; i++)
-                {
-                    if (i != e.Index)
-                        _checkedList.SetItemChecked(i, false);
-                }
-            }
-        }
+        public bool IsGroupMode() => GetChecked(0);
+        public bool IsCourseMode() => GetChecked(1);
+        public bool IsSpecialityMode() => GetChecked(2);
+        public bool IsStatusMode() => GetChecked(3);
+        public bool IsCuratorMode() => GetChecked(4);
+        #endregion
         #endregion
     }
 }
