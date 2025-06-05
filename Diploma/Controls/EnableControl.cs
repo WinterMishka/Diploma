@@ -38,6 +38,7 @@ namespace Diploma
         public EnableControl(IAppDbService db)
         {
             InitializeComponent();
+            CheckBoxUI.ApplyRecursive(this);
 
             _db = db;
             LoadVisitLog();

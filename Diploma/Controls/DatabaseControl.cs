@@ -41,6 +41,8 @@ namespace Diploma
         public DatabaseControl(IAppDbService db)
         {
             InitializeComponent();
+            CheckBoxUI.ApplyRecursive(this);
+            CheckBoxUI.ApplyStyle(checkedListBox1);
 
             // запретим автоматическое создание колонок, чтобы
             // вручную контролировать их видимость
