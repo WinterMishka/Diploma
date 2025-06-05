@@ -13,6 +13,7 @@ using System.ComponentModel;
 using Newtonsoft.Json;
 using Diploma.Data;
 using Diploma.Services;
+using Diploma.Classes;
 #endregion
 
 namespace Diploma
@@ -40,6 +41,7 @@ namespace Diploma
         public AddPersonControl(IAppDbService db)
         {
             InitializeComponent();
+            CheckBoxUI.ApplyRecursive(this);
             _db = db;
 
             Disposed += (s, e) => DisposeCamera();
