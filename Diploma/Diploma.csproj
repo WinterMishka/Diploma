@@ -195,6 +195,7 @@
     <Compile Include="Classes\CheckedStateManager.cs" />
     <Compile Include="Classes\DatabaseUIManager.cs" />
     <Compile Include="Classes\DataGridViewUI.cs" />
+    <Compile Include="Classes\CheckBoxUI.cs" />
     <Compile Include="Classes\DbDeleteService.cs" />
     <Compile Include="Classes\DbEntryService.cs" />
     <Compile Include="Classes\DbUpdateService.cs" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Diploma.Classes;
 
 namespace Diploma
 {
@@ -25,6 +26,7 @@ namespace Diploma
         public TelegramBotControl()
         {
             InitializeComponent();
+            CheckBoxUI.ApplyRecursive(this);
             Load += TelegramBotControl_Load;
             guna2CheckBox1.CheckedChanged += SettingsChanged;
             guna2CheckBox2.CheckedChanged += SettingsChanged;
@@ -77,6 +79,7 @@ namespace Diploma
             maskedTextBox1.Text = Properties.Settings.Default.TelegramNotifyTime;
             guna2CheckBox1.Checked = Properties.Settings.Default.TelegramSendAbsentOnly;
             guna2CheckBox2.Checked = Properties.Settings.Default.TelegramSendDailyUpdates;
+            guna2CheckBox1.Refresh();
             guna2CheckBox2.Refresh();
         }
 
@@ -99,6 +102,7 @@ namespace Diploma
                 maskedTextBox1.Text = (string)cfg.notify_time;
                 guna2CheckBox1.Checked = cfg.send_absent_only;
                 guna2CheckBox2.Checked = cfg.send_daily_updates;
+                guna2CheckBox1.Refresh();
                 guna2CheckBox2.Refresh();
                 SaveLocalSettings();
             }
@@ -165,6 +169,15 @@ namespace Diploma
 
         private async void DeleteSelected()
         {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+
+            var confirm = MessageBox.Show(
+                "Удалить выбранного подписчика?",
+                "Подтверждение",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes) return;
+
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
                 int id = Convert.ToInt32(row.Cells["Id"].Value);
