@@ -22,7 +22,6 @@ namespace Diploma.Helpers
         #region Методы проверки режима
         private bool GetChecked(int index) =>
             _checkBoxes.Count > index && _checkBoxes[index].Checked;
-
         public bool IsGroupMode() => GetChecked(0);
         public bool IsCourseMode() => GetChecked(1);
         public bool IsSpecialityMode() => GetChecked(2);
