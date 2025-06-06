@@ -83,8 +83,24 @@ namespace Diploma
         {
             if (colorDialog1.ShowDialog() != DialogResult.OK) return;
             var newColor = colorDialog1.Color;
+            var excluded = new HashSet<string>
+            {
+                "guna2BtnSidebarToggle",
+                "guna2BtnControlToggle",
+                "guna2BtnDatabase",
+                "guna2BtnAddPerson",
+                "guna2BtnCreateReport",
+                "guna2BtnTelegramBot",
+                "guna2BtnSettings",
+                "guna2Panel1",
+                "guna2BtnResize",
+                "guna2BtnMinimize",
+                "guna2BtnClose"
+            };
             ApplyToAllControls(c =>
             {
+                if (excluded.Contains(c.Name))
+                    return;
                 if (c is Guna2Button g)
                     g.FillColor = newColor;
                 else if (c is Button b)
