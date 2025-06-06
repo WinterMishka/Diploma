@@ -73,7 +73,10 @@ namespace Diploma.Classes
                 first = false;
             }
             foreach (var btn in form.WindowButtons)
+            {
                 btn.FillColor = navFill;
+                btn.ForeColor = Color.Black;
+            }
 
             form.TitlePanel.BackColor = navFill;
             form.SetActiveBorderColor(navBorderFirst);
@@ -125,7 +128,10 @@ namespace Diploma.Classes
                 foreach (var btn in form.NavigationButtons)
                     btn.FillColor = c;
                 foreach (var btn in form.WindowButtons)
+                {
                     btn.FillColor = c;
+                    btn.ForeColor = Color.Black;
+                }
                 form.TitlePanel.BackColor = c;
                 foreach (var tab in GetAllControls(form).OfType<Guna2TabControl>())
                 {
