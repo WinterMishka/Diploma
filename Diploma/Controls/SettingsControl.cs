@@ -149,7 +149,7 @@ namespace Diploma
 
         private void guna2ButtonReset_Click(object sender, EventArgs e)
         {
-            UiSettingsManager.Current = new UiSettingsData();
+            UiSettingsManager.Reset();
             UiSettingsManager.Save();
             if (FindForm() is FaceControl face)
                 UiSettingsManager.ApplyTo(face);
