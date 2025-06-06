@@ -52,6 +52,51 @@ namespace Diploma.Classes
             catch { }
         }
 
+        public static void Reset()
+        {
+            Current = new UiSettingsData();
+        }
+
+        public static void ApplyDefaults(FaceControl form)
+        {
+            var navFill = Color.DarkCyan;
+            var navBorder = Color.ForestGreen;
+            var panelFill = Color.FromArgb(157, 193, 131);
+
+            foreach (var btn in form.NavigationButtons)
+            {
+                btn.FillColor = navFill;
+                btn.CustomBorderColor = navBorder;
+            }
+            foreach (var btn in form.WindowButtons)
+                btn.FillColor = navFill;
+
+            form.TitlePanel.BackColor = navFill;
+            form.SetActiveBorderColor(navBorder);
+
+            foreach (var ctrl in GetAllControls(form))
+            {
+                if (ctrl is Guna2Button g)
+                    g.FillColor = navFill;
+                else if (ctrl is Button b)
+                    b.BackColor = navFill;
+
+                var prop = ctrl.GetType().GetProperty("FillColor");
+                if (prop != null && prop.PropertyType == typeof(Color))
+                    prop.SetValue(ctrl, panelFill);
+                if (ctrl.BackColor != navFill && ctrl.BackColor != navBorder)
+                    ctrl.BackColor = panelFill;
+
+                if (ctrl is Guna2TabControl tab)
+                {
+                    tab.TabMenuBackColor = navFill;
+                    tab.TabButtonIdleState.FillColor = navFill;
+                    tab.TabButtonSelectedState.FillColor = navFill;
+                    tab.TabButtonSelectedState.InnerColor = navBorder;
+                }
+            }
+        }
+
         private static IEnumerable<Control> GetAllControls(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -73,6 +118,12 @@ namespace Diploma.Classes
                 foreach (var btn in form.WindowButtons)
                     btn.FillColor = c;
                 form.TitlePanel.BackColor = c;
+                foreach (var tab in GetAllControls(form).OfType<Guna2TabControl>())
+                {
+                    tab.TabMenuBackColor = c;
+                    tab.TabButtonIdleState.FillColor = c;
+                    tab.TabButtonSelectedState.FillColor = c;
+                }
             }
             if (!string.IsNullOrEmpty(s.NavBorderColor))
             {
@@ -80,6 +131,8 @@ namespace Diploma.Classes
                 form.SetActiveBorderColor(c);
                 foreach (var btn in form.NavigationButtons)
                     btn.CustomBorderColor = c;
+                foreach (var tab in GetAllControls(form).OfType<Guna2TabControl>())
+                    tab.TabButtonSelectedState.InnerColor = c;
             }
             if (!string.IsNullOrEmpty(s.GlobalButtonColor))
             {
