@@ -48,6 +48,12 @@ namespace Diploma
 
             guna2CheckBox1.CheckedChanged += CheckBoxChanged;
             guna2CheckBox2.CheckedChanged += CheckBoxChanged;
+
+            this.Load += (s, e) =>
+            {
+                if (FindForm() is FaceControl face)
+                    UiSettingsManager.ApplyTo(face);
+            };
         }
         #endregion
 

@@ -12,8 +12,14 @@ namespace Diploma
         private ContentLoader contentLoader;
 
         public IEnumerable<Guna2Button> NavigationButtons { get; private set; }
+        public IEnumerable<Guna2Button> WindowButtons { get; private set; }
         public TableLayoutPanel NavPanel => panelNavButtons;
         public Guna2Panel TitlePanel => guna2Panel1;
+        public Color ActiveBorderColor
+        {
+            get => uiManager.HighlightColor;
+            set => uiManager.HighlightColor = value;
+        }
 
         public FaceControl()
         {
@@ -31,6 +37,7 @@ namespace Diploma
             };
 
             NavigationButtons = navButtons;
+            WindowButtons = new[] { guna2BtnResize, guna2BtnMinimize, guna2BtnClose };
 
             uiManager = new UserInterfaceManager(this, panelNavButtons, guna2BtnSidebarToggle, navButtons);
             uiManager.ApplyLayout();
@@ -76,6 +83,13 @@ namespace Diploma
         {
             uiManager.HighlightButton(guna2BtnSettings);
             contentLoader.Load(new SettingsControl());
+        }
+
+        public void SetActiveBorderColor(Color color)
+        {
+            uiManager.HighlightColor = color;
+            if (uiManager.ActiveButton != null)
+                uiManager.HighlightButton(uiManager.ActiveButton);
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

@@ -163,6 +163,13 @@ namespace Diploma
 
             this.Load += (s, e) => UpdateSearchGrid();
             dataGridView2.DataSource = _db.GetStudentVisits();
+            DataGridViewUI.BeautifyGrid(dataGridView2);
+
+            this.Load += (s, e) =>
+            {
+                if (FindForm() is FaceControl face)
+                    UiSettingsManager.ApplyTo(face);
+            };
         }
         #endregion
 

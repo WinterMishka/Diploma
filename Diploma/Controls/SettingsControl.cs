@@ -27,6 +27,12 @@ namespace Diploma
                 CheckBoxUI.ApplyStyle(guna2CheckBox1);
                 UiSettingsManager.Save();
             };
+
+            this.Load += (s, e) =>
+            {
+                if (FindForm() is FaceControl face)
+                    UiSettingsManager.ApplyTo(face);
+            };
         }
 
         private static IEnumerable<Control> GetAllControls(Control parent)
@@ -54,6 +60,8 @@ namespace Diploma
             {
                 foreach (var btn in form.NavigationButtons)
                     btn.FillColor = colorDialog1.Color;
+                foreach (var btn in form.WindowButtons)
+                    btn.FillColor = colorDialog1.Color;
                 form.TitlePanel.BackColor = colorDialog1.Color;
                 UiSettingsManager.Current.NavFillColor = ColorTranslator.ToHtml(colorDialog1.Color);
                 UiSettingsManager.Save();
@@ -65,8 +73,7 @@ namespace Diploma
             if (colorDialog1.ShowDialog() != DialogResult.OK) return;
             if (FindForm() is FaceControl form)
             {
-                foreach (var btn in form.NavigationButtons)
-                    btn.CustomBorderColor = colorDialog1.Color;
+                form.SetActiveBorderColor(colorDialog1.Color);
                 UiSettingsManager.Current.NavBorderColor = ColorTranslator.ToHtml(colorDialog1.Color);
                 UiSettingsManager.Save();
             }
@@ -138,6 +145,14 @@ namespace Diploma
                 UiSettingsManager.Current.FontSize = size;
                 UiSettingsManager.Save();
             }
+        }
+
+        private void guna2ButtonReset_Click(object sender, EventArgs e)
+        {
+            UiSettingsManager.Current = new UiSettingsData();
+            UiSettingsManager.Save();
+            if (FindForm() is FaceControl face)
+                UiSettingsManager.ApplyTo(face);
         }
     }
 }
