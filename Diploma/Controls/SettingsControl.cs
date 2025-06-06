@@ -152,7 +152,7 @@ namespace Diploma
             UiSettingsManager.Reset();
             UiSettingsManager.Save();
             if (FindForm() is FaceControl face)
-                UiSettingsManager.ApplyTo(face);
+                UiSettingsManager.ApplyDefaults(face);
         }
     }
 }
