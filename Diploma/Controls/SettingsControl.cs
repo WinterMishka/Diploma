@@ -120,8 +120,12 @@ namespace Diploma
                 var fam = new FontFamily(fontName);
                 ApplyToAllControls(c =>
                 {
-                    if (c.GetType().GetProperty("Text") != null)
-                        c.Font = new Font(fam, c.Font.Size, c.Font.Style);
+                    c.Font = new Font(fam, c.Font.Size, c.Font.Style);
+                    if (c is DataGridView dgv)
+                    {
+                        dgv.ColumnHeadersDefaultCellStyle.Font = c.Font;
+                        dgv.DefaultCellStyle.Font = c.Font;
+                    }
                 });
                 UiSettingsManager.Current.FontFamily = fontName;
                 UiSettingsManager.Save();
@@ -139,8 +143,12 @@ namespace Diploma
             {
                 ApplyToAllControls(c =>
                 {
-                    if (c.GetType().GetProperty("Text") != null)
-                        c.Font = new Font(c.Font.FontFamily, size, c.Font.Style);
+                    c.Font = new Font(c.Font.FontFamily, size, c.Font.Style);
+                    if (c is DataGridView dgv)
+                    {
+                        dgv.ColumnHeadersDefaultCellStyle.Font = c.Font;
+                        dgv.DefaultCellStyle.Font = c.Font;
+                    }
                 });
                 UiSettingsManager.Current.FontSize = size;
                 UiSettingsManager.Save();

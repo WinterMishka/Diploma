@@ -62,6 +62,7 @@ namespace Diploma.Classes
             var navFill = Color.DarkCyan;
             var navBorder = Color.ForestGreen;
             var panelFill = Color.FromArgb(157, 193, 131);
+            var defaultFont = new Font("Verdana", 14.25f);
 
             foreach (var btn in form.NavigationButtons)
             {
@@ -93,6 +94,14 @@ namespace Diploma.Classes
                     tab.TabButtonIdleState.FillColor = navFill;
                     tab.TabButtonSelectedState.FillColor = navFill;
                     tab.TabButtonSelectedState.InnerColor = navBorder;
+                }
+
+                ctrl.Font = new Font(defaultFont.FontFamily, defaultFont.Size, ctrl.Font.Style);
+
+                if (ctrl is DataGridView dgv)
+                {
+                    dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
+                    dgv.DefaultCellStyle.Font = ctrl.Font;
                 }
             }
         }
@@ -164,16 +173,28 @@ namespace Diploma.Classes
                 {
                     var fam = new FontFamily(s.FontFamily);
                     foreach (var ctrl in GetAllControls(form))
-                        if (ctrl.GetType().GetProperty("Text") != null)
-                            ctrl.Font = new Font(fam, s.FontSize ?? ctrl.Font.Size, ctrl.Font.Style);
+                    {
+                        ctrl.Font = new Font(fam, s.FontSize ?? ctrl.Font.Size, ctrl.Font.Style);
+                        if (ctrl is DataGridView dgv)
+                        {
+                            dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
+                            dgv.DefaultCellStyle.Font = ctrl.Font;
+                        }
+                    }
                 }
                 catch { }
             }
             else if (s.FontSize.HasValue)
             {
                 foreach (var ctrl in GetAllControls(form))
-                    if (ctrl.GetType().GetProperty("Text") != null)
-                        ctrl.Font = new Font(ctrl.Font.FontFamily, s.FontSize.Value, ctrl.Font.Style);
+                {
+                    ctrl.Font = new Font(ctrl.Font.FontFamily, s.FontSize.Value, ctrl.Font.Style);
+                    if (ctrl is DataGridView dgv)
+                    {
+                        dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
+                        dgv.DefaultCellStyle.Font = ctrl.Font;
+                    }
+                }
             }
         }
     }
