@@ -32,6 +32,12 @@ namespace Diploma
             guna2CheckBox2.CheckedChanged += SettingsChanged;
             maskedTextBox1.Leave += SettingsChanged;
 
+            this.Load += (s, e) =>
+            {
+                if (FindForm() is FaceControl face)
+                    UiSettingsManager.ApplyTo(face);
+            };
+
             // save options when the control is closed so the latest values
             // persist across application restarts
             HandleDestroyed += (s, e) => SaveLocalSettings();

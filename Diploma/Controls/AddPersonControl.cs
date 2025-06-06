@@ -56,6 +56,12 @@ namespace Diploma
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
             _cam.Subscribe(OnFrame);
+
+            this.Load += (s, e) =>
+            {
+                if (FindForm() is FaceControl face)
+                    UiSettingsManager.ApplyTo(face);
+            };
         }
         #endregion
 

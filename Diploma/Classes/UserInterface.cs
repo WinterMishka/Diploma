@@ -8,14 +8,39 @@ namespace Diploma
 {
     public class SidebarHighlighter
     {
-        private List<Guna2Button> _buttons;
+        private readonly List<Guna2Button> _buttons;
         private Color _activeColor = Color.ForestGreen;
         private Color _inactiveColor = Color.White;
+        private Guna2Button _activeButton;
 
         public SidebarHighlighter(List<Guna2Button> buttons)
         {
             _buttons = buttons;
         }
+
+        public Color ActiveColor
+        {
+            get => _activeColor;
+            set
+            {
+                _activeColor = value;
+                if (_activeButton != null)
+                    SetActive(_activeButton);
+            }
+        }
+
+        public Color InactiveColor
+        {
+            get => _inactiveColor;
+            set
+            {
+                _inactiveColor = value;
+                if (_activeButton != null)
+                    SetActive(_activeButton);
+            }
+        }
+
+        public Guna2Button ActiveButton => _activeButton;
 
         public void SetActive(Guna2Button activeButton)
         {
@@ -23,6 +48,7 @@ namespace Diploma
                 btn.CustomBorderColor = _inactiveColor;
 
             activeButton.CustomBorderColor = _activeColor;
+            _activeButton = activeButton;
         }
     }
 
@@ -137,5 +163,13 @@ namespace Diploma
         }
 
         public void HighlightButton(Guna2Button button) => _sidebar.SetActive(button);
+
+        public Color HighlightColor
+        {
+            get => _sidebar.ActiveColor;
+            set => _sidebar.ActiveColor = value;
+        }
+
+        public Guna2Button ActiveButton => _sidebar.ActiveButton;
     }
 }

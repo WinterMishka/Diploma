@@ -40,6 +40,7 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2ButtonReset = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -63,14 +64,16 @@
             this.tableLayoutPanel1.Controls.Add(this.splitContainer2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.guna2CheckBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.guna2ButtonReset, 0, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 620);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -250,6 +253,23 @@
             this.guna2Button6.Text = "Размер шрифта";
             this.guna2Button6.Click += new System.EventHandler(this.guna2Button6_Click);
             // 
+            // guna2ButtonReset
+            //
+            this.guna2ButtonReset.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2ButtonReset.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2ButtonReset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2ButtonReset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2ButtonReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2ButtonReset.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.guna2ButtonReset.ForeColor = System.Drawing.Color.White;
+            this.guna2ButtonReset.Location = new System.Drawing.Point(0, 0);
+            this.guna2ButtonReset.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2ButtonReset.Name = "guna2ButtonReset";
+            this.guna2ButtonReset.Size = new System.Drawing.Size(1000, 124);
+            this.guna2ButtonReset.TabIndex = 4;
+            this.guna2ButtonReset.Text = "Сбросить значения";
+            this.guna2ButtonReset.Click += new System.EventHandler(this.guna2ButtonReset_Click);
+            // 
             // SettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -292,5 +312,6 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private Guna.UI2.WinForms.Guna2Button guna2ButtonReset;
     }
 }

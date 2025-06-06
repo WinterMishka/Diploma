@@ -70,11 +70,14 @@ namespace Diploma.Classes
                 var c = ColorTranslator.FromHtml(s.NavFillColor);
                 foreach (var btn in form.NavigationButtons)
                     btn.FillColor = c;
+                foreach (var btn in form.WindowButtons)
+                    btn.FillColor = c;
                 form.TitlePanel.BackColor = c;
             }
             if (!string.IsNullOrEmpty(s.NavBorderColor))
             {
                 var c = ColorTranslator.FromHtml(s.NavBorderColor);
+                form.SetActiveBorderColor(c);
                 foreach (var btn in form.NavigationButtons)
                     btn.CustomBorderColor = c;
             }
