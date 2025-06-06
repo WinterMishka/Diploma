@@ -61,7 +61,10 @@ namespace Diploma
                 foreach (var btn in form.NavigationButtons)
                     btn.FillColor = colorDialog1.Color;
                 foreach (var btn in form.WindowButtons)
+                {
                     btn.FillColor = colorDialog1.Color;
+                    btn.ForeColor = Color.Black;
+                }
                 form.TitlePanel.BackColor = colorDialog1.Color;
                 UiSettingsManager.Current.NavFillColor = ColorTranslator.ToHtml(colorDialog1.Color);
                 UiSettingsManager.Save();
