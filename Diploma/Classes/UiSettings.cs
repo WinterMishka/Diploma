@@ -144,7 +144,6 @@ namespace Diploma.Classes
             {
                 var c = ColorTranslator.FromHtml(s.NavBorderColor);
                 form.SetActiveBorderColor(c);
-                // keep inactive buttons white so only the active one is highlighted
                 foreach (var tab in GetAllControls(form).OfType<Guna2TabControl>())
                     tab.TabButtonSelectedState.InnerColor = c;
             }
