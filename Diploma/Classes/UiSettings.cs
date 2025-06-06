@@ -138,16 +138,31 @@ namespace Diploma.Classes
             {
                 var c = ColorTranslator.FromHtml(s.NavBorderColor);
                 form.SetActiveBorderColor(c);
-                foreach (var btn in form.NavigationButtons)
-                    btn.CustomBorderColor = c;
                 foreach (var tab in GetAllControls(form).OfType<Guna2TabControl>())
                     tab.TabButtonSelectedState.InnerColor = c;
             }
             if (!string.IsNullOrEmpty(s.GlobalButtonColor))
             {
                 var c = ColorTranslator.FromHtml(s.GlobalButtonColor);
+                var excluded = new HashSet<string>
+                {
+                    "guna2BtnSidebarToggle",
+                    "guna2BtnControlToggle",
+                    "guna2BtnDatabase",
+                    "guna2BtnAddPerson",
+                    "guna2BtnCreateReport",
+                    "guna2BtnTelegramBot",
+                    "guna2BtnSettings",
+                    "guna2Panel1",
+                    "guna2BtnResize",
+                    "guna2BtnMinimize",
+                    "guna2BtnClose"
+                };
                 foreach (var ctrl in GetAllControls(form))
                 {
+                    if (excluded.Contains(ctrl.Name))
+                        continue;
+
                     if (ctrl is Guna2Button g)
                         g.FillColor = c;
                     else if (ctrl is Button b)
