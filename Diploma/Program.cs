@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Diploma.Classes;
 
 namespace Diploma
 {
@@ -21,9 +22,15 @@ namespace Diploma
                 return;
             }
 
+            UiSettingsManager.Load();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FaceControl());
+            var form = new FaceControl();
+            UiSettingsManager.ApplyTo(form);
+            if (UiSettingsManager.Current.StartFullScreen)
+                form.WindowState = FormWindowState.Maximized;
+            Application.Run(form);
         }
 
         private static bool WaitForServer(int attempts = 30, int delayMs = 1000)

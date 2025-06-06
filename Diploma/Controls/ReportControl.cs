@@ -13,6 +13,12 @@ namespace Diploma
         {
             InitializeComponent();
             LoadGroups();
+
+            this.Load += (s, e) =>
+            {
+                if (FindForm() is FaceControl face)
+                    UiSettingsManager.ApplyTo(face);
+            };
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
