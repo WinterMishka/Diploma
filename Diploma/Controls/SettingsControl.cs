@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using Guna.UI2.WinForms;
 using System.Windows.Forms;
+using Diploma.Classes;
 
 namespace Diploma
 {
@@ -17,11 +18,14 @@ namespace Diploma
         public SettingsControl()
         {
             InitializeComponent();
-            guna2CheckBox1.Checked = Properties.Settings.Default.StartFullScreen;
+
+            CheckBoxUI.ApplyRecursive(this);
+            guna2CheckBox1.Checked = UiSettingsManager.Current.StartFullScreen;
             guna2CheckBox1.CheckedChanged += (s, e) =>
             {
-                Properties.Settings.Default.StartFullScreen = guna2CheckBox1.Checked;
-                Properties.Settings.Default.Save();
+                UiSettingsManager.Current.StartFullScreen = guna2CheckBox1.Checked;
+                CheckBoxUI.ApplyStyle(guna2CheckBox1);
+                UiSettingsManager.Save();
             };
         }
 
@@ -51,6 +55,8 @@ namespace Diploma
                 foreach (var btn in form.NavigationButtons)
                     btn.FillColor = colorDialog1.Color;
                 form.TitlePanel.BackColor = colorDialog1.Color;
+                UiSettingsManager.Current.NavFillColor = ColorTranslator.ToHtml(colorDialog1.Color);
+                UiSettingsManager.Save();
             }
         }
 
@@ -61,6 +67,8 @@ namespace Diploma
             {
                 foreach (var btn in form.NavigationButtons)
                     btn.CustomBorderColor = colorDialog1.Color;
+                UiSettingsManager.Current.NavBorderColor = ColorTranslator.ToHtml(colorDialog1.Color);
+                UiSettingsManager.Save();
             }
         }
 
@@ -70,11 +78,13 @@ namespace Diploma
             var newColor = colorDialog1.Color;
             ApplyToAllControls(c =>
             {
-                if (c is Guna.UI2.WinForms.Guna2Button g)
+                if (c is Guna2Button g)
                     g.FillColor = newColor;
                 else if (c is Button b)
                     b.BackColor = newColor;
             });
+            UiSettingsManager.Current.GlobalButtonColor = ColorTranslator.ToHtml(newColor);
+            UiSettingsManager.Save();
         }
 
         private void guna2Button4_Click(object sender, EventArgs e)
@@ -90,6 +100,8 @@ namespace Diploma
                 if (c.BackColor == target)
                     c.BackColor = newColor;
             });
+            UiSettingsManager.Current.PanelFillColor = ColorTranslator.ToHtml(newColor);
+            UiSettingsManager.Save();
         }
 
         private void guna2Button5_Click(object sender, EventArgs e)
@@ -104,6 +116,8 @@ namespace Diploma
                     if (c.GetType().GetProperty("Text") != null)
                         c.Font = new Font(fam, c.Font.Size, c.Font.Style);
                 });
+                UiSettingsManager.Current.FontFamily = fontName;
+                UiSettingsManager.Save();
             }
             catch
             {
@@ -121,6 +135,8 @@ namespace Diploma
                     if (c.GetType().GetProperty("Text") != null)
                         c.Font = new Font(c.Font.FontFamily, size, c.Font.Style);
                 });
+                UiSettingsManager.Current.FontSize = size;
+                UiSettingsManager.Save();
             }
         }
     }
