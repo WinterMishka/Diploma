@@ -60,40 +60,40 @@ namespace Diploma.Classes
         public static void ApplyDefaults(FaceControl form)
         {
             var navFill = Color.DarkCyan;
-            var navBorder = Color.ForestGreen;
+            var navBorderFirst = Color.ForestGreen;
+            var navBorderRest = Color.White;
             var panelFill = Color.FromArgb(157, 193, 131);
             var defaultFont = new Font("Verdana", 14.25f);
 
+            bool first = true;
             foreach (var btn in form.NavigationButtons)
             {
                 btn.FillColor = navFill;
-                btn.CustomBorderColor = navBorder;
+                btn.CustomBorderColor = first ? navBorderFirst : navBorderRest;
+                first = false;
             }
             foreach (var btn in form.WindowButtons)
                 btn.FillColor = navFill;
 
             form.TitlePanel.BackColor = navFill;
-            form.SetActiveBorderColor(navBorder);
+            form.SetActiveBorderColor(navBorderFirst);
 
             foreach (var ctrl in GetAllControls(form))
             {
-                if (ctrl is Guna2Button g)
-                    g.FillColor = navFill;
-                else if (ctrl is Button b)
-                    b.BackColor = navFill;
-
-                var prop = ctrl.GetType().GetProperty("FillColor");
-                if (prop != null && prop.PropertyType == typeof(Color))
-                    prop.SetValue(ctrl, panelFill);
-                if (ctrl.BackColor != navFill && ctrl.BackColor != navBorder)
-                    ctrl.BackColor = panelFill;
-
                 if (ctrl is Guna2TabControl tab)
                 {
                     tab.TabMenuBackColor = navFill;
                     tab.TabButtonIdleState.FillColor = navFill;
                     tab.TabButtonSelectedState.FillColor = navFill;
-                    tab.TabButtonSelectedState.InnerColor = navBorder;
+                    tab.TabButtonSelectedState.InnerColor = navBorderFirst;
+                    foreach (TabPage page in tab.TabPages)
+                        page.BackColor = panelFill;
+                }
+                else if (ctrl.BackColor != navFill &&
+                         ctrl.BackColor != navBorderFirst &&
+                         ctrl.BackColor != navBorderRest)
+                {
+                    ctrl.BackColor = panelFill;
                 }
 
                 ctrl.Font = new Font(defaultFont.FontFamily, defaultFont.Size, ctrl.Font.Style);
