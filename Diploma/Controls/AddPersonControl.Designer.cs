@@ -35,32 +35,32 @@ namespace Diploma
             this.guna2BtnSnap = new Guna.UI2.WinForms.Guna2Button();
             this.flpThumbnails = new System.Windows.Forms.FlowLayoutPanel();
             this.guna2PbLiveCamera = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lstGroups = new System.Windows.Forms.ListBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.lblSpeciality = new System.Windows.Forms.Label();
-            this.lblCourse = new System.Windows.Forms.Label();
-            this.lblGroup = new System.Windows.Forms.Label();
-            this.lblType = new System.Windows.Forms.Label();
-            this.guna2BtnClear = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2BtnSave = new Guna.UI2.WinForms.Guna2Button();
-            this.lblFullName = new System.Windows.Forms.Label();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.rdoStudent = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.rdoEmployee = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.lstCourses = new System.Windows.Forms.ListBox();
-            this.lstSpecialities = new System.Windows.Forms.ListBox();
-            this.lstStatuses = new System.Windows.Forms.ListBox();
-            this.guna2RadioButton1 = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.guna2RadioButton2 = new Guna.UI2.WinForms.Guna2RadioButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2RadioButton2 = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.guna2RadioButton1 = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.lstStatuses = new System.Windows.Forms.ListBox();
+            this.lstSpecialities = new System.Windows.Forms.ListBox();
+            this.lstCourses = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.rdoEmployee = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.rdoStudent = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.lblFullName = new System.Windows.Forms.Label();
+            this.guna2BtnSave = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2BtnClear = new Guna.UI2.WinForms.Guna2Button();
+            this.lblType = new System.Windows.Forms.Label();
+            this.lblGroup = new System.Windows.Forms.Label();
+            this.lblCourse = new System.Windows.Forms.Label();
+            this.lblSpeciality = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lstGroups = new System.Windows.Forms.ListBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PbLiveCamera)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -134,6 +134,21 @@ namespace Diploma
             this.guna2PbLiveCamera.TabIndex = 3;
             this.guna2PbLiveCamera.TabStop = false;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(300, 0);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(700, 620);
+            this.tableLayoutPanel3.TabIndex = 1;
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
@@ -171,129 +186,86 @@ namespace Diploma
             this.tableLayoutPanel4.Size = new System.Drawing.Size(700, 620);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
-            // comboBox1
+            // guna2RadioButton2
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(350, 77);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(350, 31);
-            this.comboBox1.TabIndex = 19;
+            this.guna2RadioButton2.AutoSize = true;
+            this.guna2RadioButton2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2RadioButton2.CheckedState.BorderThickness = 0;
+            this.guna2RadioButton2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2RadioButton2.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.guna2RadioButton2.CheckedState.InnerOffset = -4;
+            this.guna2RadioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2RadioButton2.Location = new System.Drawing.Point(350, 0);
+            this.guna2RadioButton2.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2RadioButton2.Name = "guna2RadioButton2";
+            this.guna2RadioButton2.Size = new System.Drawing.Size(350, 77);
+            this.guna2RadioButton2.TabIndex = 18;
+            this.guna2RadioButton2.Text = "Вставить из файла";
+            this.guna2RadioButton2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2RadioButton2.UncheckedState.BorderThickness = 2;
+            this.guna2RadioButton2.UncheckedState.FillColor = System.Drawing.Color.Transparent;
+            this.guna2RadioButton2.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
             // 
-            // lstGroups
+            // guna2RadioButton1
             // 
-            this.lstGroups.DisplayMember = "Название_полное";
-            this.lstGroups.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstGroups.FormattingEnabled = true;
-            this.lstGroups.ItemHeight = 23;
-            this.lstGroups.Location = new System.Drawing.Point(350, 231);
-            this.lstGroups.Margin = new System.Windows.Forms.Padding(0);
-            this.lstGroups.Name = "lstGroups";
-            this.lstGroups.Size = new System.Drawing.Size(350, 77);
-            this.lstGroups.TabIndex = 13;
-            this.lstGroups.ValueMember = "Название_полное";
+            this.guna2RadioButton1.AutoSize = true;
+            this.guna2RadioButton1.Checked = true;
+            this.guna2RadioButton1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2RadioButton1.CheckedState.BorderThickness = 0;
+            this.guna2RadioButton1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.guna2RadioButton1.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.guna2RadioButton1.CheckedState.InnerOffset = -4;
+            this.guna2RadioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2RadioButton1.Location = new System.Drawing.Point(0, 0);
+            this.guna2RadioButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2RadioButton1.Name = "guna2RadioButton1";
+            this.guna2RadioButton1.Size = new System.Drawing.Size(350, 77);
+            this.guna2RadioButton1.TabIndex = 17;
+            this.guna2RadioButton1.TabStop = true;
+            this.guna2RadioButton1.Text = "Вставить вручную";
+            this.guna2RadioButton1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2RadioButton1.UncheckedState.BorderThickness = 2;
+            this.guna2RadioButton1.UncheckedState.FillColor = System.Drawing.Color.Transparent;
+            this.guna2RadioButton1.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
             // 
-            // lblStatus
+            // lstStatuses
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStatus.Location = new System.Drawing.Point(3, 462);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(344, 77);
-            this.lblStatus.TabIndex = 9;
-            this.lblStatus.Text = "Статус/должность";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lstStatuses.DisplayMember = "название";
+            this.lstStatuses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstStatuses.FormattingEnabled = true;
+            this.lstStatuses.ItemHeight = 23;
+            this.lstStatuses.Location = new System.Drawing.Point(350, 462);
+            this.lstStatuses.Margin = new System.Windows.Forms.Padding(0);
+            this.lstStatuses.Name = "lstStatuses";
+            this.lstStatuses.Size = new System.Drawing.Size(350, 77);
+            this.lstStatuses.TabIndex = 16;
+            this.lstStatuses.ValueMember = "название";
             // 
-            // lblSpeciality
+            // lstSpecialities
             // 
-            this.lblSpeciality.AutoSize = true;
-            this.lblSpeciality.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpeciality.Location = new System.Drawing.Point(3, 385);
-            this.lblSpeciality.Name = "lblSpeciality";
-            this.lblSpeciality.Size = new System.Drawing.Size(344, 77);
-            this.lblSpeciality.TabIndex = 8;
-            this.lblSpeciality.Text = "Специальность";
-            this.lblSpeciality.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lstSpecialities.DisplayMember = "название";
+            this.lstSpecialities.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstSpecialities.FormattingEnabled = true;
+            this.lstSpecialities.ItemHeight = 23;
+            this.lstSpecialities.Location = new System.Drawing.Point(350, 385);
+            this.lstSpecialities.Margin = new System.Windows.Forms.Padding(0);
+            this.lstSpecialities.Name = "lstSpecialities";
+            this.lstSpecialities.Size = new System.Drawing.Size(350, 77);
+            this.lstSpecialities.TabIndex = 15;
+            this.lstSpecialities.ValueMember = "название";
             // 
-            // lblCourse
+            // lstCourses
             // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCourse.Location = new System.Drawing.Point(3, 308);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(344, 77);
-            this.lblCourse.TabIndex = 7;
-            this.lblCourse.Text = "Курс";
-            this.lblCourse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblGroup
-            // 
-            this.lblGroup.AutoSize = true;
-            this.lblGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblGroup.Location = new System.Drawing.Point(3, 231);
-            this.lblGroup.Name = "lblGroup";
-            this.lblGroup.Size = new System.Drawing.Size(344, 77);
-            this.lblGroup.TabIndex = 6;
-            this.lblGroup.Text = "Группа";
-            this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblType
-            // 
-            this.lblType.AutoSize = true;
-            this.lblType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblType.Location = new System.Drawing.Point(3, 154);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(344, 77);
-            this.lblType.TabIndex = 5;
-            this.lblType.Text = "Тип";
-            this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // guna2BtnClear
-            // 
-            this.guna2BtnClear.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2BtnClear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2BtnClear.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2BtnClear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2BtnClear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2BtnClear.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnClear.ForeColor = System.Drawing.Color.White;
-            this.guna2BtnClear.Location = new System.Drawing.Point(350, 539);
-            this.guna2BtnClear.Margin = new System.Windows.Forms.Padding(0);
-            this.guna2BtnClear.Name = "guna2BtnClear";
-            this.guna2BtnClear.Size = new System.Drawing.Size(350, 81);
-            this.guna2BtnClear.TabIndex = 3;
-            this.guna2BtnClear.Text = "Сбросить значения";
-            this.guna2BtnClear.Click += new System.EventHandler(this.guna2BtnClear_Click);
-            // 
-            // guna2BtnSave
-            // 
-            this.guna2BtnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2BtnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2BtnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2BtnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2BtnSave.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnSave.ForeColor = System.Drawing.Color.White;
-            this.guna2BtnSave.Location = new System.Drawing.Point(0, 539);
-            this.guna2BtnSave.Margin = new System.Windows.Forms.Padding(0);
-            this.guna2BtnSave.Name = "guna2BtnSave";
-            this.guna2BtnSave.Size = new System.Drawing.Size(350, 81);
-            this.guna2BtnSave.TabIndex = 2;
-            this.guna2BtnSave.Text = "Сохранить";
-            this.guna2BtnSave.Click += new System.EventHandler(this.guna2BtnSave_Click);
-            // 
-            // lblFullName
-            // 
-            this.lblFullName.AutoSize = true;
-            this.lblFullName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFullName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblFullName.Location = new System.Drawing.Point(3, 77);
-            this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(344, 77);
-            this.lblFullName.TabIndex = 4;
-            this.lblFullName.Text = "ФИО";
-            this.lblFullName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lstCourses.DisplayMember = "наименование";
+            this.lstCourses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstCourses.FormattingEnabled = true;
+            this.lstCourses.ItemHeight = 23;
+            this.lstCourses.Location = new System.Drawing.Point(350, 308);
+            this.lstCourses.Margin = new System.Windows.Forms.Padding(0);
+            this.lstCourses.Name = "lstCourses";
+            this.lstCourses.Size = new System.Drawing.Size(350, 77);
+            this.lstCourses.TabIndex = 14;
+            this.lstCourses.ValueMember = "наименование";
             // 
             // tableLayoutPanel6
             // 
@@ -308,9 +280,30 @@ namespace Diploma
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 77F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(350, 77);
             this.tableLayoutPanel6.TabIndex = 11;
+            // 
+            // rdoEmployee
+            // 
+            this.rdoEmployee.AutoSize = true;
+            this.rdoEmployee.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rdoEmployee.CheckedState.BorderThickness = 0;
+            this.rdoEmployee.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rdoEmployee.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.rdoEmployee.CheckedState.InnerOffset = -4;
+            this.rdoEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rdoEmployee.Location = new System.Drawing.Point(175, 0);
+            this.rdoEmployee.Margin = new System.Windows.Forms.Padding(0);
+            this.rdoEmployee.Name = "rdoEmployee";
+            this.rdoEmployee.Size = new System.Drawing.Size(175, 77);
+            this.rdoEmployee.TabIndex = 1;
+            this.rdoEmployee.Text = "Сотрудник";
+            this.rdoEmployee.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rdoEmployee.UncheckedState.BorderThickness = 2;
+            this.rdoEmployee.UncheckedState.FillColor = System.Drawing.Color.Transparent;
+            this.rdoEmployee.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
+            this.rdoEmployee.CheckedChanged += new System.EventHandler(this.rdoEmployee_CheckedChanged);
             // 
             // rdoStudent
             // 
@@ -335,122 +328,129 @@ namespace Diploma
             this.rdoStudent.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
             this.rdoStudent.CheckedChanged += new System.EventHandler(this.rdoStudent_CheckedChanged);
             // 
-            // rdoEmployee
+            // lblFullName
             // 
-            this.rdoEmployee.AutoSize = true;
-            this.rdoEmployee.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rdoEmployee.CheckedState.BorderThickness = 0;
-            this.rdoEmployee.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rdoEmployee.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rdoEmployee.CheckedState.InnerOffset = -4;
-            this.rdoEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rdoEmployee.Location = new System.Drawing.Point(175, 0);
-            this.rdoEmployee.Margin = new System.Windows.Forms.Padding(0);
-            this.rdoEmployee.Name = "rdoEmployee";
-            this.rdoEmployee.Size = new System.Drawing.Size(175, 77);
-            this.rdoEmployee.TabIndex = 1;
-            this.rdoEmployee.Text = "Сотрудник";
-            this.rdoEmployee.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rdoEmployee.UncheckedState.BorderThickness = 2;
-            this.rdoEmployee.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rdoEmployee.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rdoEmployee.CheckedChanged += new System.EventHandler(this.rdoEmployee_CheckedChanged);
+            this.lblFullName.AutoSize = true;
+            this.lblFullName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFullName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblFullName.Location = new System.Drawing.Point(3, 77);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(344, 77);
+            this.lblFullName.TabIndex = 4;
+            this.lblFullName.Text = "ФИО";
+            this.lblFullName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lstCourses
+            // guna2BtnSave
             // 
-            this.lstCourses.DisplayMember = "наименование";
-            this.lstCourses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstCourses.FormattingEnabled = true;
-            this.lstCourses.ItemHeight = 23;
-            this.lstCourses.Location = new System.Drawing.Point(350, 308);
-            this.lstCourses.Margin = new System.Windows.Forms.Padding(0);
-            this.lstCourses.Name = "lstCourses";
-            this.lstCourses.Size = new System.Drawing.Size(350, 77);
-            this.lstCourses.TabIndex = 14;
-            this.lstCourses.ValueMember = "наименование";
+            this.guna2BtnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2BtnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2BtnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2BtnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2BtnSave.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.guna2BtnSave.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnSave.Location = new System.Drawing.Point(0, 539);
+            this.guna2BtnSave.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2BtnSave.Name = "guna2BtnSave";
+            this.guna2BtnSave.Size = new System.Drawing.Size(350, 81);
+            this.guna2BtnSave.TabIndex = 2;
+            this.guna2BtnSave.Text = "Сохранить";
+            this.guna2BtnSave.Click += new System.EventHandler(this.guna2BtnSave_Click);
             // 
-            // lstSpecialities
+            // guna2BtnClear
             // 
-            this.lstSpecialities.DisplayMember = "название";
-            this.lstSpecialities.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstSpecialities.FormattingEnabled = true;
-            this.lstSpecialities.ItemHeight = 23;
-            this.lstSpecialities.Location = new System.Drawing.Point(350, 385);
-            this.lstSpecialities.Margin = new System.Windows.Forms.Padding(0);
-            this.lstSpecialities.Name = "lstSpecialities";
-            this.lstSpecialities.Size = new System.Drawing.Size(350, 77);
-            this.lstSpecialities.TabIndex = 15;
-            this.lstSpecialities.ValueMember = "название";
+            this.guna2BtnClear.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2BtnClear.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2BtnClear.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2BtnClear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2BtnClear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2BtnClear.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.guna2BtnClear.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnClear.Location = new System.Drawing.Point(350, 539);
+            this.guna2BtnClear.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2BtnClear.Name = "guna2BtnClear";
+            this.guna2BtnClear.Size = new System.Drawing.Size(350, 81);
+            this.guna2BtnClear.TabIndex = 3;
+            this.guna2BtnClear.Text = "Сбросить значения";
+            this.guna2BtnClear.Click += new System.EventHandler(this.guna2BtnClear_Click);
             // 
-            // lstStatuses
+            // lblType
             // 
-            this.lstStatuses.DisplayMember = "название";
-            this.lstStatuses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstStatuses.FormattingEnabled = true;
-            this.lstStatuses.ItemHeight = 23;
-            this.lstStatuses.Location = new System.Drawing.Point(350, 462);
-            this.lstStatuses.Margin = new System.Windows.Forms.Padding(0);
-            this.lstStatuses.Name = "lstStatuses";
-            this.lstStatuses.Size = new System.Drawing.Size(350, 77);
-            this.lstStatuses.TabIndex = 16;
-            this.lstStatuses.ValueMember = "название";
+            this.lblType.AutoSize = true;
+            this.lblType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblType.Location = new System.Drawing.Point(3, 154);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(344, 77);
+            this.lblType.TabIndex = 5;
+            this.lblType.Text = "Тип";
+            this.lblType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // guna2RadioButton1
+            // lblGroup
             // 
-            this.guna2RadioButton1.AutoSize = true;
-            this.guna2RadioButton1.Checked = true;
-            this.guna2RadioButton1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2RadioButton1.CheckedState.BorderThickness = 0;
-            this.guna2RadioButton1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2RadioButton1.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.guna2RadioButton1.CheckedState.InnerOffset = -4;
-            this.guna2RadioButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2RadioButton1.Location = new System.Drawing.Point(0, 0);
-            this.guna2RadioButton1.Margin = new System.Windows.Forms.Padding(0);
-            this.guna2RadioButton1.Name = "guna2RadioButton1";
-            this.guna2RadioButton1.Size = new System.Drawing.Size(350, 77);
-            this.guna2RadioButton1.TabIndex = 17;
-            this.guna2RadioButton1.TabStop = true;
-            this.guna2RadioButton1.Text = "Вставить вручную";
-            this.guna2RadioButton1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2RadioButton1.UncheckedState.BorderThickness = 2;
-            this.guna2RadioButton1.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.guna2RadioButton1.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
+            this.lblGroup.AutoSize = true;
+            this.lblGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblGroup.Location = new System.Drawing.Point(3, 231);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(344, 77);
+            this.lblGroup.TabIndex = 6;
+            this.lblGroup.Text = "Группа";
+            this.lblGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // guna2RadioButton2
+            // lblCourse
             // 
-            this.guna2RadioButton2.AutoSize = true;
-            this.guna2RadioButton2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2RadioButton2.CheckedState.BorderThickness = 0;
-            this.guna2RadioButton2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2RadioButton2.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.guna2RadioButton2.CheckedState.InnerOffset = -4;
-            this.guna2RadioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2RadioButton2.Location = new System.Drawing.Point(350, 0);
-            this.guna2RadioButton2.Margin = new System.Windows.Forms.Padding(0);
-            this.guna2RadioButton2.Name = "guna2RadioButton2";
-            this.guna2RadioButton2.Size = new System.Drawing.Size(350, 77);
-            this.guna2RadioButton2.TabIndex = 18;
-            this.guna2RadioButton2.Text = "Вставить из файла";
-            this.guna2RadioButton2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2RadioButton2.UncheckedState.BorderThickness = 2;
-            this.guna2RadioButton2.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.guna2RadioButton2.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
+            this.lblCourse.AutoSize = true;
+            this.lblCourse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCourse.Location = new System.Drawing.Point(3, 308);
+            this.lblCourse.Name = "lblCourse";
+            this.lblCourse.Size = new System.Drawing.Size(344, 77);
+            this.lblCourse.TabIndex = 7;
+            this.lblCourse.Text = "Курс";
+            this.lblCourse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel3
+            // lblSpeciality
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(300, 0);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(700, 620);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.lblSpeciality.AutoSize = true;
+            this.lblSpeciality.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSpeciality.Location = new System.Drawing.Point(3, 385);
+            this.lblSpeciality.Name = "lblSpeciality";
+            this.lblSpeciality.Size = new System.Drawing.Size(344, 77);
+            this.lblSpeciality.TabIndex = 8;
+            this.lblSpeciality.Text = "Специальность";
+            this.lblSpeciality.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStatus.Location = new System.Drawing.Point(3, 462);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(344, 77);
+            this.lblStatus.TabIndex = 9;
+            this.lblStatus.Text = "Статус/должность";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lstGroups
+            // 
+            this.lstGroups.DisplayMember = "Название_полное";
+            this.lstGroups.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstGroups.FormattingEnabled = true;
+            this.lstGroups.ItemHeight = 23;
+            this.lstGroups.Location = new System.Drawing.Point(350, 231);
+            this.lstGroups.Margin = new System.Windows.Forms.Padding(0);
+            this.lstGroups.Name = "lstGroups";
+            this.lstGroups.Size = new System.Drawing.Size(350, 77);
+            this.lstGroups.TabIndex = 13;
+            this.lstGroups.ValueMember = "Название_полное";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(350, 77);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(350, 31);
+            this.comboBox1.TabIndex = 19;
             // 
             // AddPersonControl
             // 
@@ -465,11 +465,11 @@ namespace Diploma
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PbLiveCamera)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

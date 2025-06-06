@@ -289,6 +289,7 @@ namespace Diploma
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(193)))), ((int)(((byte)(131)))));
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "EnableControl";
             this.Size = new System.Drawing.Size(1000, 620);
             this.tableLayoutPanel1.ResumeLayout(false);
