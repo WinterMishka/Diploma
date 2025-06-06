@@ -69,5 +69,17 @@ namespace Diploma.Properties {
                 this["TelegramSendDailyUpdates"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartFullScreen {
+            get {
+                return ((bool)(this["StartFullScreen"]));
+            }
+            set {
+                this["StartFullScreen"] = value;
+            }
+        }
     }
 }
