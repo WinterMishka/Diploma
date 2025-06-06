@@ -78,6 +78,8 @@ namespace Diploma.Classes
             {
                 var c = ColorTranslator.FromHtml(s.NavBorderColor);
                 form.SetActiveBorderColor(c);
+                foreach (var btn in form.NavigationButtons)
+                    btn.CustomBorderColor = c;
             }
             if (!string.IsNullOrEmpty(s.GlobalButtonColor))
             {
