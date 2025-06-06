@@ -52,6 +52,11 @@ namespace Diploma.Classes
             catch { }
         }
 
+        public static void Reset()
+        {
+            Current = new UiSettingsData();
+        }
+
         private static IEnumerable<Control> GetAllControls(Control parent)
         {
             foreach (Control c in parent.Controls)
