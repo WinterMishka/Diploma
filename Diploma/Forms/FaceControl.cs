@@ -39,6 +39,8 @@ namespace Diploma
 
             NavigationButtons = navButtons;
             WindowButtons = new[] { guna2BtnResize, guna2BtnMinimize, guna2BtnClose };
+            foreach (var btn in WindowButtons)
+                btn.ForeColor = Color.Black;
 
             uiManager = new UserInterfaceManager(this, panelNavButtons, guna2BtnSidebarToggle, navButtons);
             uiManager.ApplyLayout();

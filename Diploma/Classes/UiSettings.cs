@@ -52,6 +52,63 @@ namespace Diploma.Classes
             catch { }
         }
 
+        public static void Reset()
+        {
+            Current = new UiSettingsData();
+        }
+
+        public static void ApplyDefaults(FaceControl form)
+        {
+            var navFill = Color.DarkCyan;
+            var navBorderFirst = Color.ForestGreen;
+            var navBorderRest = Color.White;
+            var panelFill = Color.FromArgb(157, 193, 131);
+            var defaultFont = new Font("Verdana", 14.25f);
+
+            bool first = true;
+            foreach (var btn in form.NavigationButtons)
+            {
+                btn.FillColor = navFill;
+                btn.CustomBorderColor = first ? navBorderFirst : navBorderRest;
+                first = false;
+            }
+            foreach (var btn in form.WindowButtons)
+            {
+                btn.FillColor = navFill;
+                btn.ForeColor = Color.Black;
+            }
+
+            form.TitlePanel.BackColor = navFill;
+            form.SetActiveBorderColor(navBorderFirst);
+
+            foreach (var ctrl in GetAllControls(form))
+            {
+                if (ctrl is Guna2TabControl tab)
+                {
+                    tab.TabMenuBackColor = navFill;
+                    tab.TabButtonIdleState.FillColor = navFill;
+                    tab.TabButtonSelectedState.FillColor = navFill;
+                    tab.TabButtonSelectedState.InnerColor = navBorderFirst;
+                    foreach (TabPage page in tab.TabPages)
+                        page.BackColor = panelFill;
+                }
+                else if (ctrl.BackColor != navFill &&
+                         ctrl.BackColor != navBorderFirst &&
+                         ctrl.BackColor != navBorderRest)
+                {
+                    ctrl.BackColor = panelFill;
+                }
+
+                ctrl.Font = new Font(defaultFont.FontFamily, defaultFont.Size, ctrl.Font.Style);
+
+                if (ctrl is DataGridView dgv)
+                {
+                    dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
+                    dgv.DefaultCellStyle.Font = ctrl.Font;
+                }
+            }
+        }
+
         private static IEnumerable<Control> GetAllControls(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -71,21 +128,48 @@ namespace Diploma.Classes
                 foreach (var btn in form.NavigationButtons)
                     btn.FillColor = c;
                 foreach (var btn in form.WindowButtons)
+                {
                     btn.FillColor = c;
+                    btn.ForeColor = Color.Black;
+                }
                 form.TitlePanel.BackColor = c;
+                foreach (var tab in GetAllControls(form).OfType<Guna2TabControl>())
+                {
+                    tab.TabMenuBackColor = c;
+                    tab.TabButtonIdleState.FillColor = c;
+                    tab.TabButtonSelectedState.FillColor = c;
+                }
             }
             if (!string.IsNullOrEmpty(s.NavBorderColor))
             {
                 var c = ColorTranslator.FromHtml(s.NavBorderColor);
                 form.SetActiveBorderColor(c);
-                foreach (var btn in form.NavigationButtons)
-                    btn.CustomBorderColor = c;
+                // keep inactive buttons white so only the active one is highlighted
+                foreach (var tab in GetAllControls(form).OfType<Guna2TabControl>())
+                    tab.TabButtonSelectedState.InnerColor = c;
             }
             if (!string.IsNullOrEmpty(s.GlobalButtonColor))
             {
                 var c = ColorTranslator.FromHtml(s.GlobalButtonColor);
+                var excluded = new HashSet<string>
+                {
+                    "guna2BtnSidebarToggle",
+                    "guna2BtnControlToggle",
+                    "guna2BtnDatabase",
+                    "guna2BtnAddPerson",
+                    "guna2BtnCreateReport",
+                    "guna2BtnTelegramBot",
+                    "guna2BtnSettings",
+                    "guna2Panel1",
+                    "guna2BtnResize",
+                    "guna2BtnMinimize",
+                    "guna2BtnClose"
+                };
                 foreach (var ctrl in GetAllControls(form))
                 {
+                    if (excluded.Contains(ctrl.Name))
+                        continue;
+
                     if (ctrl is Guna2Button g)
                         g.FillColor = c;
                     else if (ctrl is Button b)
@@ -111,16 +195,28 @@ namespace Diploma.Classes
                 {
                     var fam = new FontFamily(s.FontFamily);
                     foreach (var ctrl in GetAllControls(form))
-                        if (ctrl.GetType().GetProperty("Text") != null)
-                            ctrl.Font = new Font(fam, s.FontSize ?? ctrl.Font.Size, ctrl.Font.Style);
+                    {
+                        ctrl.Font = new Font(fam, s.FontSize ?? ctrl.Font.Size, ctrl.Font.Style);
+                        if (ctrl is DataGridView dgv)
+                        {
+                            dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
+                            dgv.DefaultCellStyle.Font = ctrl.Font;
+                        }
+                    }
                 }
                 catch { }
             }
             else if (s.FontSize.HasValue)
             {
                 foreach (var ctrl in GetAllControls(form))
-                    if (ctrl.GetType().GetProperty("Text") != null)
-                        ctrl.Font = new Font(ctrl.Font.FontFamily, s.FontSize.Value, ctrl.Font.Style);
+                {
+                    ctrl.Font = new Font(ctrl.Font.FontFamily, s.FontSize.Value, ctrl.Font.Style);
+                    if (ctrl is DataGridView dgv)
+                    {
+                        dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
+                        dgv.DefaultCellStyle.Font = ctrl.Font;
+                    }
+                }
             }
         }
     }

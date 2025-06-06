@@ -61,7 +61,10 @@ namespace Diploma
                 foreach (var btn in form.NavigationButtons)
                     btn.FillColor = colorDialog1.Color;
                 foreach (var btn in form.WindowButtons)
+                {
                     btn.FillColor = colorDialog1.Color;
+                    btn.ForeColor = Color.Black;
+                }
                 form.TitlePanel.BackColor = colorDialog1.Color;
                 UiSettingsManager.Current.NavFillColor = ColorTranslator.ToHtml(colorDialog1.Color);
                 UiSettingsManager.Save();
@@ -83,8 +86,24 @@ namespace Diploma
         {
             if (colorDialog1.ShowDialog() != DialogResult.OK) return;
             var newColor = colorDialog1.Color;
+            var excluded = new HashSet<string>
+            {
+                "guna2BtnSidebarToggle",
+                "guna2BtnControlToggle",
+                "guna2BtnDatabase",
+                "guna2BtnAddPerson",
+                "guna2BtnCreateReport",
+                "guna2BtnTelegramBot",
+                "guna2BtnSettings",
+                "guna2Panel1",
+                "guna2BtnResize",
+                "guna2BtnMinimize",
+                "guna2BtnClose"
+            };
             ApplyToAllControls(c =>
             {
+                if (excluded.Contains(c.Name))
+                    return;
                 if (c is Guna2Button g)
                     g.FillColor = newColor;
                 else if (c is Button b)
@@ -120,8 +139,12 @@ namespace Diploma
                 var fam = new FontFamily(fontName);
                 ApplyToAllControls(c =>
                 {
-                    if (c.GetType().GetProperty("Text") != null)
-                        c.Font = new Font(fam, c.Font.Size, c.Font.Style);
+                    c.Font = new Font(fam, c.Font.Size, c.Font.Style);
+                    if (c is DataGridView dgv)
+                    {
+                        dgv.ColumnHeadersDefaultCellStyle.Font = c.Font;
+                        dgv.DefaultCellStyle.Font = c.Font;
+                    }
                 });
                 UiSettingsManager.Current.FontFamily = fontName;
                 UiSettingsManager.Save();
@@ -139,8 +162,12 @@ namespace Diploma
             {
                 ApplyToAllControls(c =>
                 {
-                    if (c.GetType().GetProperty("Text") != null)
-                        c.Font = new Font(c.Font.FontFamily, size, c.Font.Style);
+                    c.Font = new Font(c.Font.FontFamily, size, c.Font.Style);
+                    if (c is DataGridView dgv)
+                    {
+                        dgv.ColumnHeadersDefaultCellStyle.Font = c.Font;
+                        dgv.DefaultCellStyle.Font = c.Font;
+                    }
                 });
                 UiSettingsManager.Current.FontSize = size;
                 UiSettingsManager.Save();
@@ -149,10 +176,10 @@ namespace Diploma
 
         private void guna2ButtonReset_Click(object sender, EventArgs e)
         {
-            UiSettingsManager.Current = new UiSettingsData();
+            UiSettingsManager.Reset();
             UiSettingsManager.Save();
             if (FindForm() is FaceControl face)
-                UiSettingsManager.ApplyTo(face);
+                UiSettingsManager.ApplyDefaults(face);
         }
     }
 }
