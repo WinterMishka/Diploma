@@ -11,6 +11,10 @@ namespace Diploma
         private UserInterfaceManager uiManager;
         private ContentLoader contentLoader;
 
+        public IEnumerable<Guna2Button> NavigationButtons { get; private set; }
+        public TableLayoutPanel NavPanel => panelNavButtons;
+        public Guna2Panel TitlePanel => guna2Panel1;
+
         public FaceControl()
         {
             InitializeComponent();
@@ -25,6 +29,8 @@ namespace Diploma
                 guna2BtnTelegramBot,
                 guna2BtnSettings
             };
+
+            NavigationButtons = navButtons;
 
             uiManager = new UserInterfaceManager(this, panelNavButtons, guna2BtnSidebarToggle, navButtons);
             uiManager.ApplyLayout();
