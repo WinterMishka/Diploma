@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.IO;
 using System.Windows.Forms;
@@ -33,6 +34,7 @@ namespace Diploma
         private readonly DbDeleteService _deleter;
         private readonly DbUpdateService _updater;
         private DataTable _currentView;
+        private Process _serverProcess;
         #endregion
 
         #region Конструкторы
@@ -488,6 +490,63 @@ namespace Diploma
             {
                 MessageBox.Show("Ошибка при удалении логов: " + ex.Message,
                                 "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void StartServer()
+        {
+            string exePath = Path.Combine(AppPaths.ServerRoot, "server.exe");
+            if (!File.Exists(exePath))
+            {
+                MessageBox.Show($"Не найден файл {exePath}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var psi = new ProcessStartInfo
+            {
+                FileName = exePath,
+                WorkingDirectory = AppPaths.ServerRoot,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+
+            _serverProcess = new Process { StartInfo = psi, EnableRaisingEvents = true };
+            _serverProcess.OutputDataReceived += ServerOutputReceived;
+            _serverProcess.ErrorDataReceived += ServerOutputReceived;
+            _serverProcess.Start();
+            _serverProcess.BeginOutputReadLine();
+            _serverProcess.BeginErrorReadLine();
+        }
+
+        private void ServerOutputReceived(object sender, DataReceivedEventArgs e)
+        {
+            if (e.Data == null) return;
+            if (label10.InvokeRequired)
+            {
+                label10.Invoke(new Action(() => label10.Text += e.Data + Environment.NewLine));
+            }
+            else
+            {
+                label10.Text += e.Data + Environment.NewLine;
+            }
+        }
+
+        private void guna2Button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_serverProcess != null && !_serverProcess.HasExited)
+                {
+                    _serverProcess.Kill();
+                    _serverProcess.WaitForExit();
+                }
+                StartServer();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка перезапуска сервера: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

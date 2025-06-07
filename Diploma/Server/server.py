@@ -16,17 +16,20 @@ import json
 
 app = Flask(__name__)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 known_faces = {}
 last_seen = {}
 COOLDOWN_SECONDS = 30
 
 
 def get_db_connection():
+    db_path = os.path.join(BASE_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
     conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=(localdb)\MSSQLLocalDB;"
         r"Integrated Security=SSPI;"
-        r"AttachDbFilename=C:\Users\artyo\source\repos\Diploma\Diploma\bin\Debug\EducationAccessSystem.mdf;"
+        fr"AttachDbFilename={db_path};"
     )
     return pyodbc.connect(conn_str)
 
@@ -293,16 +296,17 @@ def api_notify_visit():
 if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
-        subprocess.run([sys.executable, "build_known.py"], check=True)
+        subprocess.run([sys.executable, os.path.join(BASE_DIR, "build_known.py")], check=True)
     except subprocess.CalledProcessError:
         print("[ERROR] Ошибка при выполнении build_known.py")
         exit(1)
 
-    if not os.path.exists("encodings.pkl"):
+    enc_file = os.path.join(BASE_DIR, "encodings.pkl")
+    if not os.path.exists(enc_file):
         print("[ERROR] Файл encodings.pkl не найден после сборки")
         exit(1)
 
-    with open("encodings.pkl", "rb") as f:
+    with open(enc_file, "rb") as f:
         known_faces = pickle.load(f)
 
     print("[INFO] Запускаем Telegram-бота...")
@@ -310,4 +314,7 @@ if __name__ == '__main__':
     bot_thread.start()
 
     print("[INFO] Запускаем Flask сервер...")
-    app.run(debug=False)
+    try:
+        app.run(debug=False)
+    finally:
+        input("\nНажмите Enter, чтобы закрыть окно...")
