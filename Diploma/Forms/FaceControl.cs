@@ -18,11 +18,6 @@ namespace Diploma
         public IEnumerable<Guna2Button> WindowButtons { get; private set; }
         public TableLayoutPanel NavPanel => panelNavButtons;
         public Guna2Panel TitlePanel => guna2Panel1;
-        public Color ActiveBorderColor
-        {
-            get => uiManager.HighlightColor;
-            set => uiManager.HighlightColor = value;
-        }
 
         #region Конструктор
         public FaceControl()

@@ -15,9 +15,7 @@ namespace Diploma.Data
         DataTable GetGroups();
         DataTable GetFaces();
         DataTable GetEmployees();
-        DataTable GetAllGroupCodes();
         DataTable GetAllYears();
-        DataTable GetAllEmployeeIds();
         DataTable GetStudents();
         DataTable GetGroupsFull();
         DataTable GetGroupsWithoutCurator();

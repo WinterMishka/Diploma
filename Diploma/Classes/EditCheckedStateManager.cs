@@ -39,8 +39,6 @@ namespace Diploma.Helpers
         }
 
 
-        public bool IsChecked(int index) =>
-            _checkBoxes.TryGetValue(index, out var cb) && cb.Checked;
         #endregion
     }
 }
