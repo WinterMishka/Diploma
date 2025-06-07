@@ -269,6 +269,14 @@ namespace Diploma.Classes
                         dgv.ColumnHeadersDefaultCellStyle.ForeColor = c;
                         dgv.DefaultCellStyle.ForeColor = c;
                     }
+                    else if (ctrl is Guna2TabControl tab)
+                    {
+                        tab.TabButtonHoverState.ForeColor = c;
+                        tab.TabButtonIdleState.ForeColor = c;
+                        tab.TabButtonSelectedState.ForeColor = c;
+                        foreach (TabPage page in tab.TabPages)
+                            page.ForeColor = c;
+                    }
                 }
             }
         }

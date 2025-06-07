@@ -197,6 +197,18 @@ namespace Diploma
                     dgv.ColumnHeadersDefaultCellStyle.ForeColor = newColor;
                     dgv.DefaultCellStyle.ForeColor = newColor;
                 }
+                else if (c is Guna2TabControl tab)
+                {
+                    tab.TabButtonHoverState.ForeColor = newColor;
+                    tab.TabButtonIdleState.ForeColor = newColor;
+                    tab.TabButtonSelectedState.ForeColor = newColor;
+                    foreach (TabPage page in tab.TabPages)
+                        page.ForeColor = newColor;
+                }
+                else if (c is TabPage page)
+                {
+                    page.ForeColor = newColor;
+                }
             });
             UiSettingsManager.Current.FontColor = ColorTranslator.ToHtml(newColor);
             UiSettingsManager.Save();
