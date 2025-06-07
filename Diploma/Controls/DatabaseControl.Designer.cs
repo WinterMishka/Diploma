@@ -155,7 +155,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(193)))), ((int)(((byte)(131)))));
             this.tabPage1.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage1.ForeColor = System.Drawing.Color.Black;
+            this.tabPage1.ForeColor = System.Drawing.Color.White;
             this.tabPage1.Location = new System.Drawing.Point(4, 44);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
