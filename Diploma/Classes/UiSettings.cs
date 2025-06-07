@@ -79,10 +79,24 @@ namespace Diploma.Classes
                 btn.CustomBorderColor = first ? navBorderFirst : navBorderRest;
                 first = false;
             }
+            var windowFont = new Font("Verdana", 11.25f, FontStyle.Bold);
             foreach (var btn in form.WindowButtons)
             {
                 btn.FillColor = navFill;
                 btn.ForeColor = Color.Black;
+                btn.Font = windowFont;
+                switch (btn.Name)
+                {
+                    case "guna2BtnResize":
+                        btn.Text = "_";
+                        break;
+                    case "guna2BtnMinimize":
+                        btn.Text = "▢";
+                        break;
+                    case "guna2BtnClose":
+                        btn.Text = "×";
+                        break;
+                }
             }
 
             form.TitlePanel.BackColor = navFill;

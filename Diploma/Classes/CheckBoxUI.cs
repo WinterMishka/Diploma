@@ -88,6 +88,5 @@ namespace Diploma.Classes
             TextRenderer.DrawText(e.Graphics, text, e.Font, textRect, Color.Black, TextFormatFlags.VerticalCenter | TextFormatFlags.Left);
         }
         #endregion
-        }
     }
 }
