@@ -165,7 +165,7 @@
             // guna2BtnSidebarToggle
             // 
             this.guna2BtnSidebarToggle.Animated = true;
-            this.guna2BtnSidebarToggle.CustomBorderThickness = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.guna2BtnSidebarToggle.CustomBorderThickness = System.Windows.Forms.Padding.Empty;
             this.guna2BtnSidebarToggle.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnSidebarToggle.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2BtnSidebarToggle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));

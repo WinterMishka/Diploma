@@ -187,7 +187,19 @@ namespace Diploma
 
         private void guna2Button7_Click(object sender, EventArgs e)
         {
-
+            if (colorDialog1.ShowDialog() != DialogResult.OK) return;
+            var newColor = colorDialog1.Color;
+            ApplyToAllControls(c =>
+            {
+                c.ForeColor = newColor;
+                if (c is DataGridView dgv)
+                {
+                    dgv.ColumnHeadersDefaultCellStyle.ForeColor = newColor;
+                    dgv.DefaultCellStyle.ForeColor = newColor;
+                }
+            });
+            UiSettingsManager.Current.FontColor = ColorTranslator.ToHtml(newColor);
+            UiSettingsManager.Save();
         }
     }
         #endregion
