@@ -11,6 +11,7 @@ namespace Diploma.Classes
 {
     public class UiSettingsData
     {
+        #region Свойства
         public string NavFillColor { get; set; }
         public string NavBorderColor { get; set; }
         public string GlobalButtonColor { get; set; }
@@ -18,14 +19,20 @@ namespace Diploma.Classes
         public string FontFamily { get; set; }
         public float? FontSize { get; set; }
         public bool StartFullScreen { get; set; }
+        #endregion
     }
 
     public static class UiSettingsManager
     {
+        #region Поля
         private static readonly string FilePath = Path.Combine(Application.StartupPath, "ui_settings.json");
+        #endregion
 
+        #region Свойства
         public static UiSettingsData Current { get; private set; } = new UiSettingsData();
+        #endregion
 
+        #region Методы
         public static void Load()
         {
             try
@@ -218,6 +225,7 @@ namespace Diploma.Classes
                 }
             }
         }
+        #endregion
     }
 }
 

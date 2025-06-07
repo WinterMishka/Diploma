@@ -8,9 +8,12 @@ namespace Diploma.Classes
 {
     public static class CheckBoxUI
     {
+        #region Цвета
         private static readonly Color ActiveColor = Color.LimeGreen;
         private static readonly Color InactiveColor = Color.IndianRed;
+        #endregion
 
+        #region Методы
         public static void ApplyRecursive(Control root)
         {
             foreach (Control c in root.Controls)
@@ -83,6 +86,8 @@ namespace Diploma.Classes
             string text = clb.GetItemText(clb.Items[e.Index]);
             var textRect = new Rectangle(e.Bounds.X + 22, e.Bounds.Y, e.Bounds.Width - 24, e.Bounds.Height);
             TextRenderer.DrawText(e.Graphics, text, e.Font, textRect, Color.Black, TextFormatFlags.VerticalCenter | TextFormatFlags.Left);
+        }
+        #endregion
         }
     }
 }

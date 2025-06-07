@@ -15,6 +15,7 @@ namespace Diploma
 {
     public partial class SettingsControl : UserControl
     {
+        #region Конструктор
         public SettingsControl()
         {
             InitializeComponent();
@@ -34,7 +35,9 @@ namespace Diploma
                     UiSettingsManager.ApplyTo(face);
             };
         }
+        #endregion
 
+        #region Методы
         private static IEnumerable<Control> GetAllControls(Control parent)
         {
             foreach (Control c in parent.Controls)
@@ -182,4 +185,5 @@ namespace Diploma
                 UiSettingsManager.ApplyDefaults(face);
         }
     }
+        #endregion
 }

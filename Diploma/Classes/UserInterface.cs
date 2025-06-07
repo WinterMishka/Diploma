@@ -8,16 +8,21 @@ namespace Diploma
 {
     public class SidebarHighlighter
     {
+        #region Поля
         private readonly List<Guna2Button> _buttons;
         private Color _activeColor = Color.ForestGreen;
         private Color _inactiveColor = Color.White;
         private Guna2Button _activeButton;
+        #endregion
 
+        #region Конструктор
         public SidebarHighlighter(List<Guna2Button> buttons)
         {
             _buttons = buttons;
         }
+        #endregion
 
+        #region Свойства
         public Color ActiveColor
         {
             get => _activeColor;
@@ -41,7 +46,9 @@ namespace Diploma
         }
 
         public Guna2Button ActiveButton => _activeButton;
+        #endregion
 
+        #region Методы
         public void SetActive(Guna2Button activeButton)
         {
             foreach (var btn in _buttons)
@@ -50,19 +57,23 @@ namespace Diploma
             activeButton.CustomBorderColor = _activeColor;
             _activeButton = activeButton;
         }
+        #endregion
     }
 
     public class NavButtonState
     {
+        #region Свойства
         public string Text { get; set; }
         public Padding Padding { get; set; }
         public ContentAlignment TextAlign { get; set; }
         public Font Font { get; set; }
         public HorizontalAlignment ImageAlign { get; set; }
+        #endregion
     }
 
     public class UserInterfaceManager
     {
+        #region Поля
         private readonly Form _form;
         private readonly Panel _panelNavButtons;
         private readonly SidebarHighlighter _sidebar;
@@ -75,7 +86,9 @@ namespace Diploma
         private const int CollapsedWidthMax = 120;
         private const int ExpandedWidthNormal = 200;
         private const int ExpandedWidthMax = 300;
+        #endregion
 
+        #region Конструктор
         public UserInterfaceManager(Form form, Panel panelNavButtons, Guna2Button btnSidebarToggle, List<Guna2Button> navButtons)
         {
             _form = form;
@@ -101,7 +114,9 @@ namespace Diploma
                 };
             }
         }
+        #endregion
 
+        #region Методы
         public void ToggleSidebar()
         {
             _isCollapsed = !_isCollapsed;
@@ -171,5 +186,6 @@ namespace Diploma
         }
 
         public Guna2Button ActiveButton => _sidebar.ActiveButton;
+        #endregion
     }
 }

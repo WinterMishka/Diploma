@@ -11,8 +11,11 @@ namespace Diploma
 {
     public partial class TelegramBotControl : UserControl
     {
-        private readonly HttpClient client = new HttpClient { BaseAddress = new Uri("http:
+        #region Поля
+        private readonly HttpClient client = new HttpClient { BaseAddress = new Uri("http://127.0.0.1:5000") };
+        #endregion
 
+        #region Вложенный класс
         private class Subscriber
         {
             public int id { get; set; }
@@ -22,7 +25,9 @@ namespace Diploma
             public string groups { get; set; }
             public bool status { get; set; }
         }
+        #endregion
 
+        #region Конструктор
         public TelegramBotControl()
         {
             InitializeComponent();
@@ -40,6 +45,8 @@ namespace Diploma
 
             HandleDestroyed += (s, e) => SaveLocalSettings();
         }
+        #endregion
+        #region Методы
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
@@ -207,5 +214,6 @@ namespace Diploma
             }
             await LoadSubscribers();
         }
+        #endregion
     }
 }
