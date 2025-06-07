@@ -462,7 +462,7 @@ namespace Diploma
                         cmd.CommandText = $"IF OBJECT_ID(N'[{tbl}]', 'U') IS NOT NULL DELETE FROM [{tbl}];";
                         cmd.ExecuteNonQuery();
 
-                        cmd.CommandText = $"IF OBJECT_ID(N'[{tbl}]', 'U') IS NOT NULL DBCC CHECKIDENT('[{tbl}]', RESEED, 0);";
+                        cmd.CommandText = $"IF OBJECT_ID(N'[{tbl}]', 'U') IS NOT NULL DBCC CHECKIDENT(N'[{tbl}]', RESEED, 0);";
                         cmd.ExecuteNonQuery();
                     }
                 }
