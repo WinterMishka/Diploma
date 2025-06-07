@@ -6,10 +6,18 @@ namespace Diploma.Services
     public static class AppPaths
     {
         #region Корневые директории
-        public static string ProjectRoot => @"C:\Users\artyo\source\repos\Diploma\Diploma";
-        public static string ServerRoot => Path.Combine(ProjectRoot, "Server");
-        public static string FacesRoot => Path.Combine(ServerRoot, "Faces");
-        public static string LogsRoot => Path.Combine(ServerRoot, "RecognizedLogs");
+        static AppPaths()
+        {
+            ProjectRoot = AppDomain.CurrentDomain.BaseDirectory;
+            ServerRoot = Path.Combine(ProjectRoot, "Server");
+            FacesRoot = Path.Combine(ServerRoot, "Faces");
+            LogsRoot = Path.Combine(ServerRoot, "RecognizedLogs");
+        }
+
+        public static string ProjectRoot { get; }
+        public static string ServerRoot { get; }
+        public static string FacesRoot { get; }
+        public static string LogsRoot { get; }
         #endregion
 
         #region Пути к фото
