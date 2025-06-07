@@ -114,9 +114,9 @@ namespace Diploma.Classes
                     tab.TabButtonIdleState.FillColor = navFill;
                     tab.TabButtonSelectedState.FillColor = navFill;
                     tab.TabButtonSelectedState.InnerColor = navBorderFirst;
-                    tab.TabButtonIdleState.ForeColor = Color.White;
-                    tab.TabButtonHoverState.ForeColor = Color.White;
-                    tab.TabButtonSelectedState.ForeColor = Color.White;
+                    tab.TabButtonIdleState.ForeColor = Color.Black;
+                    tab.TabButtonHoverState.ForeColor = Color.Black;
+                    tab.TabButtonSelectedState.ForeColor = Color.Black;
                     foreach (TabPage page in tab.TabPages)
                     {
                         page.BackColor = panelFill;

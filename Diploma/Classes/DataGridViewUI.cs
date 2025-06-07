@@ -17,7 +17,7 @@ namespace Diploma.Classes
             gv.EnableHeadersVisualStyles = false;
             gv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0x2F, 0x8F, 0x8F);
 
-            var fore = Color.White;
+            var fore = Color.Black;
             if (!string.IsNullOrEmpty(UiSettingsManager.Current.FontColor))
                 fore = ColorTranslator.FromHtml(UiSettingsManager.Current.FontColor);
 
