@@ -11,7 +11,7 @@ namespace Diploma
 {
     public partial class TelegramBotControl : UserControl
     {
-        private readonly HttpClient client = new HttpClient { BaseAddress = new Uri("http://127.0.0.1:5000") };
+        private readonly HttpClient client = new HttpClient { BaseAddress = new Uri("http:
 
         private class Subscriber
         {
@@ -38,8 +38,6 @@ namespace Diploma
                     UiSettingsManager.ApplyTo(face);
             };
 
-            // save options when the control is closed so the latest values
-            // persist across application restarts
             HandleDestroyed += (s, e) => SaveLocalSettings();
         }
 
@@ -73,14 +71,10 @@ namespace Diploma
         private async void TelegramBotControl_Load(object sender, EventArgs e)
         {
             LoadLocalSettings();
-
-            // Отключаем обработчики
             guna2CheckBox1.CheckedChanged -= SettingsChanged;
             guna2CheckBox2.CheckedChanged -= SettingsChanged;
 
             await LoadSettings();
-
-            // Включаем обратно после загрузки настроек с сервера
             guna2CheckBox1.CheckedChanged += SettingsChanged;
             guna2CheckBox2.CheckedChanged += SettingsChanged;
 
@@ -90,8 +84,6 @@ namespace Diploma
         private void LoadLocalSettings()
         {
             Properties.Settings.Default.Reload();
-
-            // Отключаем обработчики перед массовым применением локальных настроек
             guna2CheckBox1.CheckedChanged -= SettingsChanged;
             guna2CheckBox2.CheckedChanged -= SettingsChanged;
 
@@ -101,8 +93,6 @@ namespace Diploma
 
             guna2CheckBox1.Refresh();
             guna2CheckBox2.Refresh();
-
-            // Включаем обратно
             guna2CheckBox1.CheckedChanged += SettingsChanged;
             guna2CheckBox2.CheckedChanged += SettingsChanged;
         }
@@ -115,8 +105,6 @@ namespace Diploma
                 if (!resp.IsSuccessStatusCode) return;
                 var json = await resp.Content.ReadAsStringAsync();
                 dynamic cfg = JsonConvert.DeserializeObject(json);
-
-                // Отключаем обработчики чтобы не триггерить SettingsChanged
                 guna2CheckBox1.CheckedChanged -= SettingsChanged;
                 guna2CheckBox2.CheckedChanged -= SettingsChanged;
 
@@ -126,8 +114,6 @@ namespace Diploma
 
                 guna2CheckBox1.Refresh();
                 guna2CheckBox2.Refresh();
-
-                // Включаем обратно
                 guna2CheckBox1.CheckedChanged += SettingsChanged;
                 guna2CheckBox2.CheckedChanged += SettingsChanged;
 

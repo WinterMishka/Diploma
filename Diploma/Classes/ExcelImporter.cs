@@ -1,4 +1,4 @@
-﻿// ExcelImporter.cs
+
 using ClosedXML.Excel;
 using System;
 using System.Data.SqlClient;

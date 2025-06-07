@@ -9,8 +9,10 @@ namespace Diploma
 {
     public partial class FaceControl : Form
     {
+        #region Поля
         private UserInterfaceManager uiManager;
         private ContentLoader contentLoader;
+        #endregion
 
         public IEnumerable<Guna2Button> NavigationButtons { get; private set; }
         public IEnumerable<Guna2Button> WindowButtons { get; private set; }
@@ -22,6 +24,7 @@ namespace Diploma
             set => uiManager.HighlightColor = value;
         }
 
+        #region Конструктор
         public FaceControl()
         {
             InitializeComponent();
@@ -44,7 +47,9 @@ namespace Diploma
             uiManager.ApplyLayout();
             contentLoader = new ContentLoader(panelMainContent);
         }
+        #endregion
 
+        #region Обработчики
         private void guna2BtnSidebarToggle_Click(object sender, EventArgs e) => uiManager.ToggleSidebar();
         private void guna2BtnMinimize_Click(object sender, EventArgs e) => uiManager.ToggleWindowSize();
         private void guna2BtnClose_Click(object sender, EventArgs e) => Application.Exit();
@@ -97,7 +102,7 @@ namespace Diploma
             if (contentLoader.CurrentControl is AddPersonControl add)
                 add.DisposeCamera();
             base.OnFormClosing(e);
-
         }
+        #endregion
     }
 }

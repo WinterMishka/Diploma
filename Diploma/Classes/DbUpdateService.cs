@@ -43,11 +43,11 @@ namespace Diploma.Helpers
                 [0] = UpdateGroup,
                 [1] = UpdateGroupCode,
                 [2] = UpdateCourse,
-                [3] = UpdateFace,        // чек-бокс 4 — «Лицо»
-                [4] = UpdateEmployee,     // ←-- новый режим
-                [5] = UpdateSpeciality, // чекбокс 6 — "Специальность"
+                [3] = UpdateFace,
+                [4] = UpdateEmployee,
+                [5] = UpdateSpeciality,
                 [6] = UpdateStatus,
-                [7] = UpdateStudent     // чекбокс 8 — «Учащиеся»
+                [7] = UpdateStudent
             };
         }
         #endregion
@@ -147,20 +147,14 @@ namespace Diploma.Helpers
         #region Режим 0 — таблица «Группа»
         private void UpdateGroup(DataRowView row)
         {
-            // Логика обновления для таблицы «Группа»
             int oldCode = (int)row["id_код"];
             int oldYear = (int)row["Год"];
             int? oldEmp = row["id_сотрудника"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["id_сотрудника"]);
-
-            // Значения берём из тех же ComboBox, что и на этапе предварительной
-            // проверки изменений (AddChange выше)
           int newCode = TryParseInt(_boxes["comboBox3"].Text, oldCode);
           int newYear = TryParseInt(_boxes["comboBox4"].Text, oldYear);
           int? newEmp = string.IsNullOrWhiteSpace(_boxes["comboBox5"].Text)
               ? (int?)null
               : TryParseInt(_boxes["comboBox5"].Text, oldEmp ?? 0);
-
-            // Сохранение изменений в БД
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = con.CreateCommand())
             {
@@ -181,13 +175,10 @@ WHERE id_группы = @id;";
         #region Режим 1 — таблица «Группа_код»
         private void UpdateGroupCode(DataRowView row)
         {
-            // Логика обновления для таблицы «Группа_код»
             int oldCode = (int)row["id_код"];
             string oldName = row["Код"].ToString();
 
             string newName = _boxes["comboBox5"].Text;
-
-            // Сохранение изменений в БД
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = con.CreateCommand())
             {
@@ -248,7 +239,7 @@ WHERE id_специальности = @id;";
         private void UpdateFace(DataRowView row)
         {
             int idFoto = Convert.ToInt32(row["id_фото"]);
-            string newPath = _boxes["comboBox4"].Text.Trim();   // Путь берём из comboBox4
+            string newPath = _boxes["comboBox4"].Text.Trim();
 
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = con.CreateCommand())
@@ -434,7 +425,7 @@ WHERE  id_учащегося    = @id;";
         private void UpdateSearchGrid()
         {
             _grid.DataSource = null;
-            _grid.DataSource = _grid.DataSource; // Здесь нужно указать актуальный источник данных
+            _grid.DataSource = _grid.DataSource;
         }
         #endregion
     }
