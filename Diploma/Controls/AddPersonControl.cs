@@ -52,7 +52,6 @@ namespace Diploma
             flpThumbnails.FlowDirection = FlowDirection.LeftToRight;
             flpThumbnails.WrapContents = true;
 
-            // ensure controls locked according to initial mode
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
             _cam.Subscribe(OnFrame);

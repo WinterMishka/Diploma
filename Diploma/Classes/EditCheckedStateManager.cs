@@ -21,19 +21,19 @@ namespace Diploma.Helpers
         #region Методы
         public int GetCheckedIndex()
         {
-            if (_checkBoxes[1].Checked) return 0; // Группа
-            if (_checkBoxes[2].Checked) return 1; // Группа_код
-            if (_checkBoxes[3].Checked) return 2; // Курс
+            if (_checkBoxes[1].Checked) return 0;
+            if (_checkBoxes[2].Checked) return 1;
+            if (_checkBoxes[3].Checked) return 2;
 
-            if (_checkBoxes[4].Checked) return 3; // Лицо
+            if (_checkBoxes[4].Checked) return 3;
 
-            if (_checkBoxes[5].Checked) return 4; // Сотрудники
+            if (_checkBoxes[5].Checked) return 4;
 
-            if (_checkBoxes[6].Checked) return 5; // Специальность
+            if (_checkBoxes[6].Checked) return 5;
 
-            if (_checkBoxes[7].Checked) return 6; // Статус
+            if (_checkBoxes[7].Checked) return 6;
 
-            if (_checkBoxes[8].Checked) return 7; // Учащиеся
+            if (_checkBoxes[8].Checked) return 7;
 
             return -1;
         }

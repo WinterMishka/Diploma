@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace Diploma.Helpers
 {
-    /// <summary>Отвечает за конфигурацию dataGridView6 и видимость фильтров.</summary>
     public class GridConfigurator
     {
         #region Поля
@@ -43,28 +42,19 @@ namespace Diploma.Helpers
         public void ConfigureGroups(DataTable tbl)
         {
             PrepareGrid(tbl, new[] { "id_группы", "id_код", "Код", "Год", "id_сотрудника", "Куратор" });
-
-            // фильтры начинаются с label3/comboBox3
             ShowSimpleFilters(new[] { "Код", "Год", "Куратор" }, 3);
 
-            /* ---------- заполняем из таблиц БД ---------- */
-
-            // id_код  → comboBox3 (DropDownList)
             var cbCode = _combo["comboBox3"];
             cbCode.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCode.DataSource = _db.GetGroupCodes();
             cbCode.DisplayMember = "Код";
             cbCode.ValueMember = "id_код";
-
-            // Год  → comboBox4  (оставляем текстовое поле - Simple)
             _combo["comboBox4"].DropDownStyle = ComboBoxStyle.Simple;
             _combo["comboBox4"].DataSource = _db.GetAllYears()
                                    .AsEnumerable()
                                    .Select(r => r.Field<int>("Год"))
                                    .Distinct()
                                    .ToList();
-
-            // id_сотрудника → comboBox5 (DropDownList)
             var cbEmp = _combo["comboBox5"];
             cbEmp.DropDownStyle = ComboBoxStyle.DropDownList;
             var empTbl = _db.GetEmployeesReadable();
@@ -107,10 +97,7 @@ namespace Diploma.Helpers
 
         public void ConfigureFaces(DataTable tbl)
         {
-            // колонки грида
             PrepareGrid(tbl, new[] { "id_фото", "Путь" });
-
-            // фильтры с label3 / comboBox3
             ShowSimpleFilters(new[] { "id_фото", "Путь" }, startIndex: 3);
         }
 
@@ -124,16 +111,14 @@ namespace Diploma.Helpers
                 new[] { "Фамилия", "Имя", "Отчество", "Должность", "id_фото" },
                 startIndex: 3);
 
-            /* ----- id_статуса → comboBox6 из таблицы Статус_должность ----- */
             var cbStatus = _combo["comboBox6"];
             cbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            var tblStatus = _db.GetStatuses();           // SELECT id_статуса, Название …
+            var tblStatus = _db.GetStatuses();
             cbStatus.DataSource = tblStatus;
             cbStatus.DisplayMember = "Название";
             cbStatus.ValueMember = "id_статуса";
 
-            /* id_фото можно сделать аналогично, если понадобится */
         }
 
 
@@ -176,8 +161,6 @@ namespace Diploma.Helpers
                 "Фамилия", "Имя", "Отчество", "Фото_сделано",
                 "Специальность", "Курс", "Группа", "id_фото"
             });
-
-            // Фото_сделано → comboBox5 (DropDownList "Да"/"Нет")
             var cbDone = _combo["comboBox5"];
             cbDone.DropDownStyle = ComboBoxStyle.DropDownList;
             cbDone.DataSource = new[]
@@ -188,22 +171,16 @@ namespace Diploma.Helpers
             cbDone.DisplayMember = "Text";
             cbDone.ValueMember = "Value";
 
-            /* ----- выпадающие списки для изменяемых полей ----- */
-            // Специальность → comboBox6 (DropDownList)
             var cbSpec = _combo["comboBox6"];
             cbSpec.DropDownStyle = ComboBoxStyle.DropDownList;
             cbSpec.DataSource = _db.GetSpecialities();
             cbSpec.DisplayMember = "Название";
             cbSpec.ValueMember = "id_специальности";
-
-            // Курс → comboBox7 (DropDownList)
             var cbCourse = _combo["comboBox7"];
             cbCourse.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCourse.DataSource = _db.GetCourses();
             cbCourse.DisplayMember = "Наименование";
             cbCourse.ValueMember = "id_курса";
-
-            // Группа → comboBox8 (DropDownList)
             var cbGroup = _combo["comboBox8"];
             cbGroup.DropDownStyle = ComboBoxStyle.DropDownList;
             var groupsTbl = _db.GetGroupsReadable();

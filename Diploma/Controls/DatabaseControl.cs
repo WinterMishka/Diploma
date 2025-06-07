@@ -45,8 +45,6 @@ namespace Diploma
             InitializeComponent();
             CheckBoxUI.ApplyRecursive(this);
 
-            // запретим автоматическое создание колонок, чтобы
-            // вручную контролировать их видимость
             dataGridView6.AutoGenerateColumns = false;
 
             _db = db;
@@ -181,45 +179,45 @@ namespace Diploma
             _binder.Suspend();
             _gridCfg.HideAllFilters();
 
-            if (guna2CheckBox1.Checked)                 // Группа
+            if (guna2CheckBox1.Checked)
             {
                 _gridCfg.ConfigureGroups(_db.GetGroupsReadable());
-                _filter.ApplyDropDownStyles(comboBox3, comboBox5);        // id_код, id_сотрудника
+                _filter.ApplyDropDownStyles(comboBox3, comboBox5);
             }
-            else if (guna2CheckBox2.Checked)            // Код
+            else if (guna2CheckBox2.Checked)
             {
                 _gridCfg.ConfigureGroupCodes(_db.GetGroupCodes());
-                _filter.ApplyDropDownStyles();                                   // все текстовые
+                _filter.ApplyDropDownStyles();
             }
-            else if (guna2CheckBox3.Checked)            // Курс
+            else if (guna2CheckBox3.Checked)
             {
                 _gridCfg.ConfigureCourses(_db.GetCourses());
-                _filter.ApplyDropDownStyles();                                   // все текстовые
+                _filter.ApplyDropDownStyles();
             }
-            else if (guna2CheckBox4.Checked)          // Лицо
+            else if (guna2CheckBox4.Checked)
             {
                 _gridCfg.ConfigureFaces(_db.GetFaces());
                 _filter.ApplyDropDownStyles(comboBox3);
             }
-            else if (guna2CheckBox5.Checked)            // Сотрудники
+            else if (guna2CheckBox5.Checked)
             {
                 _gridCfg.ConfigureEmployees(_db.GetEmployeesReadable());
                 _filter.ApplyDropDownStyles(comboBox6, comboBox7);
             }
-            else if (guna2CheckBox6.Checked)            // Специальность
+            else if (guna2CheckBox6.Checked)
             {
                 _gridCfg.ConfigureSpecialities(_db.GetSpecialities());
-                _filter.ApplyDropDownStyles();                                   // все текстовые
+                _filter.ApplyDropDownStyles();
             }
-            else if (guna2CheckBox7.Checked)            // Статус
+            else if (guna2CheckBox7.Checked)
             {
                 _gridCfg.ConfigureStatuses(_db.GetStatuses());
-                _filter.ApplyDropDownStyles();                                   // все текстовые
+                _filter.ApplyDropDownStyles();
             }
-            else if (guna2CheckBox8.Checked)            // Учащиеся
+            else if (guna2CheckBox8.Checked)
             {
                 _gridCfg.ConfigureStudents(_db.GetStudentsReadable());
-                _filter.ApplyDropDownStyles(comboBox5, comboBox6, comboBox7, comboBox8, comboBox9); // Фото_сделано, id_специальности, id_курса, id_группы, id_фото
+                _filter.ApplyDropDownStyles(comboBox5, comboBox6, comboBox7, comboBox8, comboBox9);
             }
 
             _binder.Resume();
@@ -255,8 +253,6 @@ namespace Diploma
         private void ModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             var clicked = sender as Guna2CheckBox;
-
-            // Жёстко задаём нужную группу чекбоксов
             var checkBoxes = new List<Guna2CheckBox>
     {
         guna2CheckBox11,
@@ -265,16 +261,10 @@ namespace Diploma
         guna2CheckBox14,
         guna2CheckBox15
     };
-
-            // Отключаем обработчик, чтобы избежать лишних срабатываний
             foreach (var cb in checkBoxes)
                 cb.CheckedChanged -= ModeCheckBox_CheckedChanged;
-
-            // Только выбранный должен быть true, остальные false
             foreach (var cb in checkBoxes)
                 cb.Checked = (cb == clicked);
-
-            // Включаем обратно обработчик
             foreach (var cb in checkBoxes)
                 cb.CheckedChanged += ModeCheckBox_CheckedChanged;
 
@@ -344,7 +334,7 @@ namespace Diploma
             guna2CheckBox10.CheckedChanged += VisitsCheckBoxChanged;
             textBox1.TextChanged += SearchBox_TextChanged;
 
-            guna2CheckBox9.Checked = true;   // стартуем со студентов
+            guna2CheckBox9.Checked = true;
         }
 
         private void VisitsCheckBoxChanged(object s, EventArgs e)
@@ -382,17 +372,13 @@ namespace Diploma
             string raw = textBox1.Text.Trim();
             if (raw.Length == 0)
             {
-                dataGridView2.DataSource = _currentView;              // сбросить фильтр
+                dataGridView2.DataSource = _currentView;
                 return;
             }
-
-            // 1. Разбили строку на слова, убрали дубли.
             var words = raw.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                            .Select(w => w.Replace("'", "''"))
                            .Distinct(StringComparer.OrdinalIgnoreCase)
                            .ToArray();
-
-            // 2. Для каждого слова собираем (col LIKE '%word%' OR …) по ВСЕМ колонкам
             var wordFilters = new List<string>();
 
             foreach (string w in words)

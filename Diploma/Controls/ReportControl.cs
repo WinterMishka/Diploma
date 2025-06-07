@@ -9,6 +9,7 @@ namespace Diploma
 {
     public partial class ReportControl : UserControl
     {
+        #region Конструктор
         public ReportControl()
         {
             InitializeComponent();
@@ -20,7 +21,9 @@ namespace Diploma
                     UiSettingsManager.ApplyTo(face);
             };
         }
+        #endregion
 
+        #region Методы
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             if (!TryGetInterval(out DateTime from, out DateTime to))
@@ -145,6 +148,6 @@ namespace Diploma
             }
             return true;
         }
-
+        #endregion
     }
 }

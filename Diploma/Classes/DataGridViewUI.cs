@@ -10,6 +10,7 @@ namespace Diploma.Classes
 {
     public class DataGridViewUI
     {
+        #region Методы
         public static void BeautifyGrid(DataGridView gv)
         {
             gv.BorderStyle = BorderStyle.None;
@@ -40,5 +41,6 @@ namespace Diploma.Classes
             gv.MultiSelect = false;
             gv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(0xE8, 0xF5, 0xE9);
         }
+        #endregion
     }
 }
