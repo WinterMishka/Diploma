@@ -97,7 +97,7 @@
             this.guna2BtnResize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnResize.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnResize.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold);
-            this.guna2BtnResize.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnResize.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnResize.Location = new System.Drawing.Point(0, 0);
             this.guna2BtnResize.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnResize.Name = "guna2BtnResize";
@@ -115,7 +115,7 @@
             this.guna2BtnMinimize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnMinimize.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnMinimize.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold);
-            this.guna2BtnMinimize.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnMinimize.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnMinimize.Location = new System.Drawing.Point(30, 0);
             this.guna2BtnMinimize.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnMinimize.Name = "guna2BtnMinimize";
@@ -133,7 +133,7 @@
             this.guna2BtnClose.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnClose.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnClose.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnClose.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnClose.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnClose.Location = new System.Drawing.Point(60, 0);
             this.guna2BtnClose.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnClose.Name = "guna2BtnClose";
