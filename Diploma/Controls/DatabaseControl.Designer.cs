@@ -134,17 +134,17 @@
             this.guna2TabControl1.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.guna2TabControl1.TabButtonHoverState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.guna2TabControl1.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonIdleState.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2TabControl1.TabButtonIdleState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonIdleState.InnerColor = System.Drawing.Color.White;
             this.guna2TabControl1.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonSelectedState.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2TabControl1.TabButtonSelectedState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonSelectedState.InnerColor = System.Drawing.Color.ForestGreen;
             this.guna2TabControl1.TabButtonSize = new System.Drawing.Size(248, 40);
             this.guna2TabControl1.TabIndex = 0;
@@ -231,6 +231,7 @@
             this.guna2CheckBox11.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2CheckBox11.CheckState = System.Windows.Forms.CheckState.Checked;
             this.guna2CheckBox11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox11.ForeColor = System.Drawing.Color.Black;
             this.guna2CheckBox11.Location = new System.Drawing.Point(0, 0);
             this.guna2CheckBox11.Margin = new System.Windows.Forms.Padding(0);
             this.guna2CheckBox11.Name = "guna2CheckBox11";
@@ -251,6 +252,7 @@
             this.guna2CheckBox12.CheckedState.BorderThickness = 0;
             this.guna2CheckBox12.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2CheckBox12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox12.ForeColor = System.Drawing.Color.Black;
             this.guna2CheckBox12.Location = new System.Drawing.Point(0, 28);
             this.guna2CheckBox12.Margin = new System.Windows.Forms.Padding(0);
             this.guna2CheckBox12.Name = "guna2CheckBox12";
@@ -271,6 +273,7 @@
             this.guna2CheckBox13.CheckedState.BorderThickness = 0;
             this.guna2CheckBox13.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2CheckBox13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox13.ForeColor = System.Drawing.Color.Black;
             this.guna2CheckBox13.Location = new System.Drawing.Point(0, 56);
             this.guna2CheckBox13.Margin = new System.Windows.Forms.Padding(0);
             this.guna2CheckBox13.Name = "guna2CheckBox13";
@@ -291,6 +294,7 @@
             this.guna2CheckBox14.CheckedState.BorderThickness = 0;
             this.guna2CheckBox14.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2CheckBox14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox14.ForeColor = System.Drawing.Color.Black;
             this.guna2CheckBox14.Location = new System.Drawing.Point(0, 84);
             this.guna2CheckBox14.Margin = new System.Windows.Forms.Padding(0);
             this.guna2CheckBox14.Name = "guna2CheckBox14";
@@ -311,6 +315,7 @@
             this.guna2CheckBox15.CheckedState.BorderThickness = 0;
             this.guna2CheckBox15.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2CheckBox15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2CheckBox15.ForeColor = System.Drawing.Color.Black;
             this.guna2CheckBox15.Location = new System.Drawing.Point(0, 112);
             this.guna2CheckBox15.Margin = new System.Windows.Forms.Padding(0);
             this.guna2CheckBox15.Name = "guna2CheckBox15";
@@ -327,6 +332,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(0, 305);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
@@ -930,6 +936,7 @@
             // comboBox2
             // 
             this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox2.ForeColor = System.Drawing.Color.Black;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(0, 30);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(0);

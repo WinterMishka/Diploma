@@ -69,7 +69,7 @@ namespace Diploma.Classes
         {
             var navFill = Color.DarkCyan;
             var navBorderFirst = Color.ForestGreen;
-            var navBorderRest = Color.White;
+            var navBorderRest = Color.Black;
             var panelFill = Color.FromArgb(157, 193, 131);
             var defaultFont = new Font("Verdana", 14.25f);
 
@@ -140,12 +140,12 @@ namespace Diploma.Classes
                 if (ctrl is Guna2Button g)
                 {
                     g.FillColor = Color.FromArgb(94, 148, 255);
-                    g.ForeColor = Color.White;
+                    g.ForeColor = Color.Black;
                 }
                 else if (ctrl is Button b)
                 {
                     b.BackColor = panelFill;
-                    b.ForeColor = Color.White;
+                    b.ForeColor = Color.Black;
                 }
             }
         }

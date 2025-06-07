@@ -17,8 +17,8 @@ import json
 app = Flask(__name__)
 
 known_faces = {}
-last_seen = {}  # Кеш: id -> время последнего распознавания
-COOLDOWN_SECONDS = 30  # 2 минуты
+last_seen = {}
+COOLDOWN_SECONDS = 30
 
 
 def get_db_connection():
@@ -56,7 +56,6 @@ def recognize():
             matched_idx = matches.index(True)
             face_id = known_faces["ids"][matched_idx]
 
-            # КД: если меньше 2 минут — игнорируем
             now = time.time()
             if face_id in last_seen and (now - last_seen[face_id]) < COOLDOWN_SECONDS:
                 return jsonify({"id": "unknown", "face_image": ""})
@@ -88,7 +87,6 @@ def api_validate_photos():
 
 @app.route('/api/reload_encodings', methods=['POST'])
 def api_reload_encodings():
-    """Rebuild encodings.pkl and refresh in-memory data."""
     global known_faces
     try:
         subprocess.run([sys.executable, 'build_known.py'], check=True)
@@ -163,7 +161,6 @@ def api_add_subscriber():
     return jsonify({'status': 'ok'})
 
 def send_test_notification(tg_id: int):
-    """Send a test message with the list of students for subscriber groups."""
     with get_db_connection() as con:
         cur = con.cursor()
         cur.execute('SELECT [Группы] FROM [ПодписчикиТелеграм] WHERE [TelegramID]=?', tg_id)
@@ -187,7 +184,6 @@ def send_test_notification(tg_id: int):
 
 @app.route('/api/absent_students', methods=['POST'])
 def api_absent_students():
-    """Return list of absent students for the given groups and date."""
     data = request.get_json() or {}
     groups = data.get('groups') or []
     if isinstance(groups, str):
@@ -275,7 +271,6 @@ def api_bot_settings():
 
 @app.route('/api/test_notify/<tg_id>')
 def api_test_notify(tg_id):
-    """Send a test notification to the selected Telegram user."""
     try:
         tg = int(tg_id)
     except ValueError:

@@ -169,8 +169,6 @@ def send_notifications():
 
 
 def run_bot():
-    """Initialize DB and start polling with background scheduler."""
-
     def scheduler():
         while True:
             try:
