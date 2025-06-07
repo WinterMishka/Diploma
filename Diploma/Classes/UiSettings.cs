@@ -18,6 +18,7 @@ namespace Diploma.Classes
         public string PanelFillColor { get; set; }
         public string FontFamily { get; set; }
         public float? FontSize { get; set; }
+        public string FontColor { get; set; }
         public bool StartFullScreen { get; set; }
         #endregion
     }
@@ -254,6 +255,27 @@ namespace Diploma.Classes
                     {
                         dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
                         dgv.DefaultCellStyle.Font = ctrl.Font;
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(s.FontColor))
+            {
+                var c = ColorTranslator.FromHtml(s.FontColor);
+                foreach (var ctrl in GetAllControls(form))
+                {
+                    ctrl.ForeColor = c;
+                    if (ctrl is DataGridView dgv)
+                    {
+                        dgv.ColumnHeadersDefaultCellStyle.ForeColor = c;
+                        dgv.DefaultCellStyle.ForeColor = c;
+                    }
+                    else if (ctrl is Guna2TabControl tab)
+                    {
+                        tab.TabButtonHoverState.ForeColor = c;
+                        tab.TabButtonIdleState.ForeColor = c;
+                        tab.TabButtonSelectedState.ForeColor = c;
+                        foreach (TabPage page in tab.TabPages)
+                            page.ForeColor = c;
                     }
                 }
             }

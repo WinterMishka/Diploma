@@ -187,7 +187,31 @@ namespace Diploma
 
         private void guna2Button7_Click(object sender, EventArgs e)
         {
-
+            if (colorDialog1.ShowDialog() != DialogResult.OK) return;
+            var newColor = colorDialog1.Color;
+            ApplyToAllControls(c =>
+            {
+                c.ForeColor = newColor;
+                if (c is DataGridView dgv)
+                {
+                    dgv.ColumnHeadersDefaultCellStyle.ForeColor = newColor;
+                    dgv.DefaultCellStyle.ForeColor = newColor;
+                }
+                else if (c is Guna2TabControl tab)
+                {
+                    tab.TabButtonHoverState.ForeColor = newColor;
+                    tab.TabButtonIdleState.ForeColor = newColor;
+                    tab.TabButtonSelectedState.ForeColor = newColor;
+                    foreach (TabPage page in tab.TabPages)
+                        page.ForeColor = newColor;
+                }
+                else if (c is TabPage page)
+                {
+                    page.ForeColor = newColor;
+                }
+            });
+            UiSettingsManager.Current.FontColor = ColorTranslator.ToHtml(newColor);
+            UiSettingsManager.Save();
         }
     }
         #endregion
