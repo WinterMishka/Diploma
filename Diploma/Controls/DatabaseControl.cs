@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 #endregion
 
@@ -429,12 +430,71 @@ namespace Diploma
 
         private void guna2Button7_Click(object sender, EventArgs e)
         {
+            const string msg = "Вы уверены, что хотите удалить все данные базы?";
+            if (MessageBox.Show(msg, "Подтверждение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
 
+            try
+            {
+                using (var con = new SqlConnection(Properties.Settings.Default.EducationAccessSystemConnectionString))
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    cmd.CommandText = @"
+DELETE FROM Приход_уход;
+DELETE FROM Учащиеся;
+DELETE FROM Сотрудники;
+DELETE FROM Лицо;
+DELETE FROM Группа;
+DELETE FROM Группа_код;
+DELETE FROM Курс;
+DELETE FROM Специальность;
+DELETE FROM Статус_должность;
+DBCC CHECKIDENT('Приход_уход', RESEED, 0);
+DBCC CHECKIDENT('Учащиеся', RESEED, 0);
+DBCC CHECKIDENT('Сотрудники', RESEED, 0);
+DBCC CHECKIDENT('Лицо', RESEED, 0);
+DBCC CHECKIDENT('Группа', RESEED, 0);
+DBCC CHECKIDENT('Группа_код', RESEED, 0);
+DBCC CHECKIDENT('Курс', RESEED, 0);
+DBCC CHECKIDENT('Специальность', RESEED, 0);
+DBCC CHECKIDENT('Статус_должность', RESEED, 0);";
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("База данных очищена.", "Готово",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ui.UpdateGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении данных: " + ex.Message,
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void guna2Button8_Click(object sender, EventArgs e)
         {
+            const string msg = "Удалить все логи распознавания?";
+            if (MessageBox.Show(msg, "Подтверждение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
 
+            try
+            {
+                if (Directory.Exists(AppPaths.LogsRoot))
+                    Directory.Delete(AppPaths.LogsRoot, true);
+
+                MessageBox.Show("Логи удалены.", "Готово",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении логов: " + ex.Message,
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
