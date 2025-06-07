@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.IO;
 using System.Windows.Forms;
+using Diploma.Services;
 #endregion
 
 namespace Diploma
@@ -470,10 +471,6 @@ namespace Diploma
                 var encFile = Path.Combine(AppPaths.ServerRoot, "encodings.pkl");
                 if (File.Exists(encFile))
                     File.Delete(encFile);
-
-                var knownFile = Path.Combine(AppPaths.ServerRoot, "known_faces.pkl");
-                if (File.Exists(knownFile))
-                    File.Delete(knownFile);
 
                 MessageBox.Show("База данных очищена.", "Готово",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
