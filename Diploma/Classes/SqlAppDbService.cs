@@ -340,19 +340,9 @@ WHERE  id_группы=@g;";
         {
             return LoadTable("SELECT * FROM Учащиеся");
         }
-        public DataTable GetAllGroupCodes()
-        {
-            return LoadTable("SELECT id_код FROM Группа_код ORDER BY id_код");
-        }
-
         public DataTable GetAllYears()
         {
             return LoadTable("SELECT DISTINCT Год FROM Группа ORDER BY Год");
-        }
-
-        public DataTable GetAllEmployeeIds()
-        {
-            return LoadTable("SELECT id_сотрудника FROM Сотрудники ORDER BY id_сотрудника");
         }
         public DataTable GetStudentVisits()
         {
