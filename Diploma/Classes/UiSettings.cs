@@ -79,7 +79,7 @@ namespace Diploma.Classes
                 btn.CustomBorderColor = first ? navBorderFirst : navBorderRest;
                 first = false;
             }
-            var windowFont = new Font("Verdana", 11.25f, FontStyle.Bold);
+            var windowFont = new Font("Segoe UI", 11.25f, FontStyle.Bold);
             foreach (var btn in form.WindowButtons)
             {
                 btn.FillColor = navFill;
@@ -104,6 +104,9 @@ namespace Diploma.Classes
 
             foreach (var ctrl in GetAllControls(form))
             {
+                if (form.WindowButtons.Contains(ctrl))
+                    continue;
+
                 if (ctrl is Guna2TabControl tab)
                 {
                     tab.TabMenuBackColor = navFill;
@@ -114,8 +117,8 @@ namespace Diploma.Classes
                         page.BackColor = panelFill;
                 }
                 else if (ctrl.BackColor != navFill &&
-                         ctrl.BackColor != navBorderFirst &&
-                         ctrl.BackColor != navBorderRest)
+                        ctrl.BackColor != navBorderFirst &&
+                        ctrl.BackColor != navBorderRest)
                 {
                     ctrl.BackColor = panelFill;
                 }
@@ -126,6 +129,22 @@ namespace Diploma.Classes
                 {
                     dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
                     dgv.DefaultCellStyle.Font = ctrl.Font;
+                }
+            }
+
+            foreach (var ctrl in GetAllControls(form))
+            {
+                if (form.NavigationButtons.Contains(ctrl) || form.WindowButtons.Contains(ctrl))
+                    continue;
+                if (ctrl is Guna2Button g)
+                {
+                    g.FillColor = Color.FromArgb(94, 148, 255);
+                    g.ForeColor = Color.White;
+                }
+                else if (ctrl is Button b)
+                {
+                    b.BackColor = panelFill;
+                    b.ForeColor = Color.White;
                 }
             }
         }

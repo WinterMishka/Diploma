@@ -48,11 +48,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 700);
             this.Controls.Add(this.reportViewer1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ReportForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Отчёт";
             this.Load += new System.EventHandler(this.ReportForm_Load);
             this.ResumeLayout(false);
+
         }
 
         #endregion

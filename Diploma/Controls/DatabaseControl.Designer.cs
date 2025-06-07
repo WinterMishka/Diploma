@@ -91,8 +91,8 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
-            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -134,17 +134,17 @@
             this.guna2TabControl1.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.guna2TabControl1.TabButtonHoverState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.guna2TabControl1.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonIdleState.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2TabControl1.TabButtonIdleState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonIdleState.InnerColor = System.Drawing.Color.White;
             this.guna2TabControl1.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonSelectedState.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2TabControl1.TabButtonSelectedState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonSelectedState.InnerColor = System.Drawing.Color.ForestGreen;
             this.guna2TabControl1.TabButtonSize = new System.Drawing.Size(248, 40);
             this.guna2TabControl1.TabIndex = 0;
@@ -342,7 +342,7 @@
             this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button3.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.White;
+            this.guna2Button3.ForeColor = System.Drawing.Color.Black;
             this.guna2Button3.Location = new System.Drawing.Point(0, 513);
             this.guna2Button3.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button3.Name = "guna2Button3";
@@ -402,7 +402,7 @@
             this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button2.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.ForeColor = System.Drawing.Color.Black;
             this.guna2Button2.Location = new System.Drawing.Point(358, 0);
             this.guna2Button2.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button2.Name = "guna2Button2";
@@ -419,7 +419,7 @@
             this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
             this.guna2Button1.Location = new System.Drawing.Point(0, 0);
             this.guna2Button1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button1.Name = "guna2Button1";
@@ -965,7 +965,7 @@
             this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button6.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button6.ForeColor = System.Drawing.Color.White;
+            this.guna2Button6.ForeColor = System.Drawing.Color.Black;
             this.guna2Button6.Location = new System.Drawing.Point(660, 0);
             this.guna2Button6.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button6.Name = "guna2Button6";
@@ -982,7 +982,7 @@
             this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button5.ForeColor = System.Drawing.Color.White;
+            this.guna2Button5.ForeColor = System.Drawing.Color.Black;
             this.guna2Button5.Location = new System.Drawing.Point(330, 0);
             this.guna2Button5.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button5.Name = "guna2Button5";
@@ -999,7 +999,7 @@
             this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button4.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.White;
+            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
             this.guna2Button4.Location = new System.Drawing.Point(0, 0);
             this.guna2Button4.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button4.Name = "guna2Button4";
@@ -1160,23 +1160,6 @@
             this.tableLayoutPanel15.Size = new System.Drawing.Size(986, 566);
             this.tableLayoutPanel15.TabIndex = 0;
             // 
-            // guna2Button7
-            // 
-            this.guna2Button7.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button7.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button7.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button7.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Button7.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button7.ForeColor = System.Drawing.Color.White;
-            this.guna2Button7.Location = new System.Drawing.Point(0, 0);
-            this.guna2Button7.Margin = new System.Windows.Forms.Padding(0);
-            this.guna2Button7.Name = "guna2Button7";
-            this.guna2Button7.Size = new System.Drawing.Size(986, 283);
-            this.guna2Button7.TabIndex = 0;
-            this.guna2Button7.Text = "Удалить базу данных";
-            this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
-            // 
             // guna2Button8
             // 
             this.guna2Button8.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1185,7 +1168,7 @@
             this.guna2Button8.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button8.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button8.ForeColor = System.Drawing.Color.White;
+            this.guna2Button8.ForeColor = System.Drawing.Color.Black;
             this.guna2Button8.Location = new System.Drawing.Point(0, 283);
             this.guna2Button8.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button8.Name = "guna2Button8";
@@ -1193,6 +1176,23 @@
             this.guna2Button8.TabIndex = 1;
             this.guna2Button8.Text = "Удалить логи лиц";
             this.guna2Button8.Click += new System.EventHandler(this.guna2Button8_Click);
+            // 
+            // guna2Button7
+            // 
+            this.guna2Button7.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button7.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button7.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button7.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Button7.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button7.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button7.Location = new System.Drawing.Point(0, 0);
+            this.guna2Button7.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2Button7.Name = "guna2Button7";
+            this.guna2Button7.Size = new System.Drawing.Size(986, 283);
+            this.guna2Button7.TabIndex = 0;
+            this.guna2Button7.Text = "Удалить базу данных";
+            this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
             // 
             // DatabaseControl
             // 

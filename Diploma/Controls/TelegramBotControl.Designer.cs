@@ -189,7 +189,7 @@
             this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button4.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2Button4.ForeColor = System.Drawing.Color.White;
+            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
             this.guna2Button4.Location = new System.Drawing.Point(750, 0);
             this.guna2Button4.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button4.Name = "guna2Button4";
@@ -206,7 +206,7 @@
             this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button3.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2Button3.ForeColor = System.Drawing.Color.White;
+            this.guna2Button3.ForeColor = System.Drawing.Color.Black;
             this.guna2Button3.Location = new System.Drawing.Point(500, 0);
             this.guna2Button3.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button3.Name = "guna2Button3";
@@ -223,7 +223,7 @@
             this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button2.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.ForeColor = System.Drawing.Color.Black;
             this.guna2Button2.Location = new System.Drawing.Point(250, 0);
             this.guna2Button2.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button2.Name = "guna2Button2";
@@ -240,7 +240,7 @@
             this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
             this.guna2Button1.Location = new System.Drawing.Point(0, 0);
             this.guna2Button1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button1.Name = "guna2Button1";

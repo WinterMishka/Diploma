@@ -194,7 +194,7 @@
             this.guna2BtnControlToggle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnControlToggle.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnControlToggle.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnControlToggle.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnControlToggle.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnControlToggle.Image = ((System.Drawing.Image)(resources.GetObject("guna2BtnControlToggle.Image")));
             this.guna2BtnControlToggle.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2BtnControlToggle.ImageSize = new System.Drawing.Size(50, 50);
@@ -219,7 +219,7 @@
             this.guna2BtnDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnDatabase.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnDatabase.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2BtnDatabase.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnDatabase.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnDatabase.Image = ((System.Drawing.Image)(resources.GetObject("guna2BtnDatabase.Image")));
             this.guna2BtnDatabase.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2BtnDatabase.ImageSize = new System.Drawing.Size(50, 50);
@@ -244,7 +244,7 @@
             this.guna2BtnCreateReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnCreateReport.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnCreateReport.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2BtnCreateReport.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnCreateReport.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnCreateReport.Image = ((System.Drawing.Image)(resources.GetObject("guna2BtnCreateReport.Image")));
             this.guna2BtnCreateReport.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2BtnCreateReport.ImageSize = new System.Drawing.Size(50, 50);
@@ -269,7 +269,7 @@
             this.guna2BtnTelegramBot.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnTelegramBot.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnTelegramBot.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2BtnTelegramBot.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnTelegramBot.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnTelegramBot.Image = ((System.Drawing.Image)(resources.GetObject("guna2BtnTelegramBot.Image")));
             this.guna2BtnTelegramBot.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2BtnTelegramBot.ImageSize = new System.Drawing.Size(50, 50);
@@ -294,7 +294,7 @@
             this.guna2BtnSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnSettings.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnSettings.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2BtnSettings.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnSettings.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnSettings.Image = ((System.Drawing.Image)(resources.GetObject("guna2BtnSettings.Image")));
             this.guna2BtnSettings.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2BtnSettings.ImageSize = new System.Drawing.Size(50, 50);
@@ -346,7 +346,7 @@
             this.guna2BtnAddPerson.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnAddPerson.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2BtnAddPerson.Font = new System.Drawing.Font("Verdana", 14.25F);
-            this.guna2BtnAddPerson.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnAddPerson.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnAddPerson.Image = ((System.Drawing.Image)(resources.GetObject("guna2BtnAddPerson.Image")));
             this.guna2BtnAddPerson.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2BtnAddPerson.ImageSize = new System.Drawing.Size(50, 50);

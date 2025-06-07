@@ -105,7 +105,7 @@ namespace Diploma
             this.guna2BtnSnap.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnSnap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnSnap.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnSnap.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnSnap.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnSnap.Location = new System.Drawing.Point(0, 279);
             this.guna2BtnSnap.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnSnap.Name = "guna2BtnSnap";
@@ -348,7 +348,7 @@ namespace Diploma
             this.guna2BtnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnSave.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnSave.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnSave.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnSave.Location = new System.Drawing.Point(0, 539);
             this.guna2BtnSave.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnSave.Name = "guna2BtnSave";
@@ -365,7 +365,7 @@ namespace Diploma
             this.guna2BtnClear.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnClear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2BtnClear.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnClear.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnClear.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnClear.Location = new System.Drawing.Point(350, 539);
             this.guna2BtnClear.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnClear.Name = "guna2BtnClear";

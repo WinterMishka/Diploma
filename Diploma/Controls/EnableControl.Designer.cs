@@ -133,15 +133,13 @@ namespace Diploma
             // 
             this.guna2BtnStopRecognition.Animated = true;
             this.guna2BtnStopRecognition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(193)))), ((int)(((byte)(131)))));
-            this.guna2BtnStopRecognition.BorderRadius = 30;
             this.guna2BtnStopRecognition.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnStopRecognition.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnStopRecognition.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2BtnStopRecognition.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnStopRecognition.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2BtnStopRecognition.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(64)))), ((int)(((byte)(40)))));
             this.guna2BtnStopRecognition.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnStopRecognition.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnStopRecognition.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnStopRecognition.Location = new System.Drawing.Point(250, 60);
             this.guna2BtnStopRecognition.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnStopRecognition.Name = "guna2BtnStopRecognition";
@@ -178,15 +176,13 @@ namespace Diploma
             // 
             this.guna2BtnStartRecognition.Animated = true;
             this.guna2BtnStartRecognition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(193)))), ((int)(((byte)(131)))));
-            this.guna2BtnStartRecognition.BorderRadius = 30;
             this.guna2BtnStartRecognition.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnStartRecognition.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnStartRecognition.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2BtnStartRecognition.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2BtnStartRecognition.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2BtnStartRecognition.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(64)))), ((int)(((byte)(40)))));
             this.guna2BtnStartRecognition.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2BtnStartRecognition.ForeColor = System.Drawing.Color.White;
+            this.guna2BtnStartRecognition.ForeColor = System.Drawing.Color.Black;
             this.guna2BtnStartRecognition.Location = new System.Drawing.Point(0, 60);
             this.guna2BtnStartRecognition.Margin = new System.Windows.Forms.Padding(0);
             this.guna2BtnStartRecognition.Name = "guna2BtnStartRecognition";

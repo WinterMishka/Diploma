@@ -39,8 +39,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2ButtonReset = new Guna.UI2.WinForms.Guna2Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -54,17 +56,21 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer4, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.guna2CheckBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.guna2ButtonReset, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -75,13 +81,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 620);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 372);
+            this.splitContainer3.Location = new System.Drawing.Point(0, 370);
             this.splitContainer3.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer3.Name = "splitContainer3";
             // 
@@ -92,7 +99,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.guna2Button6);
-            this.splitContainer3.Size = new System.Drawing.Size(1000, 124);
+            this.splitContainer3.Size = new System.Drawing.Size(1000, 123);
             this.splitContainer3.SplitterDistance = 500;
             this.splitContainer3.TabIndex = 3;
             // 
@@ -104,11 +111,11 @@
             this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button5.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button5.ForeColor = System.Drawing.Color.White;
+            this.guna2Button5.ForeColor = System.Drawing.Color.Black;
             this.guna2Button5.Location = new System.Drawing.Point(0, 0);
             this.guna2Button5.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.Size = new System.Drawing.Size(500, 124);
+            this.guna2Button5.Size = new System.Drawing.Size(500, 123);
             this.guna2Button5.TabIndex = 0;
             this.guna2Button5.Text = "Шрифт";
             this.guna2Button5.Click += new System.EventHandler(this.guna2Button5_Click);
@@ -121,11 +128,11 @@
             this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button6.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button6.ForeColor = System.Drawing.Color.White;
+            this.guna2Button6.ForeColor = System.Drawing.Color.Black;
             this.guna2Button6.Location = new System.Drawing.Point(0, 0);
             this.guna2Button6.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button6.Name = "guna2Button6";
-            this.guna2Button6.Size = new System.Drawing.Size(496, 124);
+            this.guna2Button6.Size = new System.Drawing.Size(496, 123);
             this.guna2Button6.TabIndex = 1;
             this.guna2Button6.Text = "Размер шрифта";
             this.guna2Button6.Click += new System.EventHandler(this.guna2Button6_Click);
@@ -133,7 +140,7 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 248);
+            this.splitContainer2.Location = new System.Drawing.Point(0, 247);
             this.splitContainer2.Margin = new System.Windows.Forms.Padding(0);
             this.splitContainer2.Name = "splitContainer2";
             // 
@@ -144,7 +151,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.guna2Button4);
-            this.splitContainer2.Size = new System.Drawing.Size(1000, 124);
+            this.splitContainer2.Size = new System.Drawing.Size(1000, 123);
             this.splitContainer2.SplitterDistance = 500;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -156,11 +163,11 @@
             this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button3.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.White;
+            this.guna2Button3.ForeColor = System.Drawing.Color.Black;
             this.guna2Button3.Location = new System.Drawing.Point(0, 0);
             this.guna2Button3.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(500, 124);
+            this.guna2Button3.Size = new System.Drawing.Size(500, 123);
             this.guna2Button3.TabIndex = 0;
             this.guna2Button3.Text = "Кнопок";
             this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click);
@@ -173,11 +180,11 @@
             this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button4.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.White;
+            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
             this.guna2Button4.Location = new System.Drawing.Point(0, 0);
             this.guna2Button4.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.Size = new System.Drawing.Size(496, 124);
+            this.guna2Button4.Size = new System.Drawing.Size(496, 123);
             this.guna2Button4.TabIndex = 1;
             this.guna2Button4.Text = "Заливка";
             this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
@@ -216,7 +223,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.guna2Button2);
-            this.splitContainer1.Size = new System.Drawing.Size(1000, 124);
+            this.splitContainer1.Size = new System.Drawing.Size(1000, 123);
             this.splitContainer1.SplitterDistance = 500;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -228,11 +235,11 @@
             this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button1.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
             this.guna2Button1.Location = new System.Drawing.Point(0, 0);
             this.guna2Button1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(500, 124);
+            this.guna2Button1.Size = new System.Drawing.Size(500, 123);
             this.guna2Button1.TabIndex = 0;
             this.guna2Button1.Text = "Вкладок";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
@@ -245,31 +252,66 @@
             this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Button2.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.ForeColor = System.Drawing.Color.Black;
             this.guna2Button2.Location = new System.Drawing.Point(0, 0);
             this.guna2Button2.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(496, 124);
+            this.guna2Button2.Size = new System.Drawing.Size(496, 123);
             this.guna2Button2.TabIndex = 1;
             this.guna2Button2.Text = "Активной вкладки";
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
-            // guna2ButtonReset
+            // splitContainer4
             // 
-            this.guna2ButtonReset.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2ButtonReset.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2ButtonReset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2ButtonReset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2ButtonReset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2ButtonReset.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.guna2ButtonReset.Location = new System.Drawing.Point(0, 496);
-            this.guna2ButtonReset.Margin = new System.Windows.Forms.Padding(0);
-            this.guna2ButtonReset.Name = "guna2ButtonReset";
-            this.guna2ButtonReset.Size = new System.Drawing.Size(1000, 124);
-            this.guna2ButtonReset.TabIndex = 4;
-            this.guna2ButtonReset.Text = "Сбросить значения";
-            this.guna2ButtonReset.Click += new System.EventHandler(this.guna2ButtonReset_Click);
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 493);
+            this.splitContainer4.Margin = new System.Windows.Forms.Padding(0);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.guna2Button7);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.guna2Button8);
+            this.splitContainer4.Size = new System.Drawing.Size(1000, 127);
+            this.splitContainer4.SplitterDistance = 500;
+            this.splitContainer4.TabIndex = 5;
+            // 
+            // guna2Button7
+            // 
+            this.guna2Button7.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button7.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button7.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button7.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Button7.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.guna2Button7.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button7.Location = new System.Drawing.Point(0, 0);
+            this.guna2Button7.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2Button7.Name = "guna2Button7";
+            this.guna2Button7.Size = new System.Drawing.Size(500, 127);
+            this.guna2Button7.TabIndex = 0;
+            this.guna2Button7.Text = "Цвет шрифта";
+            this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
+            // 
+            // guna2Button8
+            // 
+            this.guna2Button8.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button8.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button8.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button8.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Button8.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.guna2Button8.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button8.Location = new System.Drawing.Point(0, 0);
+            this.guna2Button8.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2Button8.Name = "guna2Button8";
+            this.guna2Button8.Size = new System.Drawing.Size(496, 127);
+            this.guna2Button8.TabIndex = 5;
+            this.guna2Button8.Text = "Сбросить значения";
+            this.guna2Button8.Click += new System.EventHandler(this.guna2ButtonReset_Click);
             // 
             // SettingsControl
             // 
@@ -295,6 +337,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -313,6 +359,8 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2Button guna2ButtonReset;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private Guna.UI2.WinForms.Guna2Button guna2Button7;
+        private Guna.UI2.WinForms.Guna2Button guna2Button8;
     }
 }
