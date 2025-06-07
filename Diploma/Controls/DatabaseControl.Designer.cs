@@ -93,6 +93,10 @@
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
+            this.guna2Button9 = new Guna.UI2.WinForms.Guna2Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -116,6 +120,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tableLayoutPanel16.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2TabControl1
@@ -124,8 +130,9 @@
             this.guna2TabControl1.Controls.Add(this.tabPage2);
             this.guna2TabControl1.Controls.Add(this.tabPage3);
             this.guna2TabControl1.Controls.Add(this.tabPage4);
+            this.guna2TabControl1.Controls.Add(this.tabPage5);
             this.guna2TabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2TabControl1.ItemSize = new System.Drawing.Size(248, 40);
+            this.guna2TabControl1.ItemSize = new System.Drawing.Size(195, 40);
             this.guna2TabControl1.Location = new System.Drawing.Point(0, 0);
             this.guna2TabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.guna2TabControl1.Name = "guna2TabControl1";
@@ -134,19 +141,19 @@
             this.guna2TabControl1.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.guna2TabControl1.TabButtonHoverState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(52)))), ((int)(((byte)(70)))));
             this.guna2TabControl1.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonIdleState.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2TabControl1.TabButtonIdleState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonIdleState.InnerColor = System.Drawing.Color.White;
             this.guna2TabControl1.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty;
             this.guna2TabControl1.TabButtonSelectedState.FillColor = System.Drawing.Color.DarkCyan;
             this.guna2TabControl1.TabButtonSelectedState.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.White;
+            this.guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.Black;
             this.guna2TabControl1.TabButtonSelectedState.InnerColor = System.Drawing.Color.ForestGreen;
-            this.guna2TabControl1.TabButtonSize = new System.Drawing.Size(248, 40);
+            this.guna2TabControl1.TabButtonSize = new System.Drawing.Size(195, 40);
             this.guna2TabControl1.TabIndex = 0;
             this.guna2TabControl1.TabMenuBackColor = System.Drawing.Color.DarkCyan;
             this.guna2TabControl1.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop;
@@ -1201,6 +1208,60 @@
             this.guna2Button7.Text = "Удалить базу данных";
             this.guna2Button7.Click += new System.EventHandler(this.guna2Button7_Click);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(193)))), ((int)(((byte)(131)))));
+            this.tabPage5.Controls.Add(this.tableLayoutPanel16);
+            this.tabPage5.Location = new System.Drawing.Point(4, 44);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(992, 572);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Сервер";
+            // 
+            // tableLayoutPanel16
+            // 
+            this.tableLayoutPanel16.ColumnCount = 1;
+            this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel16.Controls.Add(this.guna2Button9, 0, 1);
+            this.tableLayoutPanel16.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel16.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel16.Name = "tableLayoutPanel16";
+            this.tableLayoutPanel16.RowCount = 2;
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
+            this.tableLayoutPanel16.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel16.Size = new System.Drawing.Size(986, 566);
+            this.tableLayoutPanel16.TabIndex = 0;
+            // 
+            // guna2Button9
+            // 
+            this.guna2Button9.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button9.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button9.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button9.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Button9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button9.ForeColor = System.Drawing.Color.White;
+            this.guna2Button9.Location = new System.Drawing.Point(0, 481);
+            this.guna2Button9.Margin = new System.Windows.Forms.Padding(0);
+            this.guna2Button9.Name = "guna2Button9";
+            this.guna2Button9.Size = new System.Drawing.Size(986, 85);
+            this.guna2Button9.TabIndex = 0;
+            this.guna2Button9.Text = "Перезапустить сервер";
+            this.guna2Button9.Click += new System.EventHandler(this.guna2Button9_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(0, 0);
+            this.label10.Margin = new System.Windows.Forms.Padding(0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 23);
+            this.label10.TabIndex = 1;
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // DatabaseControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -1240,6 +1301,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tableLayoutPanel16.ResumeLayout(false);
+            this.tableLayoutPanel16.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1311,5 +1375,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
         private Guna.UI2.WinForms.Guna2Button guna2Button8;
         private Guna.UI2.WinForms.Guna2Button guna2Button7;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
+        private Guna.UI2.WinForms.Guna2Button guna2Button9;
+        private System.Windows.Forms.Label label10;
     }
 }

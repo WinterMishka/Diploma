@@ -492,7 +492,7 @@ namespace Diploma
                                 "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+      
         private void StartServer()
         {
             string exePath = Path.Combine(AppPaths.ServerRoot, "server.exe");
