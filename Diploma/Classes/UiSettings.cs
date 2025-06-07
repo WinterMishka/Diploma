@@ -114,8 +114,14 @@ namespace Diploma.Classes
                     tab.TabButtonIdleState.FillColor = navFill;
                     tab.TabButtonSelectedState.FillColor = navFill;
                     tab.TabButtonSelectedState.InnerColor = navBorderFirst;
+                    tab.TabButtonIdleState.ForeColor = Color.White;
+                    tab.TabButtonHoverState.ForeColor = Color.White;
+                    tab.TabButtonSelectedState.ForeColor = Color.White;
                     foreach (TabPage page in tab.TabPages)
+                    {
                         page.BackColor = panelFill;
+                        page.ForeColor = Color.White;
+                    }
                 }
                 else if (ctrl.BackColor != navFill &&
                         ctrl.BackColor != navBorderFirst &&
@@ -125,11 +131,14 @@ namespace Diploma.Classes
                 }
 
                 ctrl.Font = new Font(defaultFont.FontFamily, defaultFont.Size, ctrl.Font.Style);
+                ctrl.ForeColor = Color.Black;
 
                 if (ctrl is DataGridView dgv)
                 {
                     dgv.ColumnHeadersDefaultCellStyle.Font = ctrl.Font;
                     dgv.DefaultCellStyle.Font = ctrl.Font;
+                    dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                    dgv.DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
 
