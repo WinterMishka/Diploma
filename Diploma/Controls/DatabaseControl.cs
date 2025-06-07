@@ -437,32 +437,43 @@ namespace Diploma
 
             try
             {
+                var tables = new[]
+                {
+                    "Приход_уход",
+                    "Учащиеся",
+                    "Сотрудники",
+                    "Лицо",
+                    "Группа",
+                    "Группа_код",
+                    "Курс",
+                    "Специальность",
+                    "Статус_должность",
+                    "ПодписчикиТелеграм"
+                };
+
                 using (var con = new SqlConnection(Properties.Settings.Default.EducationAccessSystemConnectionString))
                 using (var cmd = new SqlCommand())
                 {
                     cmd.Connection = con;
                     con.Open();
-                    cmd.CommandText = @"
-DELETE FROM Приход_уход;
-DELETE FROM Учащиеся;
-DELETE FROM Сотрудники;
-DELETE FROM Лицо;
-DELETE FROM Группа;
-DELETE FROM Группа_код;
-DELETE FROM Курс;
-DELETE FROM Специальность;
-DELETE FROM Статус_должность;
-DBCC CHECKIDENT('Приход_уход', RESEED, 0);
-DBCC CHECKIDENT('Учащиеся', RESEED, 0);
-DBCC CHECKIDENT('Сотрудники', RESEED, 0);
-DBCC CHECKIDENT('Лицо', RESEED, 0);
-DBCC CHECKIDENT('Группа', RESEED, 0);
-DBCC CHECKIDENT('Группа_код', RESEED, 0);
-DBCC CHECKIDENT('Курс', RESEED, 0);
-DBCC CHECKIDENT('Специальность', RESEED, 0);
-DBCC CHECKIDENT('Статус_должность', RESEED, 0);";
-                    cmd.ExecuteNonQuery();
+
+                    foreach (var tbl in tables)
+                    {
+                        cmd.CommandText = $"IF OBJECT_ID(N'[{tbl}]', 'U') IS NOT NULL DELETE FROM [{tbl}];";
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = $"IF OBJECT_ID(N'[{tbl}]', 'U') IS NOT NULL DBCC CHECKIDENT('[{tbl}]', RESEED, 0);";
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+
+                var encFile = Path.Combine(AppPaths.ServerRoot, "encodings.pkl");
+                if (File.Exists(encFile))
+                    File.Delete(encFile);
+
+                var knownFile = Path.Combine(AppPaths.ServerRoot, "known_faces.pkl");
+                if (File.Exists(knownFile))
+                    File.Delete(knownFile);
 
                 MessageBox.Show("База данных очищена.", "Готово",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
