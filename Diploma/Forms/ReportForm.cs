@@ -1,4 +1,3 @@
-﻿// ReportForm.cs
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Data;
@@ -8,12 +7,15 @@ namespace Diploma.Forms
 {
     public partial class ReportForm : Form
     {
+        #region Поля
         private readonly DataTable _data;
         private readonly string _dsName;
         private readonly string _group;
         private readonly string _curator;
         private readonly string _period;
+        #endregion
 
+        #region Конструктор
         public ReportForm(DataTable data, string dsName, string group, string curator, string period)
         {
             _data = data;
@@ -23,7 +25,9 @@ namespace Diploma.Forms
             _period = period;
             InitializeComponent();
         }
+        #endregion
 
+        #region События
         private void ReportForm_Load(object sender, EventArgs e)
         {
             var rp = reportViewer1.LocalReport;
@@ -39,5 +43,6 @@ namespace Diploma.Forms
             reportViewer1.ZoomMode = ZoomMode.PageWidth;
             reportViewer1.RefreshReport();
         }
+        #endregion
     }
 }
