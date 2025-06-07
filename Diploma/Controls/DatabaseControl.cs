@@ -8,7 +8,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.IO;
 using System.Windows.Forms;
+using Diploma.Services;
 #endregion
 
 namespace Diploma
@@ -429,12 +431,78 @@ namespace Diploma
 
         private void guna2Button7_Click(object sender, EventArgs e)
         {
+            const string msg = "Вы уверены, что хотите удалить все данные базы?";
+            if (MessageBox.Show(msg, "Подтверждение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
 
+            try
+            {
+                var tables = new[]
+                {
+                    "Приход_уход",
+                    "Учащиеся",
+                    "Сотрудники",
+                    "Лицо",
+                    "Группа",
+                    "Группа_код",
+                    "Курс",
+                    "Специальность",
+                    "Статус_должность",
+                    "ПодписчикиТелеграм"
+                };
+
+                using (var con = new SqlConnection(Properties.Settings.Default.EducationAccessSystemConnectionString))
+                using (var cmd = new SqlCommand())
+                {
+                    cmd.Connection = con;
+                    con.Open();
+
+                    foreach (var tbl in tables)
+                    {
+                        cmd.CommandText = $"IF OBJECT_ID(N'[{tbl}]', 'U') IS NOT NULL DELETE FROM [{tbl}];";
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = $"IF OBJECT_ID(N'[{tbl}]', 'U') IS NOT NULL DBCC CHECKIDENT(N'[{tbl}]', RESEED, 0);";
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                var encFile = Path.Combine(AppPaths.ServerRoot, "encodings.pkl");
+                if (File.Exists(encFile))
+                    File.Delete(encFile);
+
+                MessageBox.Show("База данных очищена.", "Готово",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ui.UpdateGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении данных: " + ex.Message,
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void guna2Button8_Click(object sender, EventArgs e)
         {
+            const string msg = "Удалить все логи распознавания?";
+            if (MessageBox.Show(msg, "Подтверждение", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
 
+            try
+            {
+                if (Directory.Exists(AppPaths.LogsRoot))
+                    Directory.Delete(AppPaths.LogsRoot, true);
+
+                MessageBox.Show("Логи удалены.", "Готово",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении логов: " + ex.Message,
+                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
