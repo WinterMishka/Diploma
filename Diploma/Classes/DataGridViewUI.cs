@@ -16,9 +16,15 @@ namespace Diploma.Classes
             gv.BorderStyle = BorderStyle.None;
             gv.EnableHeadersVisualStyles = false;
             gv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0x2F, 0x8F, 0x8F);
-            gv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            var fore = Color.White;
+            if (!string.IsNullOrEmpty(UiSettingsManager.Current.FontColor))
+                fore = ColorTranslator.FromHtml(UiSettingsManager.Current.FontColor);
+
+            gv.ColumnHeadersDefaultCellStyle.ForeColor = fore;
             gv.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 11, FontStyle.Bold);
             gv.DefaultCellStyle.Font = new Font("Verdana", 10, FontStyle.Regular);
+            gv.DefaultCellStyle.ForeColor = fore;
 
             if (gv.Columns.Contains("id_учащегося"))
                 gv.Columns["id_учащегося"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
