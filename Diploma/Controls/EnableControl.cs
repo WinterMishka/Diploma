@@ -234,6 +234,15 @@ namespace Diploma
             }
             catch { }
         }
+
+        /// <summary>
+        /// Сбрасывает отображаемое фото из журнала посещений.
+        /// </summary>
+        public void ClearSelectedFace()
+        {
+            guna2PanelSelectedFace.BackgroundImage?.Dispose();
+            guna2PanelSelectedFace.BackgroundImage = null;
+        }
         #endregion
 
         #region Выбор строки – показ фото
