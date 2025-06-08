@@ -154,6 +154,8 @@ namespace Diploma
                 _cam.Unsubscribe(OnFrame);
                 _cameraActive = false;
             }
+            guna2PbLiveCamera.Image?.Dispose();
+            guna2PbLiveCamera.Image = null;
             latestFrame?.Dispose();
             latestFrame = null;
         }
