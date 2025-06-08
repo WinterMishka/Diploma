@@ -97,7 +97,7 @@ def api_validate_photos():
 def api_reload_encodings():
     global known_faces
     try:
-        subprocess.run([sys.executable, 'build_known.py'], check=True)
+        subprocess.run([sys.executable, 'build_known.py'], check=True, cwd=BASE_DIR)
         with open('encodings.pkl', 'rb') as f:
             known_faces = pickle.load(f)
         return jsonify({'status': 'ok'})
@@ -301,7 +301,7 @@ def api_notify_visit():
 if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
-        subprocess.run([sys.executable, os.path.join(BASE_DIR, "build_known.py")], check=True)
+        subprocess.run([sys.executable, os.path.join(BASE_DIR, "build_known.py")], check=True, cwd=BASE_DIR)
     except subprocess.CalledProcessError:
         print("[ERROR] Ошибка при выполнении build_known.py")
         exit(1)

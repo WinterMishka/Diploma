@@ -9,7 +9,9 @@ namespace Diploma.Services
         static AppPaths()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            var dir = Directory.GetParent(baseDir)?.FullName ?? baseDir; // bin
+            var dir = Directory.GetParent(baseDir)?.FullName ?? baseDir; // net
+            dir = Directory.GetParent(dir)?.FullName ?? dir;             // Debug
+            dir = Directory.GetParent(dir)?.FullName ?? dir;             // bin
             dir = Directory.GetParent(dir)?.FullName ?? dir;             // project
 
             ProjectRoot = dir;
