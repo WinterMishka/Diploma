@@ -22,6 +22,8 @@ namespace Diploma
                 return;
             }
 
+            AppDomain.CurrentDomain.SetData("DataDirectory", Application.StartupPath);
+
             UiSettingsManager.Load();
 
             Application.EnableVisualStyles();

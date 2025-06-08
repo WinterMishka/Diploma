@@ -54,6 +54,8 @@ namespace Diploma
 
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
+            _cam.Subscribe(OnFrame);
+
             this.Load += (s, e) =>
             {
                 if (FindForm() is FaceControl face)
@@ -61,17 +63,6 @@ namespace Diploma
             };
         }
 
-        protected override void OnHandleCreated(EventArgs e)
-        {
-            base.OnHandleCreated(e);
-            _cam.Subscribe(OnFrame);
-        }
-
-        protected override void OnHandleDestroyed(EventArgs e)
-        {
-            _cam.Unsubscribe(OnFrame);
-            base.OnHandleDestroyed(e);
-        }
         #endregion
 
         #region Загрузка справочников
