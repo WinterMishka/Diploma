@@ -71,7 +71,7 @@ def recognize():
 
             face_crop = frame[top:bottom, left:right]
             _, buffer = cv2.imencode('.jpg', face_crop)
-            face_b64 = base64.b64encode(buffer).decode('utf-8')
+            faces_dir=os.path.join(APP_DIR, 'Faces'),
             return jsonify({"id": face_id, "face_image": face_b64})
 
 
@@ -277,7 +277,7 @@ def api_bot_settings():
     return jsonify(telegram_bot.load_settings())
 
 
-@app.route('/api/test_notify/<tg_id>')
+            faces_dir=os.path.join(APP_DIR, 'Faces'),
 def api_test_notify(tg_id):
     try:
         tg = int(tg_id)
