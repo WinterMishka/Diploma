@@ -294,15 +294,23 @@ namespace Diploma
         #region Загрузка студентов
         private void LoadStudentsIfNeeded(object sender, EventArgs e)
         {
-            if (!guna2RadioButton2.Checked) return;
+            if (!guna2RadioButton2.Checked)
+                return;
+
             if (lstGroups.SelectedItem == null ||
                 lstCourses.SelectedItem == null ||
-                lstSpecialities.SelectedItem == null) return;
+                lstSpecialities.SelectedItem == null)
+            {
+                comboBox1.DataSource = null;
+                comboBox1.Items.Clear();
+                return;
+            }
 
             int gid = (int)((DataRowView)lstGroups.SelectedItem)["id_группы"];
             int cid = (int)((DataRowView)lstCourses.SelectedItem)["id_курса"];
+            int sid = (int)((DataRowView)lstSpecialities.SelectedItem)["id_специальности"];
 
-            var tbl = _db.GetStudentsWithoutPhoto(gid, cid);
+            var tbl = _db.GetStudentsWithoutPhoto(gid, cid, sid);
 
             comboBox1.DataSource = tbl;
             comboBox1.DisplayMember = "ФИО";
