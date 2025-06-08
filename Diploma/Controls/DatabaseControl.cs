@@ -458,6 +458,34 @@ namespace Diploma
                 if (File.Exists(encFile))
                     File.Delete(encFile);
 
+                var dirs = new[] { AppPaths.StudentFaces, AppPaths.StaffFaces };
+                foreach (var dir in dirs)
+                {
+                    if (!Directory.Exists(dir))
+                        continue;
+
+                    foreach (var file in Directory.GetFiles(dir))
+                    {
+                        try
+                        {
+                            File.Delete(file);
+                        }
+                        catch { /* ignore */ }
+                    }
+
+                    foreach (var sub in Directory.GetDirectories(dir))
+                    {
+                        try
+                        {
+                            Directory.Delete(sub, true);
+                        }
+                        catch { /* ignore */ }
+                    }
+                }
+
+                if (Directory.Exists(AppPaths.LogsRoot))
+                    Directory.Delete(AppPaths.LogsRoot, true);
+
                 MessageBox.Show("База данных очищена.", "Готово",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _ui.UpdateGrid();
