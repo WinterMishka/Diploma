@@ -1242,8 +1242,8 @@
             this.guna2Button9.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2Button9.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Button9.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button9.ForeColor = System.Drawing.Color.White;
+            this.guna2Button9.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.guna2Button9.ForeColor = System.Drawing.Color.Black;
             this.guna2Button9.Location = new System.Drawing.Point(0, 481);
             this.guna2Button9.Margin = new System.Windows.Forms.Padding(0);
             this.guna2Button9.Name = "guna2Button9";

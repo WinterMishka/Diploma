@@ -460,6 +460,9 @@ namespace Diploma
                 if (File.Exists(encFile))
                     File.Delete(encFile);
 
+                if (Directory.Exists(AppPaths.FacesRoot))
+                    Directory.Delete(AppPaths.FacesRoot, true);
+
                 MessageBox.Show("База данных очищена.", "Готово",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _ui.UpdateGrid();
