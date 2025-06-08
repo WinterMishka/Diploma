@@ -37,7 +37,7 @@ namespace Diploma
 
         private static void StartServer()
         {
-            if (PingServer())
+            if (PingServer() || IsServerProcessRunning())
                 return;
 
             try
@@ -107,6 +107,31 @@ namespace Diploma
             {
                 return false;
             }
+        }
+
+        private static bool IsServerProcessRunning()
+        {
+            try
+            {
+                foreach (var proc in Process.GetProcesses())
+                {
+                    try
+                    {
+                        var name = proc.ProcessName.ToLowerInvariant();
+                        if (!name.Contains("server"))
+                            continue;
+
+                        string file = string.Empty;
+                        try { file = proc.MainModule.FileName.ToLowerInvariant(); } catch { }
+
+                        if (file.EndsWith("server.exe") || file.EndsWith("server.py") || name == "server")
+                            return true;
+                    }
+                    catch { }
+                }
+            }
+            catch { }
+            return false;
         }
         #endregion
     }
