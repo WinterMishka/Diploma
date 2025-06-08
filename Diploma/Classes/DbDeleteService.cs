@@ -108,6 +108,7 @@ namespace Diploma.Helpers
 
 
             DeleteGroupsForCurator(id);
+            ClearGroupCurators(id);
 
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = new SqlCommand("DELETE FROM Сотрудники WHERE id_сотрудника = @id", con))
