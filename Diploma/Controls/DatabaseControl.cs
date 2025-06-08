@@ -470,7 +470,7 @@ namespace Diploma
                         {
                             File.Delete(file);
                         }
-                        catch { /* ignore */ }
+                        catch { }
                     }
 
                     foreach (var sub in Directory.GetDirectories(dir))
@@ -479,7 +479,7 @@ namespace Diploma
                         {
                             Directory.Delete(sub, true);
                         }
-                        catch { /* ignore */ }
+                        catch { }
                     }
                 }
 
@@ -517,15 +517,12 @@ namespace Diploma
             }
         }
 
-        /// <summary>
-        /// Очищает отображаемое на вкладке «Включение контроля» фото,
-        /// чтобы файлы логов можно было удалить без ошибок.
-        /// </summary>
         private void ReleaseEnableControlPhoto()
         {
             foreach (Form form in Application.OpenForms)
             {
-                if (form is not FaceControl face)
+                var face = form as FaceControl;
+                if (face == null)
                     continue;
 
                 var panel = face.Controls.Find("panelMainContent", true).FirstOrDefault();

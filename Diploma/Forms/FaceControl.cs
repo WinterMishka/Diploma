@@ -98,6 +98,8 @@ namespace Diploma
         {
             if (contentLoader.CurrentControl is AddPersonControl add)
                 add.DisposeCamera();
+            else if (contentLoader.CurrentControl is EnableControl enable)
+                enable.DisposeRecognition();
             base.OnFormClosing(e);
         }
         #endregion

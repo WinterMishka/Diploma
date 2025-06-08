@@ -56,6 +56,8 @@ namespace Diploma
                 if (FindForm() is FaceControl face)
                     UiSettingsManager.ApplyTo(face);
             };
+
+            Disposed += (s, e) => DisposeRecognition();
         }
         #endregion
 
@@ -234,10 +236,6 @@ namespace Diploma
             }
             catch { }
         }
-
-        /// <summary>
-        /// Сбрасывает отображаемое фото из журнала посещений.
-        /// </summary>
         public void ClearSelectedFace()
         {
             guna2PanelSelectedFace.BackgroundImage?.Dispose();
@@ -323,5 +321,22 @@ namespace Diploma
                 guna2CheckBox1.Checked || guna2CheckBox2.Checked;
         }
         #endregion
+
+        public void DisposeRecognition()
+        {
+            _recog?.Stop();
+            _recog?.Dispose();
+            _recog = null;
+
+            _cam.Unsubscribe(OnFrameArrived);
+            latestFrame?.Dispose();
+            latestFrame = null;
+
+            guna2PictureBoxLiveCamera.Image = null;
+            guna2PanelLastCapturedFace.BackgroundImage = null;
+            guna2PanelSelectedFace.BackgroundImage = null;
+
+            guna2CheckBox1.Enabled = guna2CheckBox2.Enabled = true;
+        }
     }
 }
