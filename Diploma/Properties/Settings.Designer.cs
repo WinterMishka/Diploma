@@ -26,8 +26,7 @@ namespace Diploma.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\EducationAcce" +
-            "ssSystem.mdf;Integrated Security=True;Connect Timeout=30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\EducationAccessSystem.mdf;Initial Catalog=EducationAccessSystem;Integrated Security=True;Connect Timeout=30")]
         public string EducationAccessSystemConnectionString {
             get {
                 return ((string)(this["EducationAccessSystemConnectionString"]));
