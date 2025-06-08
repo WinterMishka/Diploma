@@ -12,6 +12,7 @@ namespace Diploma
         #region Поля
         private UserInterfaceManager uiManager;
         private ContentLoader contentLoader;
+        private readonly Dictionary<Type, UserControl> _pages = new Dictionary<Type, UserControl>();
         #endregion
 
         public IEnumerable<Guna2Button> NavigationButtons { get; private set; }
@@ -42,7 +43,7 @@ namespace Diploma
             uiManager.ApplyLayout();
             contentLoader = new ContentLoader(panelMainContent);
             uiManager.HighlightButton(guna2BtnControlToggle);
-            contentLoader.Load(new EnableControl());
+            contentLoader.Load(GetPage<EnableControl>());
         }
         #endregion
 
@@ -55,37 +56,37 @@ namespace Diploma
         private void guna2BtnControlToggle_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnControlToggle);
-            contentLoader.Load(new EnableControl());
+            contentLoader.Load(GetPage<EnableControl>());
         }
 
         private void guna2BtnDatabase_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnDatabase);
-            contentLoader.Load(new DatabaseControl());
+            contentLoader.Load(GetPage<DatabaseControl>());
         }
 
         private void guna2BtnAddPerson_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnAddPerson);
-            contentLoader.Load(new AddPersonControl());
+            contentLoader.Load(GetPage<AddPersonControl>());
         }
 
         private void guna2BtnCreateReport_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnCreateReport);
-            contentLoader.Load(new ReportControl());
+            contentLoader.Load(GetPage<ReportControl>());
         }
 
         private void guna2BtnTelegramBot_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnTelegramBot);
-            contentLoader.Load(new TelegramBotControl());
+            contentLoader.Load(GetPage<TelegramBotControl>());
         }
 
         private void guna2BtnSettings_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnSettings);
-            contentLoader.Load(new SettingsControl());
+            contentLoader.Load(GetPage<SettingsControl>());
         }
 
         public void SetActiveBorderColor(Color color)
@@ -96,12 +97,27 @@ namespace Diploma
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (contentLoader.CurrentControl is AddPersonControl add)
-                add.DisposeCamera();
-            else if (contentLoader.CurrentControl is EnableControl enable)
-                enable.DisposeRecognition();
-            contentLoader.CurrentControl?.Dispose();
+            foreach (var ctrl in _pages.Values)
+            {
+                if (ctrl is AddPersonControl add)
+                    add.DisposeCamera();
+                else if (ctrl is EnableControl enable)
+                    enable.DisposeRecognition();
+
+                ctrl.Dispose();
+            }
+
             base.OnFormClosing(e);
+        }
+
+        private T GetPage<T>() where T : UserControl, new()
+        {
+            if (!_pages.TryGetValue(typeof(T), out var ctrl))
+            {
+                ctrl = new T();
+                _pages[typeof(T)] = ctrl;
+            }
+            return (T)ctrl;
         }
         #endregion
     }
