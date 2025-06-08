@@ -6,7 +6,6 @@ namespace Diploma.Services
     public static class AppPaths
     {
         #region Корневые директории
-        // Вычисляем корень проекта относительно директории запуска приложения
         public static string ProjectRoot =>
             Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                                           "..", ".."));
