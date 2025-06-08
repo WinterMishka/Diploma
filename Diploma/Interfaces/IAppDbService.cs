@@ -22,7 +22,7 @@ namespace Diploma.Data
         DataTable GetCurators();
         DataTable GetSpecialities();
         DataTable GetStatuses();
-        DataTable GetStudentsWithoutPhoto(int groupId, int courseId);
+        DataTable GetStudentsWithoutPhoto(int groupId, int courseId, int specialityId);
         DataTable GetGroupCodes();
         DataTable GetStudentVisits();
         DataTable GetEmployeeVisits();
