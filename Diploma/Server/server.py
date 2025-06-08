@@ -43,12 +43,19 @@ def get_db_connection():
     db_path = os.path.abspath(
         os.path.join(APP_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
     )
+    if not os.path.exists(db_path):
+        raise FileNotFoundError(
+            f"Database file not found at {db_path}. Update the path or place the database there."
+        )
+
     conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=(localdb)\MSSQLLocalDB;"
         r"Integrated Security=SSPI;"
         fr"AttachDbFilename={db_path};"
+        r"Database=EducationAccessSystem;"
     )
+
     return pyodbc.connect(conn_str)
 
 
