@@ -54,13 +54,23 @@ namespace Diploma
 
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
-            _cam.Subscribe(OnFrame);
-
             this.Load += (s, e) =>
             {
                 if (FindForm() is FaceControl face)
                     UiSettingsManager.ApplyTo(face);
             };
+        }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            _cam.Subscribe(OnFrame);
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            _cam.Unsubscribe(OnFrame);
+            base.OnHandleDestroyed(e);
         }
         #endregion
 
@@ -90,6 +100,7 @@ namespace Diploma
         {
             lstGroups.SelectedIndexChanged += LoadStudentsIfNeeded;
             lstCourses.SelectedIndexChanged += LoadStudentsIfNeeded;
+            lstSpecialities.SelectedIndexChanged += LoadStudentsIfNeeded;
 
             guna2RadioButton1.CheckedChanged += RadioModeChanged;
             guna2RadioButton2.CheckedChanged += RadioModeChanged;
@@ -294,12 +305,14 @@ namespace Diploma
         private void LoadStudentsIfNeeded(object sender, EventArgs e)
         {
             if (!guna2RadioButton2.Checked) return;
-            if (lstGroups.SelectedItem == null || lstCourses.SelectedItem == null) return;
+            if (lstGroups.SelectedItem == null || lstCourses.SelectedItem == null || lstSpecialities.SelectedItem == null)
+                return;
 
             int gid = (int)((DataRowView)lstGroups.SelectedItem)["id_группы"];
             int cid = (int)((DataRowView)lstCourses.SelectedItem)["id_курса"];
+            int sid = (int)((DataRowView)lstSpecialities.SelectedItem)["id_специальности"];
 
-            var tbl = _db.GetStudentsWithoutPhoto(gid, cid);
+            var tbl = _db.GetStudentsWithoutPhoto(gid, cid, sid);
 
             comboBox1.DataSource = tbl;
             comboBox1.DisplayMember = "ФИО";

@@ -57,6 +57,24 @@ namespace Diploma
         }
         #endregion
 
+        #region Handle events
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            if (_recog != null)
+                _cam.Subscribe(OnFrameArrived);
+        }
+
+        protected override void OnHandleDestroyed(EventArgs e)
+        {
+            _recog?.Stop();
+            _recog?.Dispose();
+            _recog = null;
+            _cam.Unsubscribe(OnFrameArrived);
+            base.OnHandleDestroyed(e);
+        }
+        #endregion
+
         #region Запуск / остановка распознавания
         private void guna2BtnStartRecognition_Click(object sender, EventArgs e)
         {

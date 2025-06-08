@@ -47,13 +47,12 @@ namespace Diploma
 
             if (paramGroup == null)
             {
-                var taAll = new usp_ОтсутствияЗаПериодTableAdapter();
-                var allTbl = new EducationAccessSystemDataSet.usp_ОтсутствияЗаПериодDataTable();
-                allTbl.Clear();
-                taAll.Fill(allTbl, from, to);
-
-                dsName = "AllAbsences";
-                tblCopy = allTbl.Copy();
+                MessageBox.Show(
+                    "Чтобы создать отчёт, выберите одну группу.",
+                    "Внимание",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
             }
             else
             {
