@@ -43,28 +43,40 @@ namespace Diploma
             try
             {
                 var exeDir = Application.StartupPath;
-                var exePath = Path.Combine(exeDir, "Server", "dist", "server.exe");
-                if (File.Exists(exePath))
+                var rootDir = Path.GetFullPath(Path.Combine(exeDir, "..", ".."));
+
+                string[] candidates =
                 {
-                    Process.Start(new ProcessStartInfo(exePath)
-                    {
-                        WorkingDirectory = Path.GetDirectoryName(exePath),
-                        UseShellExecute = false,
-                        CreateNoWindow = true
-                    });
-                }
-                else
+                    Path.Combine(exeDir, "Server", "dist", "server.exe"),
+                    Path.Combine(rootDir, "Server", "dist", "server.exe"),
+                    Path.Combine(exeDir, "Server", "server.py"),
+                    Path.Combine(rootDir, "Server", "server.py")
+                };
+
+                foreach (var path in candidates)
                 {
-                    var pyPath = Path.Combine(exeDir, "Server", "server.py");
-                    if (File.Exists(pyPath))
+                    if (!File.Exists(path))
+                        continue;
+
+                    if (path.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
                     {
-                        Process.Start(new ProcessStartInfo("python", pyPath)
+                        Process.Start(new ProcessStartInfo(path)
                         {
-                            WorkingDirectory = Path.GetDirectoryName(pyPath),
+                            WorkingDirectory = Path.GetDirectoryName(path),
                             UseShellExecute = false,
                             CreateNoWindow = true
                         });
                     }
+                    else if (path.EndsWith(".py", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Process.Start(new ProcessStartInfo("python", path)
+                        {
+                            WorkingDirectory = Path.GetDirectoryName(path),
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        });
+                    }
+                    break;
                 }
             }
             catch { }

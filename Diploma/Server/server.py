@@ -56,7 +56,7 @@ def get_db_connection():
     conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=(localdb)\MSSQLLocalDB;"
-        r"Integrated Security=SSPI;"
+        r"Trusted_Connection=Yes;"
         fr"AttachDbFilename={db_path};"
         r"Database=EducationAccessSystem;"
     )
