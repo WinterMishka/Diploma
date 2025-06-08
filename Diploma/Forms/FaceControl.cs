@@ -100,6 +100,7 @@ namespace Diploma
                 add.DisposeCamera();
             else if (contentLoader.CurrentControl is EnableControl enable)
                 enable.DisposeRecognition();
+            contentLoader.CurrentControl?.Dispose();
             base.OnFormClosing(e);
         }
         #endregion

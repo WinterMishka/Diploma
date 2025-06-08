@@ -44,6 +44,7 @@ namespace Diploma
             };
 
             HandleDestroyed += (s, e) => SaveLocalSettings();
+            Disposed += (s, e) => client.Dispose();
         }
         #endregion
         #region Методы

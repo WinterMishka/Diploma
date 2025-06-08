@@ -34,6 +34,8 @@ namespace Diploma
                 if (FindForm() is FaceControl face)
                     UiSettingsManager.ApplyTo(face);
             };
+
+            Disposed += (s, e) => UiSettingsManager.Save();
         }
         #endregion
 

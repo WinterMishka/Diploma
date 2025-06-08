@@ -170,6 +170,13 @@ namespace Diploma
                 if (FindForm() is FaceControl face)
                     UiSettingsManager.ApplyTo(face);
             };
+
+            Disposed += (s, e) =>
+            {
+                dataGridView6.DataSource = null;
+                dataGridView2.DataSource = null;
+                _currentView?.Dispose();
+            };
         }
         #endregion
 
