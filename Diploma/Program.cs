@@ -76,7 +76,6 @@ namespace Diploma
                             CreateNoWindow = true
                         });
                     }
-
                     break;
                 }
             }
