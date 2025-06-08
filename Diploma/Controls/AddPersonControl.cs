@@ -56,7 +56,7 @@ namespace Diploma
 
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
-            this.VisibleChanged += AddPersonControl_VisibleChanged;
+            this.Load += AddPersonControl_Load;
 
             this.Load += (s, e) =>
             {
@@ -66,22 +66,12 @@ namespace Diploma
         }
         #endregion
 
-        private void AddPersonControl_VisibleChanged(object sender, EventArgs e)
+        private void AddPersonControl_Load(object sender, EventArgs e)
         {
-            if (Visible)
+            if (!_cameraActive)
             {
-                guna2PbLiveCamera.Image?.Dispose();
-                guna2PbLiveCamera.Image = null;
-
-                if (!_cameraActive)
-                {
-                    _cam.Subscribe(OnFrame);
-                    _cameraActive = true;
-                }
-            }
-            else if (_cameraActive)
-            {
-                DisposeCamera();
+                _cam.Subscribe(OnFrame);
+                _cameraActive = true;
             }
         }
 
