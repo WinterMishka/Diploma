@@ -21,11 +21,11 @@ namespace Diploma
         {
             if (CurrentControl != null)
             {
-                _targetPanel.Controls.Remove(CurrentControl);
                 (CurrentControl as IDisposable)?.Dispose();
                 CurrentControl = null;
             }
 
+            _targetPanel.Controls.Clear();
             control.Dock = DockStyle.Fill;
             _targetPanel.Controls.Add(control);
             CurrentControl = control;
