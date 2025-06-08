@@ -36,7 +36,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>EducationAccessSystemDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\artyo\source\repos\Diploma\Diploma\EducationAccessSystemDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>EducationAccessSystemDataSet.xsd</rd:SchemaPath>
         <rd:TableName>usp_Отсутствия_Группы</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
