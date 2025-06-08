@@ -34,7 +34,6 @@ namespace Diploma
 
         #region Методы
 
-
         private static bool WaitForServer(int attempts = 30, int delayMs = 1000)
         {
             for (int i = 0; i < attempts; i++)
