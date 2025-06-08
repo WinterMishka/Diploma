@@ -66,7 +66,6 @@ namespace Diploma
             if (enableControl == null)
                 enableControl = new EnableControl();
             contentLoader.Load(enableControl);
-            enableControl.StartRecognition();
         }
 
         private void guna2BtnDatabase_Click(object sender, EventArgs e)
