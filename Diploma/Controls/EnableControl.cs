@@ -86,6 +86,9 @@ namespace Diploma
             guna2PanelLastCapturedFace.BackgroundImage = null;
             guna2PanelSelectedFace.BackgroundImage = null;
         }
+
+        public void StartRecognition() => guna2BtnStartRecognition_Click(this, EventArgs.Empty);
+        public void StopRecognition() => guna2BtnStopRecognition_Click(this, EventArgs.Empty);
         #endregion
 
         #region Поток кадров
@@ -305,8 +308,16 @@ namespace Diploma
             if (sender == guna2CheckBox1 && guna2CheckBox1.Checked)
                 guna2CheckBox2.Checked = false;
 
-            if (sender == guna2CheckBox2 && guna2CheckBox2.Checked)
+            else if (sender == guna2CheckBox2 && guna2CheckBox2.Checked)
                 guna2CheckBox1.Checked = false;
+
+            else if (!guna2CheckBox1.Checked && !guna2CheckBox2.Checked)
+            {
+                if (sender == guna2CheckBox1)
+                    guna2CheckBox2.Checked = true;
+                else
+                    guna2CheckBox1.Checked = true;
+            }
         }
         #endregion
     }
