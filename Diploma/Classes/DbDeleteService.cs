@@ -106,10 +106,23 @@ namespace Diploma.Helpers
                 DeleteFolderIfExists(folderPath);
             }
 
+            ClearGroupCurators(id);
+
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = new SqlCommand("DELETE FROM Сотрудники WHERE id_сотрудника = @id", con))
             {
                 cmd.Parameters.AddWithValue("@id", id);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void ClearGroupCurators(int employeeId)
+        {
+            using (var con = new SqlConnection(_mgr.ConnStr))
+            using (var cmd = new SqlCommand("UPDATE Группа SET id_сотрудника = NULL WHERE id_сотрудника = @id", con))
+            {
+                cmd.Parameters.AddWithValue("@id", employeeId);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
