@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Threading;
 using Newtonsoft.Json;
 using Diploma.Data;
 using Diploma.Services;
@@ -103,27 +104,32 @@ namespace Diploma
         #region Камера
         private void OnFrame(object s, Bitmap bmp)
         {
-            latestFrame?.Dispose();
-            latestFrame = (Bitmap)bmp.Clone();
+            var frame = (Bitmap)bmp.Clone();
+            var oldLatest = Interlocked.Exchange(ref latestFrame, frame);
+            oldLatest?.Dispose();
 
             if (guna2PbLiveCamera.IsHandleCreated &&
                 !guna2PbLiveCamera.IsDisposed &&
                 !guna2PbLiveCamera.Disposing)
             {
-                var disp = (Bitmap)bmp.Clone();
                 try
                 {
                     guna2PbLiveCamera.BeginInvoke((Action)(() =>
                     {
-                        if (guna2PbLiveCamera.IsDisposed) { disp.Dispose(); return; }
-                        guna2PbLiveCamera.Image?.Dispose();
-                        guna2PbLiveCamera.Image = disp;
+                        if (guna2PbLiveCamera.IsDisposed) { frame.Dispose(); return; }
+                        var oldImg = guna2PbLiveCamera.Image;
+                        guna2PbLiveCamera.Image = frame;
+                        oldImg?.Dispose();
                     }));
                 }
                 catch (InvalidAsynchronousStateException)
                 {
-                    disp.Dispose();
+                    frame.Dispose();
                 }
+            }
+            else
+            {
+                frame.Dispose();
             }
         }
 
