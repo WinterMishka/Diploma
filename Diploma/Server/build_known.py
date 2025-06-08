@@ -1,6 +1,6 @@
 import os, cv2, face_recognition, pickle, pathlib
 
-faces_dir = "Faces"
+faces_dir = os.path.join(os.path.dirname(__file__), 'Faces')
 known_enc, known_ids = [], []
 
 for img_path in pathlib.Path(faces_dir).rglob("*.jpg"):
