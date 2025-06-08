@@ -483,6 +483,9 @@ namespace Diploma
                     }
                 }
 
+                if (Directory.Exists(AppPaths.LogsRoot))
+                    Directory.Delete(AppPaths.LogsRoot, true);
+
                 MessageBox.Show("База данных очищена.", "Готово",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _ui.UpdateGrid();
