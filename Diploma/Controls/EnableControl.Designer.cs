@@ -223,6 +223,7 @@ namespace Diploma
             this.guna2PictureBoxLiveCamera.Margin = new System.Windows.Forms.Padding(0);
             this.guna2PictureBoxLiveCamera.Name = "guna2PictureBoxLiveCamera";
             this.guna2PictureBoxLiveCamera.Size = new System.Drawing.Size(500, 403);
+            this.guna2PictureBoxLiveCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBoxLiveCamera.TabIndex = 1;
             this.guna2PictureBoxLiveCamera.TabStop = false;
             // 
