@@ -44,7 +44,6 @@ namespace Diploma
             CheckBoxUI.ApplyRecursive(this);
             _db = db;
 
-            Disposed += (s, e) => DisposeCamera();
 
             LoadReferenceData();
             AttachHandlers();
@@ -69,7 +68,6 @@ namespace Diploma
 
         protected override void OnHandleDestroyed(EventArgs e)
         {
-            _cam.Unsubscribe(OnFrame);
             base.OnHandleDestroyed(e);
         }
         #endregion
