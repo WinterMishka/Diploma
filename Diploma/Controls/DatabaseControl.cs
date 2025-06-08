@@ -461,8 +461,26 @@ namespace Diploma
                 var dirs = new[] { AppPaths.StudentFaces, AppPaths.StaffFaces };
                 foreach (var dir in dirs)
                 {
-                    if (Directory.Exists(dir))
-                        Directory.Delete(dir, true);
+                    if (!Directory.Exists(dir))
+                        continue;
+
+                    foreach (var file in Directory.GetFiles(dir))
+                    {
+                        try
+                        {
+                            File.Delete(file);
+                        }
+                        catch { /* ignore */ }
+                    }
+
+                    foreach (var sub in Directory.GetDirectories(dir))
+                    {
+                        try
+                        {
+                            Directory.Delete(sub, true);
+                        }
+                        catch { /* ignore */ }
+                    }
                 }
 
                 MessageBox.Show("База данных очищена.", "Готово",
