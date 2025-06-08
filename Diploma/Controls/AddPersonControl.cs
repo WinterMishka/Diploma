@@ -57,6 +57,7 @@ namespace Diploma
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
             this.Load += AddPersonControl_Load;
+
             this.Load += (s, e) =>
             {
                 if (FindForm() is FaceControl face)
