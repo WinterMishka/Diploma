@@ -12,6 +12,7 @@ namespace Diploma
         #region Поля
         private UserInterfaceManager uiManager;
         private ContentLoader contentLoader;
+        private EnableControl enableControl;
         #endregion
 
         public IEnumerable<Guna2Button> NavigationButtons { get; private set; }
@@ -41,8 +42,9 @@ namespace Diploma
             uiManager = new UserInterfaceManager(this, panelNavButtons, guna2BtnSidebarToggle, navButtons);
             uiManager.ApplyLayout();
             contentLoader = new ContentLoader(panelMainContent);
+            enableControl = new EnableControl();
             uiManager.HighlightButton(guna2BtnControlToggle);
-            contentLoader.Load(new EnableControl());
+            contentLoader.Load(enableControl);
         }
         #endregion
 
@@ -54,14 +56,17 @@ namespace Diploma
 
         private void StopRecognitionIfNeeded()
         {
-            if (contentLoader.CurrentControl is EnableControl ctrl)
-                ctrl.StopRecognition();
+            if (enableControl != null && contentLoader.CurrentControl == enableControl)
+                enableControl.StopRecognition();
         }
 
         private void guna2BtnControlToggle_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnControlToggle);
-            contentLoader.Load(new EnableControl());
+            if (enableControl == null)
+                enableControl = new EnableControl();
+            enableControl.ResetState();
+            contentLoader.Load(enableControl);
         }
 
         private void guna2BtnDatabase_Click(object sender, EventArgs e)

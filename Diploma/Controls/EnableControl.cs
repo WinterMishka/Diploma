@@ -89,6 +89,13 @@ namespace Diploma
 
         public void StartRecognition() => guna2BtnStartRecognition_Click(this, EventArgs.Empty);
         public void StopRecognition() => guna2BtnStopRecognition_Click(this, EventArgs.Empty);
+
+        public void ResetState()
+        {
+            StopRecognition();
+            guna2CheckBox1.Checked = true;
+            guna2CheckBox2.Checked = false;
+        }
         #endregion
 
         #region Поток кадров
