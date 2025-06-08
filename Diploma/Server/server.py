@@ -40,15 +40,27 @@ COOLDOWN_SECONDS = 30
 
 
 def get_db_connection():
-    db_path = os.path.abspath(
+    primary = os.path.abspath(
         os.path.join(APP_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
     )
+    secondary = os.path.abspath(
+        os.path.join(APP_DIR, '..', '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
+    )
+    db_path = primary if os.path.exists(primary) else secondary
+    if not os.path.exists(db_path):
+        raise FileNotFoundError(
+            f"Database file not found. Checked {primary} and {secondary}. "
+            "Update the path or place the database there."
+        )
+
     conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=(localdb)\MSSQLLocalDB;"
-        r"Integrated Security=SSPI;"
+        r"Trusted_Connection=Yes;"
         fr"AttachDbFilename={db_path};"
+        r"Database=EducationAccessSystem;"
     )
+
     return pyodbc.connect(conn_str)
 
 

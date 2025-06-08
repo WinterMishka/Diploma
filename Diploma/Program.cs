@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Diploma.Classes;
+using System.Diagnostics;
 
 namespace Diploma
 {
@@ -13,6 +14,7 @@ namespace Diploma
         [STAThread]
         static void Main()
         {
+            ServerProcessManager.Start();
             if (!WaitForServer())
             {
                 MessageBox.Show("Сервер не доступен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -31,6 +33,7 @@ namespace Diploma
         }
 
         #region Методы
+
 
         private static bool WaitForServer(int attempts = 30, int delayMs = 1000)
         {
@@ -58,6 +61,7 @@ namespace Diploma
                 return false;
             }
         }
+
         #endregion
     }
 }

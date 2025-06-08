@@ -10,6 +10,7 @@ namespace Diploma.Services
             Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
                                           "..", ".."));
         public static string ServerRoot => Path.Combine(ProjectRoot, "Server");
+        public static string ServerDist => Path.Combine(ServerRoot, "dist");
         public static string FacesRoot => Path.Combine(ServerRoot, "Faces");
         public static string LogsRoot => Path.Combine(ServerRoot, "RecognizedLogs");
         #endregion

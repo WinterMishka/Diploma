@@ -176,7 +176,10 @@ namespace Diploma
                 dataGridView6.DataSource = null;
                 dataGridView2.DataSource = null;
                 _currentView?.Dispose();
+                ServerProcessManager.OutputReceived -= UpdateServerLabel;
             };
+
+            ServerProcessManager.OutputReceived += UpdateServerLabel;
         }
         #endregion
 
@@ -541,7 +544,19 @@ namespace Diploma
 
         private void guna2Button9_Click(object sender, EventArgs e)
         {
+            ServerProcessManager.Restart();
+        }
 
+        private void UpdateServerLabel(string text)
+        {
+            if (label10.InvokeRequired)
+            {
+                label10.Invoke(new Action<string>(UpdateServerLabel), text);
+            }
+            else
+            {
+                label10.Text = text;
+            }
         }
     }
 }
