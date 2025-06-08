@@ -88,27 +88,25 @@ namespace Diploma.Helpers
             int id = (int)row["id_сотрудника"];
             int? photoId = _mgr.GetPhotoIdForEmployee(id);
 
+            var warn = MessageBox.Show(
+                "Все группы, учащиеся и записи о приходах, связанные с сотрудником, будут удалены. Продолжить?",
+                "Удаление данных", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (warn != DialogResult.Yes) return;
+
+            DeleteGroupsForCurator(id);
+            ClearGroupCurators(id);
+
+            DeleteVisits("id_сотрудника", id);
+
             if (photoId.HasValue)
             {
                 string jpgPath = Path.Combine(_staffPath, photoId + ".jpg");
                 string folderPath = Path.Combine(_staffPath, photoId.ToString());
 
-                var warn = MessageBox.Show(
-                    "У этого сотрудника могут быть записи о приходах, фото и связанные данные.\n" +
-                    "Все они будут удалены. Продолжить?",
-                    "Удаление данных", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (warn != DialogResult.Yes) return;
-
-                DeleteVisits("id_сотрудника", id);
                 DeleteFaceRecord(photoId.Value);
                 DeleteFileIfExists(jpgPath);
                 DeleteFolderIfExists(folderPath);
             }
-
-
-            DeleteGroupsForCurator(id);
-            ClearGroupCurators(id);
 
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = new SqlCommand("DELETE FROM Сотрудники WHERE id_сотрудника = @id", con))
