@@ -8,8 +8,9 @@ from datetime import datetime, time as dt_time
 import telebot
 import requests
 
-BASE_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
-SETTINGS_FILE = os.path.join(BASE_DIR, 'bot_settings.json')
+APP_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
+DATA_DIR = getattr(sys, '_MEIPASS', APP_DIR)
+SETTINGS_FILE = os.path.join(APP_DIR, 'bot_settings.json')
 
 DEFAULT_SETTINGS = {
     "notify_time": "08:30",

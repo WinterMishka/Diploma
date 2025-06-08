@@ -5,7 +5,6 @@ import numpy as np
 import base64
 import os
 import pickle
-import subprocess
 import sys
 import time
 from datetime import datetime
@@ -16,7 +15,8 @@ import json
 from build_known import build_known
 
 
-BASE_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
+APP_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
+DATA_DIR = getattr(sys, '_MEIPASS', APP_DIR)
 app = Flask(__name__)
 
 known_faces = {}
@@ -26,7 +26,7 @@ COOLDOWN_SECONDS = 30
 
 def get_db_connection():
     db_path = os.path.abspath(
-        os.path.join(BASE_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
+        os.path.join(APP_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
     )
     conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
@@ -96,8 +96,8 @@ def api_reload_encodings():
     global known_faces
     try:
         known_faces = build_known(
-            faces_dir=os.path.join(BASE_DIR, 'Faces'),
-            output_file=os.path.join(BASE_DIR, 'encodings.pkl'),
+            faces_dir=os.path.join(DATA_DIR, 'Faces'),
+            output_file=os.path.join(APP_DIR, 'encodings.pkl'),
         )
         return jsonify({'status': 'ok'})
     except Exception as exc:
@@ -301,14 +301,14 @@ if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
         known_faces = build_known(
-            faces_dir=os.path.join(BASE_DIR, 'Faces'),
-            output_file=os.path.join(BASE_DIR, 'encodings.pkl'),
+            faces_dir=os.path.join(DATA_DIR, 'Faces'),
+            output_file=os.path.join(APP_DIR, 'encodings.pkl'),
         )
     except Exception as exc:
         print(f"[ERROR] Ошибка при выполнении build_known.py: {exc}")
         exit(1)
 
-    if not os.path.exists(os.path.join(BASE_DIR, 'encodings.pkl')):
+    if not os.path.exists(os.path.join(APP_DIR, 'encodings.pkl')):
         print("[ERROR] Файл encodings.pkl не найден после сборки")
         exit(1)
 
