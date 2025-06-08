@@ -105,8 +105,7 @@ namespace Diploma
         private void OnFrame(object s, Bitmap bmp)
         {
             var frame = (Bitmap)bmp.Clone();
-            var oldLatest = Interlocked.Exchange(ref latestFrame, frame);
-            oldLatest?.Dispose();
+            Interlocked.Exchange(ref latestFrame, frame);
 
             if (guna2PbLiveCamera.IsHandleCreated &&
                 !guna2PbLiveCamera.IsDisposed &&
