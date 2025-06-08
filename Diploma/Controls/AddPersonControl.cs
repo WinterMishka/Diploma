@@ -247,7 +247,11 @@ namespace Diploma
                                       isStudent ? FaceRole.Student : FaceRole.Staff);
 
             if (ok)
+            {
                 await ReloadEncodingsAsync();
+                if (guna2RadioButton2.Checked)
+                    LoadStudentsIfNeeded(null, null);
+            }
 
             MessageBox.Show(ok ? "Данные успешно сохранены."
                                : "Не удалось сохранить фотографии в Faces.",
