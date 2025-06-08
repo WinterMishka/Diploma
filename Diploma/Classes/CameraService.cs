@@ -91,7 +91,14 @@ namespace Diploma.Services
                     return;
                 }
 
-                _device = new VideoCaptureDevice(devices[0].MonikerString);
+                var dev = new VideoCaptureDevice(devices[0].MonikerString);
+                var best = dev.VideoCapabilities
+                               .OrderByDescending(c => c.FrameSize.Width * c.FrameSize.Height)
+                               .FirstOrDefault();
+                if (best != null)
+                    dev.VideoResolution = best;
+
+                _device = dev;
                 _device.NewFrame += OnNewFrame;
                 _device.Start();
             }
