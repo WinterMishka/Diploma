@@ -19,7 +19,13 @@ namespace Diploma
         #region Методы
         public void Load(UserControl control)
         {
-            _targetPanel.Controls.Clear();
+            if (CurrentControl != null)
+            {
+                _targetPanel.Controls.Remove(CurrentControl);
+                (CurrentControl as IDisposable)?.Dispose();
+                CurrentControl = null;
+            }
+
             control.Dock = DockStyle.Fill;
             _targetPanel.Controls.Add(control);
             CurrentControl = control;
