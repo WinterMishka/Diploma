@@ -19,15 +19,20 @@ namespace Diploma
         #region Методы
         public void Load(UserControl control)
         {
+            if (control == null)
+                return;
+
             if (CurrentControl != null)
+                CurrentControl.Visible = false;
+
+            if (!_targetPanel.Controls.Contains(control))
             {
-                CurrentControl.Dispose();
-                CurrentControl = null;
+                control.Dock = DockStyle.Fill;
+                _targetPanel.Controls.Add(control);
             }
 
-            _targetPanel.Controls.Clear();
-            control.Dock = DockStyle.Fill;
-            _targetPanel.Controls.Add(control);
+            control.Visible = true;
+            control.BringToFront();
             CurrentControl = control;
         }
         #endregion
