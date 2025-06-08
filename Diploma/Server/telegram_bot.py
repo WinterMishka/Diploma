@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import threading
 import time
@@ -7,7 +8,8 @@ from datetime import datetime, time as dt_time
 import telebot
 import requests
 
-SETTINGS_FILE = os.path.join(os.path.dirname(__file__), 'bot_settings.json')
+BASE_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
+SETTINGS_FILE = os.path.join(BASE_DIR, 'bot_settings.json')
 
 DEFAULT_SETTINGS = {
     "notify_time": "08:30",

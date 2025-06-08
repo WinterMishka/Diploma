@@ -13,7 +13,10 @@ import threading
 import pyodbc
 import telegram_bot
 import json
+from build_known import build_known
 
+
+BASE_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
 app = Flask(__name__)
 
 known_faces = {}
@@ -23,7 +26,7 @@ COOLDOWN_SECONDS = 30
 
 def get_db_connection():
     db_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
+        os.path.join(BASE_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
     )
     conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
@@ -92,9 +95,10 @@ def api_validate_photos():
 def api_reload_encodings():
     global known_faces
     try:
-        subprocess.run([sys.executable, 'build_known.py'], check=True)
-        with open('encodings.pkl', 'rb') as f:
-            known_faces = pickle.load(f)
+        known_faces = build_known(
+            faces_dir=os.path.join(BASE_DIR, 'Faces'),
+            output_file=os.path.join(BASE_DIR, 'encodings.pkl'),
+        )
         return jsonify({'status': 'ok'})
     except Exception as exc:
         return jsonify({'status': 'error', 'message': str(exc)}), 500
@@ -296,17 +300,17 @@ def api_notify_visit():
 if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
-        subprocess.run([sys.executable, "build_known.py"], check=True)
-    except subprocess.CalledProcessError:
-        print("[ERROR] Ошибка при выполнении build_known.py")
+        known_faces = build_known(
+            faces_dir=os.path.join(BASE_DIR, 'Faces'),
+            output_file=os.path.join(BASE_DIR, 'encodings.pkl'),
+        )
+    except Exception as exc:
+        print(f"[ERROR] Ошибка при выполнении build_known.py: {exc}")
         exit(1)
 
-    if not os.path.exists("encodings.pkl"):
+    if not os.path.exists(os.path.join(BASE_DIR, 'encodings.pkl')):
         print("[ERROR] Файл encodings.pkl не найден после сборки")
         exit(1)
-
-    with open("encodings.pkl", "rb") as f:
-        known_faces = pickle.load(f)
 
     print("[INFO] Запускаем Telegram-бота...")
     bot_thread = threading.Thread(target=telegram_bot.run_bot, daemon=True)
