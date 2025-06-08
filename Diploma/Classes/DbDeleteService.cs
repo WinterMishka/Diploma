@@ -106,7 +106,8 @@ namespace Diploma.Helpers
                 DeleteFolderIfExists(folderPath);
             }
 
-            ClearGroupCurators(id);
+
+            DeleteGroupsForCurator(id);
 
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = new SqlCommand("DELETE FROM Сотрудники WHERE id_сотрудника = @id", con))
@@ -270,6 +271,33 @@ namespace Diploma.Helpers
             using (var cmd = new SqlCommand("DELETE FROM Группа WHERE id_код = @code", con))
             {
                 cmd.Parameters.AddWithValue("@code", codeId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void DeleteGroupsForCurator(int curatorId)
+        {
+            using (var con = new SqlConnection(_mgr.ConnStr))
+            using (var cmd = new SqlCommand("SELECT id_группы FROM Группа WHERE id_сотрудника = @cur", con))
+            {
+                cmd.Parameters.AddWithValue("@cur", curatorId);
+                con.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    var ids = new List<int>();
+                    while (reader.Read())
+                        ids.Add(reader.GetInt32(0));
+
+                    foreach (int gid in ids)
+                        DeleteStudentsWhere("id_группы", gid);
+                }
+            }
+
+            using (var con = new SqlConnection(_mgr.ConnStr))
+            using (var cmd = new SqlCommand("DELETE FROM Группа WHERE id_сотрудника = @cur", con))
+            {
+                cmd.Parameters.AddWithValue("@cur", curatorId);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
