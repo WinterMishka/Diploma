@@ -9,11 +9,6 @@ using System.Windows.Forms;
 
 namespace Diploma.Helpers
 {
-    /// <summary>
-    ///  Логика перезаписи данных в разных таблицах вкладки «Редактировать».
-    ///  Поддерживается изменение большинства таблиц, включая группы,
-    ///  сотрудников и учащихся.
-    /// </summary>
     public class DbUpdateService
     {
         #region Поля
