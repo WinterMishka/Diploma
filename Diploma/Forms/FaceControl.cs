@@ -65,8 +65,8 @@ namespace Diploma
             uiManager.HighlightButton(guna2BtnControlToggle);
             if (enableControl == null)
                 enableControl = new EnableControl();
+            enableControl.ResetState();
             contentLoader.Load(enableControl);
-            enableControl.StartRecognition();
         }
 
         private void guna2BtnDatabase_Click(object sender, EventArgs e)
