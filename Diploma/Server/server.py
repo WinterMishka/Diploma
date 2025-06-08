@@ -25,13 +25,18 @@ COOLDOWN_SECONDS = 30
 
 def get_db_connection():
     db_path = os.path.join(BASE_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
-    conn_str = (
+    base = (
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=(localdb)\MSSQLLocalDB;"
         r"Integrated Security=SSPI;"
-        fr"AttachDbFilename={db_path};"
     )
-    return pyodbc.connect(conn_str)
+
+    conn_str = base + r"Database=EducationAccessSystem;"
+    try:
+        return pyodbc.connect(conn_str, timeout=3)
+    except pyodbc.Error:
+        attach_str = base + fr"AttachDbFilename={db_path};"
+        return pyodbc.connect(attach_str, timeout=3)
 
 
 @app.route('/ping')
@@ -314,7 +319,4 @@ if __name__ == '__main__':
     bot_thread.start()
 
     print("[INFO] Запускаем Flask сервер...")
-    try:
-        app.run(debug=False)
-    finally:
-        input("\nНажмите Enter, чтобы закрыть окно...")
+    app.run(debug=False)
