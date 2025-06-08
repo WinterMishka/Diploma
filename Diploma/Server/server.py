@@ -22,11 +22,14 @@ COOLDOWN_SECONDS = 30
 
 
 def get_db_connection():
+    db_path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
+    )
     conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=(localdb)\MSSQLLocalDB;"
         r"Integrated Security=SSPI;"
-        r"AttachDbFilename=C:\Users\artyo\source\repos\Diploma\Diploma\bin\Debug\EducationAccessSystem.mdf;"
+        fr"AttachDbFilename={db_path};"
     )
     return pyodbc.connect(conn_str)
 

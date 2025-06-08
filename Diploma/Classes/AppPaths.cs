@@ -6,7 +6,10 @@ namespace Diploma.Services
     public static class AppPaths
     {
         #region Корневые директории
-        public static string ProjectRoot => @"C:\Users\artyo\source\repos\Diploma\Diploma";
+        // Вычисляем корень проекта относительно директории запуска приложения
+        public static string ProjectRoot =>
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+                                          "..", ".."));
         public static string ServerRoot => Path.Combine(ProjectRoot, "Server");
         public static string FacesRoot => Path.Combine(ServerRoot, "Faces");
         public static string LogsRoot => Path.Combine(ServerRoot, "RecognizedLogs");

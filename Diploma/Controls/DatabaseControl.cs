@@ -503,6 +503,7 @@ namespace Diploma
 
             try
             {
+                ReleaseEnableControlPhoto();
                 if (Directory.Exists(AppPaths.LogsRoot))
                     Directory.Delete(AppPaths.LogsRoot, true);
 
@@ -513,6 +514,23 @@ namespace Diploma
             {
                 MessageBox.Show("Ошибка при удалении логов: " + ex.Message,
                                 "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Очищает отображаемое на вкладке «Включение контроля» фото,
+        /// чтобы файлы логов можно было удалить без ошибок.
+        /// </summary>
+        private void ReleaseEnableControlPhoto()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is not FaceControl face)
+                    continue;
+
+                var panel = face.Controls.Find("panelMainContent", true).FirstOrDefault();
+                var enable = panel?.Controls.OfType<EnableControl>().FirstOrDefault();
+                enable?.ClearSelectedFace();
             }
         }
 
