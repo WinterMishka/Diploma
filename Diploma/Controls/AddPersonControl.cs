@@ -57,7 +57,8 @@ namespace Diploma
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
             this.VisibleChanged += AddPersonControl_VisibleChanged;
-            
+            AddPersonControl_VisibleChanged(this, EventArgs.Empty);
+
             this.Load += (s, e) =>
             {
                 if (FindForm() is FaceControl face)
