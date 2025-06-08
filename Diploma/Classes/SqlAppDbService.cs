@@ -112,13 +112,13 @@ WHERE  l.id_фото = @id;";
         public DataTable GetSpecialities() => LoadTable("SELECT id_специальности, Название FROM Специальность ORDER BY Название");
         public DataTable GetStatuses() => LoadTable("SELECT id_статуса, Название FROM Статус_должность ORDER BY Название");
 
-        public DataTable GetStudentsWithoutPhoto(int groupId, int courseId)
+        public DataTable GetStudentsWithoutPhoto(int groupId, int courseId, int specialityId)
         {
             const string sql = @"
 SELECT id_учащегося,
        Фамилия + ' ' + Имя + ' ' + ISNULL(Отчество,'') AS ФИО
 FROM   Учащиеся
-WHERE  id_группы=@g AND id_курса=@c AND Фото_сделано=0
+WHERE  id_группы=@g AND id_курса=@c AND id_специальности=@s AND Фото_сделано=0
 ORDER  BY Фамилия, Имя;";
 
             var tbl = new DataTable();
@@ -126,6 +126,7 @@ ORDER  BY Фамилия, Имя;";
             {
                 ad.SelectCommand.Parameters.AddWithValue("@g", groupId);
                 ad.SelectCommand.Parameters.AddWithValue("@c", courseId);
+                ad.SelectCommand.Parameters.AddWithValue("@s", specialityId);
                 ad.Fill(tbl);
             }
             return tbl;

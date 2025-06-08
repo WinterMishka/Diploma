@@ -301,8 +301,9 @@ namespace Diploma
 
             int gid = (int)((DataRowView)lstGroups.SelectedItem)["id_группы"];
             int cid = (int)((DataRowView)lstCourses.SelectedItem)["id_курса"];
+            int sid = (int)((DataRowView)lstSpecialities.SelectedItem)["id_специальности"];
 
-            var tbl = _db.GetStudentsWithoutPhoto(gid, cid);
+            var tbl = _db.GetStudentsWithoutPhoto(gid, cid, sid);
 
             comboBox1.DataSource = tbl;
             comboBox1.DisplayMember = "ФИО";
