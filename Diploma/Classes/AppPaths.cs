@@ -8,10 +8,16 @@ namespace Diploma.Services
         #region Корневые директории
         static AppPaths()
         {
-            ProjectRoot = AppDomain.CurrentDomain.BaseDirectory;
-            ServerRoot = Path.Combine(ProjectRoot, "Server");
-            FacesRoot = Path.Combine(ServerRoot, "Faces");
-            LogsRoot = Path.Combine(ServerRoot, "RecognizedLogs");
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            var dir = Directory.GetParent(baseDir)?.FullName ?? baseDir; // net
+            dir = Directory.GetParent(dir)?.FullName ?? dir;             // Debug
+            dir = Directory.GetParent(dir)?.FullName ?? dir;             // bin
+            dir = Directory.GetParent(dir)?.FullName ?? dir;             // project
+
+            ProjectRoot = dir;
+            ServerRoot  = Path.Combine(ProjectRoot, "Server");
+            FacesRoot   = Path.Combine(ServerRoot, "Faces");
+            LogsRoot    = Path.Combine(ServerRoot, "RecognizedLogs");
         }
 
         public static string ProjectRoot { get; }
