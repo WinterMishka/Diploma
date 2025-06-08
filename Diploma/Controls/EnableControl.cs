@@ -49,6 +49,8 @@ namespace Diploma
             guna2CheckBox1.CheckedChanged += CheckBoxChanged;
             guna2CheckBox2.CheckedChanged += CheckBoxChanged;
 
+            CheckBoxChanged(this, EventArgs.Empty);
+
             this.Load += (s, e) =>
             {
                 if (FindForm() is FaceControl face)
@@ -307,6 +309,9 @@ namespace Diploma
 
             if (sender == guna2CheckBox2 && guna2CheckBox2.Checked)
                 guna2CheckBox1.Checked = false;
+
+            guna2BtnStartRecognition.Enabled =
+                guna2CheckBox1.Checked || guna2CheckBox2.Checked;
         }
         #endregion
     }

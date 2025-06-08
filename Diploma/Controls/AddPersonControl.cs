@@ -90,6 +90,7 @@ namespace Diploma
         {
             lstGroups.SelectedIndexChanged += LoadStudentsIfNeeded;
             lstCourses.SelectedIndexChanged += LoadStudentsIfNeeded;
+            lstSpecialities.SelectedIndexChanged += LoadStudentsIfNeeded;
 
             guna2RadioButton1.CheckedChanged += RadioModeChanged;
             guna2RadioButton2.CheckedChanged += RadioModeChanged;
@@ -294,7 +295,9 @@ namespace Diploma
         private void LoadStudentsIfNeeded(object sender, EventArgs e)
         {
             if (!guna2RadioButton2.Checked) return;
-            if (lstGroups.SelectedItem == null || lstCourses.SelectedItem == null) return;
+            if (lstGroups.SelectedItem == null ||
+                lstCourses.SelectedItem == null ||
+                lstSpecialities.SelectedItem == null) return;
 
             int gid = (int)((DataRowView)lstGroups.SelectedItem)["id_группы"];
             int cid = (int)((DataRowView)lstCourses.SelectedItem)["id_курса"];

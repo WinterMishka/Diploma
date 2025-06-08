@@ -41,8 +41,8 @@ namespace Diploma
             uiManager = new UserInterfaceManager(this, panelNavButtons, guna2BtnSidebarToggle, navButtons);
             uiManager.ApplyLayout();
             contentLoader = new ContentLoader(panelMainContent);
-            uiManager.HighlightButton(guna2BtnAddPerson);
-            contentLoader.Load(new AddPersonControl());
+            uiManager.HighlightButton(guna2BtnControlToggle);
+            contentLoader.Load(new EnableControl());
         }
         #endregion
 
