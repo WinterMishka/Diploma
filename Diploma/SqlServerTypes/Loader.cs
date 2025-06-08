@@ -4,21 +4,12 @@ using System.Runtime.InteropServices;
 
 namespace SqlServerTypes
 {
-    /// <summary>
-    /// Utility methods related to CLR Types for SQL Server 
-    /// </summary>
+
     public class Utilities
     {
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr LoadLibrary(string libname);
 
-        /// <summary>
-        /// Loads the required native assemblies for the current architecture (x86 or x64)
-        /// </summary>
-        /// <param name="rootApplicationPath">
-        /// Root path of the current application. Use Server.MapPath(".") for ASP.NET applications
-        /// and AppDomain.CurrentDomain.BaseDirectory for desktop applications.
-        /// </param>
         public static void LoadNativeAssemblies(string rootApplicationPath)
         {
             var nativeBinaryPath = IntPtr.Size > 4

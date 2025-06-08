@@ -234,10 +234,6 @@ namespace Diploma
             }
             catch { }
         }
-
-        /// <summary>
-        /// Сбрасывает отображаемое фото из журнала посещений.
-        /// </summary>
         public void ClearSelectedFace()
         {
             guna2PanelSelectedFace.BackgroundImage?.Dispose();
