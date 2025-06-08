@@ -424,13 +424,14 @@ namespace Diploma
 
             try
             {
+                // order matters due to foreign key constraints
                 var tables = new[]
                 {
-                    "Приход_уход",
-                    "Учащиеся",
-                    "Сотрудники",
+                    "Приход_уход",      // references сотрудники/учащиеся
+                    "Учащиеся",         // references группа
+                    "Группа",           // references сотрудники
+                    "Сотрудники",       // references лицо
                     "Лицо",
-                    "Группа",
                     "Группа_код",
                     "Курс",
                     "Специальность",
