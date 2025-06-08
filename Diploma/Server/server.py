@@ -19,6 +19,7 @@ APP_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else 
 DATA_DIR = getattr(sys, '_MEIPASS', APP_DIR)
 app = Flask(__name__)
 
+
 known_faces = {}
 last_seen = {}
 COOLDOWN_SECONDS = 30
@@ -309,6 +310,7 @@ if __name__ == '__main__':
         exit(1)
 
     if not os.path.exists(os.path.join(APP_DIR, 'encodings.pkl')):
+
         print("[ERROR] Файл encodings.pkl не найден после сборки")
         exit(1)
 
