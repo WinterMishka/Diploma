@@ -36,6 +36,16 @@ namespace Diploma
                           int.TryParse(value.ToString(), out int parsed) ? parsed : -1;
             int? paramGroup = groupId == -1 ? (int?)null : groupId;
 
+            if (paramGroup == null)
+            {
+                MessageBox.Show(
+                    "Выберите конкретную группу для формирования отчёта.",
+                    "Неверный выбор",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
             string dsName;
             DataTable tblCopy;
             string groupName = listBox1.Text;
@@ -45,26 +55,13 @@ namespace Diploma
                                : string.Empty;
             string period = $"{from:dd.MM.yyyy} – {to:dd.MM.yyyy}";
 
-            if (paramGroup == null)
-            {
-                var taAll = new usp_ОтсутствияЗаПериодTableAdapter();
-                var allTbl = new EducationAccessSystemDataSet.usp_ОтсутствияЗаПериодDataTable();
-                allTbl.Clear();
-                taAll.Fill(allTbl, from, to);
+            var taGroup = new usp_Отсутствия_ГруппыTableAdapter();
+            var groupTbl = new EducationAccessSystemDataSet.usp_Отсутствия_ГруппыDataTable();
+            groupTbl.Clear();
+            taGroup.Fill(groupTbl, paramGroup, from, to);
 
-                dsName = "AllAbsences";
-                tblCopy = allTbl.Copy();
-            }
-            else
-            {
-                var taGroup = new usp_Отсутствия_ГруппыTableAdapter();
-                var groupTbl = new EducationAccessSystemDataSet.usp_Отсутствия_ГруппыDataTable();
-                groupTbl.Clear();
-                taGroup.Fill(groupTbl, paramGroup, from, to);
-
-                dsName = "GroupAbsences";
-                tblCopy = groupTbl.Copy();
-            }
+            dsName = "GroupAbsences";
+            tblCopy = groupTbl.Copy();
 
             dataGridView1.DataSource = tblCopy;
             DataGridViewUI.BeautifyGrid(dataGridView1);
