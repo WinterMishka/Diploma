@@ -12,6 +12,7 @@ namespace Diploma
         #region Поля
         private UserInterfaceManager uiManager;
         private ContentLoader contentLoader;
+        private EnableControl enableControl;
         #endregion
 
         public IEnumerable<Guna2Button> NavigationButtons { get; private set; }
@@ -41,8 +42,9 @@ namespace Diploma
             uiManager = new UserInterfaceManager(this, panelNavButtons, guna2BtnSidebarToggle, navButtons);
             uiManager.ApplyLayout();
             contentLoader = new ContentLoader(panelMainContent);
-            uiManager.HighlightButton(guna2BtnAddPerson);
-            contentLoader.Load(new AddPersonControl());
+            enableControl = new EnableControl();
+            uiManager.HighlightButton(guna2BtnControlToggle);
+            contentLoader.Load(enableControl);
         }
         #endregion
 
@@ -52,38 +54,52 @@ namespace Diploma
         private void guna2BtnClose_Click(object sender, EventArgs e) => Application.Exit();
         private void guna2BtnResize_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
 
+        private void StopRecognitionIfNeeded()
+        {
+            if (enableControl != null && contentLoader.CurrentControl == enableControl)
+                enableControl.StopRecognition();
+        }
+
         private void guna2BtnControlToggle_Click(object sender, EventArgs e)
         {
             uiManager.HighlightButton(guna2BtnControlToggle);
-            contentLoader.Load(new EnableControl());
+            if (enableControl == null)
+                enableControl = new EnableControl();
+            contentLoader.Load(enableControl);
+            enableControl.StartRecognition();
         }
 
         private void guna2BtnDatabase_Click(object sender, EventArgs e)
         {
+            StopRecognitionIfNeeded();
             uiManager.HighlightButton(guna2BtnDatabase);
             contentLoader.Load(new DatabaseControl());
         }
 
         private void guna2BtnAddPerson_Click(object sender, EventArgs e)
         {
+            StopRecognitionIfNeeded();
             uiManager.HighlightButton(guna2BtnAddPerson);
             contentLoader.Load(new AddPersonControl());
         }
 
         private void guna2BtnCreateReport_Click(object sender, EventArgs e)
         {
+            StopRecognitionIfNeeded();
             uiManager.HighlightButton(guna2BtnCreateReport);
             contentLoader.Load(new ReportControl());
         }
 
         private void guna2BtnTelegramBot_Click(object sender, EventArgs e)
         {
+            StopRecognitionIfNeeded();
             uiManager.HighlightButton(guna2BtnTelegramBot);
             contentLoader.Load(new TelegramBotControl());
         }
 
         private void guna2BtnSettings_Click(object sender, EventArgs e)
         {
+            StopRecognitionIfNeeded();
             uiManager.HighlightButton(guna2BtnSettings);
             contentLoader.Load(new SettingsControl());
         }
@@ -96,6 +112,7 @@ namespace Diploma
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            StopRecognitionIfNeeded();
             if (contentLoader.CurrentControl is AddPersonControl add)
                 add.DisposeCamera();
             base.OnFormClosing(e);
