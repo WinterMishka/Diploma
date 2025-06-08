@@ -97,7 +97,7 @@ def api_reload_encodings():
     global known_faces
     try:
         known_faces = build_known(
-            faces_dir=os.path.join(DATA_DIR, 'Faces'),
+            faces_dir=os.path.join(APP_DIR, 'Faces'),
             output_file=os.path.join(APP_DIR, 'encodings.pkl'),
         )
         return jsonify({'status': 'ok'})
@@ -302,7 +302,7 @@ if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
         known_faces = build_known(
-            faces_dir=os.path.join(DATA_DIR, 'Faces'),
+            faces_dir=os.path.join(APP_DIR, 'Faces'),
             output_file=os.path.join(APP_DIR, 'encodings.pkl'),
         )
     except Exception as exc:
@@ -310,7 +310,6 @@ if __name__ == '__main__':
         exit(1)
 
     if not os.path.exists(os.path.join(APP_DIR, 'encodings.pkl')):
-
         print("[ERROR] Файл encodings.pkl не найден после сборки")
         exit(1)
 
