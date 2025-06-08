@@ -11,5 +11,7 @@ pyinstaller --onefile server.py \
 ```
 
 The `Faces` directory should be placed next to the executable so new
-images can be saved. The settings file `bot_settings.json` is stored in
-the same directory as the executable for persistence.
+images can be saved. When running from a `dist` folder the server also
+checks one level up for this directory and copies bundled images there if
+present. The settings file `bot_settings.json` is stored in the same
+directory as the executable for persistence.

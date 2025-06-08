@@ -5,6 +5,7 @@ import numpy as np
 import base64
 import os
 import pickle
+import shutil
 import sys
 import time
 from datetime import datetime
@@ -17,6 +18,19 @@ from build_known import build_known
 
 APP_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
 DATA_DIR = getattr(sys, '_MEIPASS', APP_DIR)
+FACES_DIR = os.path.join(APP_DIR, "Faces")
+
+if not os.path.isdir(FACES_DIR):
+    alt_dir = os.path.join(os.path.dirname(APP_DIR), "Faces")
+    data_faces = os.path.join(DATA_DIR, "Faces")
+    if os.path.isdir(alt_dir):
+        FACES_DIR = alt_dir
+    elif os.path.isdir(data_faces):
+        try:
+            shutil.copytree(data_faces, FACES_DIR)
+        except Exception:
+            FACES_DIR = data_faces
+
 app = Flask(__name__)
 
 
@@ -97,7 +111,7 @@ def api_reload_encodings():
     global known_faces
     try:
         known_faces = build_known(
-            faces_dir=os.path.join(APP_DIR, 'Faces'),
+            faces_dir=FACES_DIR,
             output_file=os.path.join(APP_DIR, 'encodings.pkl'),
         )
         return jsonify({'status': 'ok'})
@@ -302,7 +316,7 @@ if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
         known_faces = build_known(
-            faces_dir=os.path.join(APP_DIR, 'Faces'),
+            faces_dir=FACES_DIR,
             output_file=os.path.join(APP_DIR, 'encodings.pkl'),
         )
     except Exception as exc:
