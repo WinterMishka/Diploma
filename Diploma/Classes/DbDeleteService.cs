@@ -88,25 +88,25 @@ namespace Diploma.Helpers
             int id = (int)row["id_сотрудника"];
             int? photoId = _mgr.GetPhotoIdForEmployee(id);
 
+            var warn = MessageBox.Show(
+                "Все группы, учащиеся и записи о приходах, связанные с сотрудником, будут удалены. Продолжить?",
+                "Удаление данных", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (warn != DialogResult.Yes) return;
+
+            DeleteGroupsForCurator(id);
+            ClearGroupCurators(id);
+
+            DeleteVisits("id_сотрудника", id);
+
             if (photoId.HasValue)
             {
                 string jpgPath = Path.Combine(_staffPath, photoId + ".jpg");
                 string folderPath = Path.Combine(_staffPath, photoId.ToString());
 
-                var warn = MessageBox.Show(
-                    "У этого сотрудника могут быть записи о приходах, фото и связанные данные.\n" +
-                    "Все они будут удалены. Продолжить?",
-                    "Удаление данных", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                if (warn != DialogResult.Yes) return;
-
-                DeleteVisits("id_сотрудника", id);
                 DeleteFaceRecord(photoId.Value);
                 DeleteFileIfExists(jpgPath);
                 DeleteFolderIfExists(folderPath);
             }
-
-            ClearGroupCurators(id);
 
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = new SqlCommand("DELETE FROM Сотрудники WHERE id_сотрудника = @id", con))
@@ -270,6 +270,33 @@ namespace Diploma.Helpers
             using (var cmd = new SqlCommand("DELETE FROM Группа WHERE id_код = @code", con))
             {
                 cmd.Parameters.AddWithValue("@code", codeId);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private void DeleteGroupsForCurator(int curatorId)
+        {
+            using (var con = new SqlConnection(_mgr.ConnStr))
+            using (var cmd = new SqlCommand("SELECT id_группы FROM Группа WHERE id_сотрудника = @cur", con))
+            {
+                cmd.Parameters.AddWithValue("@cur", curatorId);
+                con.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    var ids = new List<int>();
+                    while (reader.Read())
+                        ids.Add(reader.GetInt32(0));
+
+                    foreach (int gid in ids)
+                        DeleteStudentsWhere("id_группы", gid);
+                }
+            }
+
+            using (var con = new SqlConnection(_mgr.ConnStr))
+            using (var cmd = new SqlCommand("DELETE FROM Группа WHERE id_сотрудника = @cur", con))
+            {
+                cmd.Parameters.AddWithValue("@cur", curatorId);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
