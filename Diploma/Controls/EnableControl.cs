@@ -119,12 +119,20 @@ namespace Diploma
                 var copy = (Bitmap)frame.Clone();
                 try
                 {
-                    guna2PictureBoxLiveCamera.BeginInvoke((MethodInvoker)(() =>
+                    if (guna2PictureBoxLiveCamera.InvokeRequired)
                     {
-                        if (guna2PictureBoxLiveCamera.IsDisposed) { copy.Dispose(); return; }
+                        guna2PictureBoxLiveCamera.BeginInvoke((MethodInvoker)(() =>
+                        {
+                            if (guna2PictureBoxLiveCamera.IsDisposed) { copy.Dispose(); return; }
+                            guna2PictureBoxLiveCamera.Image?.Dispose();
+                            guna2PictureBoxLiveCamera.Image = copy;
+                        }));
+                    }
+                    else
+                    {
                         guna2PictureBoxLiveCamera.Image?.Dispose();
                         guna2PictureBoxLiveCamera.Image = copy;
-                    }));
+                    }
                 }
                 catch (InvalidAsynchronousStateException)
                 {

@@ -35,7 +35,7 @@ def get_db_connection():
     try:
         return pyodbc.connect(conn_str, timeout=3)
     except pyodbc.Error:
-        attach_str = base + fr"AttachDbFilename={db_path};"
+        attach_str = base + fr"AttachDbFilename={db_path};Database=EducationAccessSystem;"
         return pyodbc.connect(attach_str, timeout=3)
 
 
