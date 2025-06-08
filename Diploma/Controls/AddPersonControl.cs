@@ -30,6 +30,7 @@ namespace Diploma
 
         #region Поля
         private Bitmap latestFrame;
+        private bool _cameraActive;
         #endregion
 
         #region Конструкторы
@@ -55,8 +56,7 @@ namespace Diploma
 
             rdoStudent_CheckedChanged(this, EventArgs.Empty);
 
-            _cam.Subscribe(OnFrame);
-
+            this.Load += AddPersonControl_Load;
             this.Load += (s, e) =>
             {
                 if (FindForm() is FaceControl face)
@@ -64,6 +64,15 @@ namespace Diploma
             };
         }
         #endregion
+
+        private void AddPersonControl_Load(object sender, EventArgs e)
+        {
+            if (!_cameraActive)
+            {
+                _cam.Subscribe(OnFrame);
+                _cameraActive = true;
+            }
+        }
 
         #region Загрузка справочников
         private void LoadReferenceData()
@@ -134,7 +143,13 @@ namespace Diploma
 
         public void DisposeCamera()
         {
-            _cam.Unsubscribe(OnFrame);
+            if (_cameraActive)
+            {
+                _cam.Unsubscribe(OnFrame);
+                _cameraActive = false;
+            }
+            guna2PbLiveCamera.Image?.Dispose();
+            guna2PbLiveCamera.Image = null;
             latestFrame?.Dispose();
             latestFrame = null;
         }
