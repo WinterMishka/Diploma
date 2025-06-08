@@ -8,10 +8,22 @@ namespace Diploma.Services
         #region Корневые директории
         static AppPaths()
         {
-            ProjectRoot = AppDomain.CurrentDomain.BaseDirectory;
-            ServerRoot = Path.Combine(ProjectRoot, "Server");
-            FacesRoot = Path.Combine(ServerRoot, "Faces");
-            LogsRoot = Path.Combine(ServerRoot, "RecognizedLogs");
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Move up from .../bin/Debug/netX/ to the project directory
+            var dir = Directory.GetParent(baseDir)?.FullName ?? baseDir; // net
+            dir = Directory.GetParent(dir)?.FullName ?? dir;             // Debug
+            dir = Directory.GetParent(dir)?.FullName ?? dir;             // bin
+
+            ProjectRoot = dir;
+            ServerRoot  = Path.Combine(ProjectRoot, "Server");
+            FacesRoot   = Path.Combine(ServerRoot, "Faces");
+            LogsRoot    = Path.Combine(ServerRoot, "RecognizedLogs");
+
+            // Ensure all required directories exist
+            Directory.CreateDirectory(Path.Combine(FacesRoot, "Students"));
+            Directory.CreateDirectory(Path.Combine(FacesRoot, "Staff"));
+            Directory.CreateDirectory(LogsRoot);
         }
 
         public static string ProjectRoot { get; }

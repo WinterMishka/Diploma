@@ -25,18 +25,15 @@ COOLDOWN_SECONDS = 30
 
 def get_db_connection():
     db_path = os.path.join(BASE_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
-    base = (
+    conn_str = (
         r"Driver={ODBC Driver 17 for SQL Server};"
         r"Server=(localdb)\MSSQLLocalDB;"
-        r"Integrated Security=SSPI;"
+        fr"AttachDbFilename={db_path};"
+        r"Integrated Security=True;"
+        r"Database=EducationAccessSystem;"
+        r"Connect Timeout=5;"
     )
-
-    conn_str = base + r"Database=EducationAccessSystem;"
-    try:
-        return pyodbc.connect(conn_str, timeout=3)
-    except pyodbc.Error:
-        attach_str = base + fr"AttachDbFilename={db_path};"
-        return pyodbc.connect(attach_str, timeout=3)
+    return pyodbc.connect(conn_str, timeout=3)
 
 
 @app.route('/ping')
@@ -97,7 +94,7 @@ def api_validate_photos():
 def api_reload_encodings():
     global known_faces
     try:
-        subprocess.run([sys.executable, 'build_known.py'], check=True)
+        subprocess.run([sys.executable, 'build_known.py'], check=True, cwd=BASE_DIR)
         with open('encodings.pkl', 'rb') as f:
             known_faces = pickle.load(f)
         return jsonify({'status': 'ok'})
@@ -301,7 +298,7 @@ def api_notify_visit():
 if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")
     try:
-        subprocess.run([sys.executable, os.path.join(BASE_DIR, "build_known.py")], check=True)
+        subprocess.run([sys.executable, os.path.join(BASE_DIR, "build_known.py")], check=True, cwd=BASE_DIR)
     except subprocess.CalledProcessError:
         print("[ERROR] Ошибка при выполнении build_known.py")
         exit(1)
