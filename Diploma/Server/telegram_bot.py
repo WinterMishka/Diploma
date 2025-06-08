@@ -8,7 +8,7 @@ from datetime import datetime, time as dt_time
 import telebot
 import requests
 
-APP_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
+APP_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(os.path.abspath(sys.argv[0]))
 DATA_DIR = getattr(sys, '_MEIPASS', APP_DIR)
 SETTINGS_FILE = os.path.join(APP_DIR, 'bot_settings.json')
 
