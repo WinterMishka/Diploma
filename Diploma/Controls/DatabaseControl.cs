@@ -483,8 +483,6 @@ namespace Diploma
                     }
                 }
 
-
-
                 MessageBox.Show("База данных очищена.", "Готово",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _ui.UpdateGrid();
