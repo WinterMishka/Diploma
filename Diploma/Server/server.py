@@ -18,11 +18,8 @@ from build_known import build_known
 
 APP_DIR = os.path.dirname(sys.executable) if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
 DATA_DIR = getattr(sys, '_MEIPASS', APP_DIR)
-
-# Locate the Faces directory. When running a PyInstaller build the executable
-# may reside in ``dist`` while the images are stored one level up.  Fallback to
-# the extracted bundle if it was packaged via ``--add-data``.
 FACES_DIR = os.path.join(APP_DIR, "Faces")
+
 if not os.path.isdir(FACES_DIR):
     alt_dir = os.path.join(os.path.dirname(APP_DIR), "Faces")
     data_faces = os.path.join(DATA_DIR, "Faces")
@@ -33,7 +30,9 @@ if not os.path.isdir(FACES_DIR):
             shutil.copytree(data_faces, FACES_DIR)
         except Exception:
             FACES_DIR = data_faces
+
 app = Flask(__name__)
+
 
 known_faces = {}
 last_seen = {}
