@@ -72,7 +72,7 @@ namespace Diploma.Classes
             {
                 if (_process != null && !_process.HasExited)
                 {
-                    _process.Kill(true);
+                    _process.Kill();
                     _process.WaitForExit();
                 }
             }
