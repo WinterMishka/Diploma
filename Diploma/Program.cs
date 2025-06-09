@@ -30,6 +30,7 @@ namespace Diploma
             if (UiSettingsManager.Current.StartFullScreen)
                 form.WindowState = FormWindowState.Maximized;
             Application.Run(form);
+            ServerProcessManager.Stop();
         }
 
         #region Методы

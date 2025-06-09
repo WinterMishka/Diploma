@@ -11,9 +11,10 @@ namespace Diploma.Classes
     {
         private static Process _process;
         private static string _lastOutput = string.Empty;
+        private static readonly System.Collections.Generic.List<string> _logLines = new System.Collections.Generic.List<string>();
         public static event Action<string> OutputReceived;
-
         public static string LastOutput => _lastOutput;
+        public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly()
 
         public static void Start()
         {
@@ -41,6 +42,7 @@ namespace Diploma.Classes
             try
             {
                 _lastOutput = string.Empty;
+                _logLines.Clear();
                 _process = Process.Start(psi);
                 if (_process != null)
                 {
@@ -48,6 +50,7 @@ namespace Diploma.Classes
                     {
                         if (e.Data != null)
                         {
+                            _logLines.Add(e.Data);
                             _lastOutput = e.Data;
                             OutputReceived?.Invoke(e.Data);
                         }
@@ -56,6 +59,7 @@ namespace Diploma.Classes
                     {
                         if (e.Data != null)
                         {
+                            _logLines.Add(e.Data);
                             _lastOutput = e.Data;
                             OutputReceived?.Invoke(e.Data);
                         }
@@ -86,6 +90,7 @@ namespace Diploma.Classes
             }
             catch { }
             _process = null;
+            KillAllServerProcesses();
         }
 
         private static bool PingServer()
@@ -127,6 +132,36 @@ namespace Diploma.Classes
             }
             catch { }
             return false;
+        }
+
+        private static void KillAllServerProcesses()
+        {
+            try
+            {
+                foreach (var proc in Process.GetProcesses())
+                {
+                    try
+                    {
+                        var name = proc.ProcessName.ToLowerInvariant();
+                        if (!name.Contains("server"))
+                            continue;
+
+                        string file = string.Empty;
+                        try { file = proc.MainModule.FileName.ToLowerInvariant(); } catch { }
+
+                        if (file.EndsWith("server.exe") || name == "server")
+                        {
+                            if (!proc.HasExited)
+                            {
+                                proc.Kill();
+                                proc.WaitForExit();
+                            }
+                        }
+                    }
+                    catch { }
+                }
+            }
+            catch { }
         }
     }
 }

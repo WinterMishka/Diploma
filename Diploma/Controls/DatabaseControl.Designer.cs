@@ -96,7 +96,7 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Button9 = new Guna.UI2.WinForms.Guna2Button();
-            this.label10 = new System.Windows.Forms.Label();
+            this.serverLogTextBox = new System.Windows.Forms.TextBox();
             this.guna2TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -1224,7 +1224,7 @@
             this.tableLayoutPanel16.ColumnCount = 1;
             this.tableLayoutPanel16.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel16.Controls.Add(this.guna2Button9, 0, 1);
-            this.tableLayoutPanel16.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanel16.Controls.Add(this.serverLogTextBox, 0, 0);
             this.tableLayoutPanel16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel16.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel16.Margin = new System.Windows.Forms.Padding(0);
@@ -1252,15 +1252,18 @@
             this.guna2Button9.Text = "Перезапустить сервер";
             this.guna2Button9.Click += new System.EventHandler(this.guna2Button9_Click);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(0, 0);
-            this.label10.Margin = new System.Windows.Forms.Padding(0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(0, 23);
-            this.label10.TabIndex = 1;
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // serverLogTextBox
+            //
+            this.serverLogTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.serverLogTextBox.Location = new System.Drawing.Point(0, 0);
+            this.serverLogTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.serverLogTextBox.Multiline = true;
+            this.serverLogTextBox.Name = "serverLogTextBox";
+            this.serverLogTextBox.ReadOnly = true;
+            this.serverLogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.serverLogTextBox.Size = new System.Drawing.Size(986, 481);
+            this.serverLogTextBox.TabIndex = 1;
+            this.serverLogTextBox.WordWrap = false;
             // 
             // DatabaseControl
             // 
@@ -1378,6 +1381,6 @@
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private Guna.UI2.WinForms.Guna2Button guna2Button9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox serverLogTextBox;
     }
 }

@@ -180,7 +180,7 @@ namespace Diploma
             };
 
             ServerProcessManager.OutputReceived += UpdateServerLabel;
-            label10.Text = ServerProcessManager.LastOutput;
+            serverLogTextBox.Text = string.Join(Environment.NewLine, ServerProcessManager.LogLines);
         }
         #endregion
 
@@ -550,16 +550,16 @@ namespace Diploma
 
         private void UpdateServerLabel(string text)
         {
-            if (label10.InvokeRequired)
+            if (serverLogTextBox.InvokeRequired)
             {
-                label10.Invoke(new Action<string>(UpdateServerLabel), text);
+                serverLogTextBox.Invoke(new Action<string>(UpdateServerLabel), text);
             }
             else
             {
-                if (string.IsNullOrEmpty(label10.Text))
-                    label10.Text = text;
+                if (string.IsNullOrEmpty(serverLogTextBox.Text))
+                    serverLogTextBox.Text = text;
                 else
-                    label10.Text += Environment.NewLine + text;
+                    serverLogTextBox.AppendText(Environment.NewLine + text);
             }
         }
     }
