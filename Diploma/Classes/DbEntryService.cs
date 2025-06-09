@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region Используемые пространства имён
 using System.Data;
 using System.Windows.Forms;
 using Diploma.Data;

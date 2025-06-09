@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region Используемые пространства имён
 using Diploma.Data;
 using Diploma.Helpers;
 using Diploma.Recognition;
