@@ -21,7 +21,7 @@ namespace Diploma.Recognition
         private volatile bool _running;
         #endregion
 
-        #region ctor
+        #region Конструктор
         public RecognitionService(CameraService cam, int interval = 1000)
         {
             _cam = cam;
@@ -32,7 +32,7 @@ namespace Diploma.Recognition
         }
         #endregion
 
-        #region API
+        #region АПИ
         public void Start()
         {
             _running = true;
@@ -97,7 +97,7 @@ namespace Diploma.Recognition
         }
         #endregion
 
-        #region IDisposable
+        #region Реализация IDisposable
         public void Dispose()
         {
             if (_disposed) return;

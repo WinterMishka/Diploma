@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region Используемые пространства имён
 using System;
 using System.Collections.Generic;
 using System.Data;

@@ -1,21 +1,26 @@
+#region Используемые пространства имён
 using System;
 using System.Diagnostics;
 using System.IO;
 using Diploma.Services;
 using System.Net.Http;
 using System.Threading.Tasks;
+#endregion
 
 namespace Diploma.Classes
 {
     internal static class ServerProcessManager
     {
+        #region Поля
         private static Process _process;
         private static string _lastOutput = string.Empty;
         private static readonly System.Collections.Generic.List<string> _logLines = new System.Collections.Generic.List<string>();
         public static event Action<string> OutputReceived;
         public static string LastOutput => _lastOutput;
         public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly()
+        #endregion
 
+        #region АПИ
         public static void Start()
         {
             if (PingServer() || IsProcessRunning())
@@ -93,6 +98,9 @@ namespace Diploma.Classes
             KillAllServerProcesses();
         }
 
+        #endregion
+
+        #region Вспомогательные методы
         private static bool PingServer()
         {
             try
@@ -163,5 +171,6 @@ namespace Diploma.Classes
             }
             catch { }
         }
+        #endregion
     }
 }

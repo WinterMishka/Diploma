@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region Используемые пространства имён
 using Diploma.Data;
 using Diploma.Helpers;
 using Diploma.Classes;
@@ -338,7 +338,7 @@ namespace Diploma
             UpdateSearchGrid();
         }
         #endregion
-        #region Visits viewer (чек-боксы 9,10 + поиск)
+        #region Просмотр посещений (чек-боксы 9,10 + поиск)
         private void InitVisitViewer()
         {
             guna2CheckBox9.CheckedChanged += VisitsCheckBoxChanged;
@@ -435,13 +435,12 @@ namespace Diploma
 
             try
             {
-                // order matters due to foreign key constraints
                 var tables = new[]
                 {
-                    "Приход_уход",      // references сотрудники/учащиеся
-                    "Учащиеся",         // references группа
-                    "Группа",           // references сотрудники
-                    "Сотрудники",       // references лицо
+                    "Приход_уход",
+                    "Учащиеся",
+                    "Группа",
+                    "Сотрудники",
                     "Лицо",
                     "Группа_код",
                     "Курс",

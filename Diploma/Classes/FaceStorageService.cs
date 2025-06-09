@@ -21,7 +21,7 @@ namespace Diploma.Services
         private static readonly string _root = AppPaths.FacesRoot;
         #endregion
 
-        #region Публичное API
+        #region Публичное АПИ
         public bool SaveSet(int personId, Image[] shots, FaceRole role)
         {
             if (shots == null || shots.Length == 0)

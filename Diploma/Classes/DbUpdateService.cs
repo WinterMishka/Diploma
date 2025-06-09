@@ -1,4 +1,4 @@
-#region using
+#region Используемые пространства имён
 using Diploma.Services;
 using System;
 using System.Collections.Generic;
