@@ -8,7 +8,7 @@ namespace Diploma.Services
 {
     public sealed class PhotoService
     {
-        #region Singleton
+        #region Синглтон
         private static readonly Lazy<PhotoService> _inst =
             new Lazy<PhotoService>(() => new PhotoService());
         public static PhotoService Instance => _inst.Value;
@@ -19,7 +19,7 @@ namespace Diploma.Services
         private static readonly string _facesDir = AppPaths.FacesRoot;
         #endregion
 
-        #region API
+        #region АПИ
         public int Save(Image img)
         {
             int id;
