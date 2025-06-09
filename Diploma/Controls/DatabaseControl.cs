@@ -180,6 +180,7 @@ namespace Diploma
             };
 
             ServerProcessManager.OutputReceived += UpdateServerLabel;
+            label10.Text = ServerProcessManager.LastOutput;
         }
         #endregion
 

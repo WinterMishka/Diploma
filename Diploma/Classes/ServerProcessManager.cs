@@ -9,7 +9,10 @@ namespace Diploma.Classes
     internal static class ServerProcessManager
     {
         private static Process _process;
+        private static string _lastOutput = string.Empty;
         public static event Action<string> OutputReceived;
+
+        public static string LastOutput => _lastOutput;
 
         public static void Start()
         {
@@ -47,11 +50,26 @@ namespace Diploma.Classes
 
             try
             {
+                _lastOutput = string.Empty;
                 _process = Process.Start(psi);
                 if (_process != null)
                 {
-                    _process.OutputDataReceived += (s, e) => { if (e.Data != null) OutputReceived?.Invoke(e.Data); };
-                    _process.ErrorDataReceived += (s, e) => { if (e.Data != null) OutputReceived?.Invoke(e.Data); };
+                    _process.OutputDataReceived += (s, e) =>
+                    {
+                        if (e.Data != null)
+                        {
+                            _lastOutput = e.Data;
+                            OutputReceived?.Invoke(e.Data);
+                        }
+                    };
+                    _process.ErrorDataReceived += (s, e) =>
+                    {
+                        if (e.Data != null)
+                        {
+                            _lastOutput = e.Data;
+                            OutputReceived?.Invoke(e.Data);
+                        }
+                    };
                     _process.BeginOutputReadLine();
                     _process.BeginErrorReadLine();
                 }
