@@ -143,18 +143,15 @@ namespace Diploma
                     var payload = JsonConvert.SerializeObject(new
                     {
                         full_name = info.FullName,
-                        status = isDeparture ? "Уход" : "Приход"
+                        status = isDeparture ? "Уход" : "Приход",
+                        group = info.GroupName,
+                        type = info.IsStudent ? "student" : "employee"
                     });
+
                     var content = new StringContent(payload, Encoding.UTF8, "application/json");
                     await _http.PostAsync("/api/notify_visit", content);
                 }
                 catch { }
-
-                MessageBox.Show(
-                    $"{info.FullName}\n{info.Status}\n{(isDeparture ? "Уход" : "Приход")}",
-                    "Распознано",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
             }));
         }
         #endregion
@@ -207,7 +204,7 @@ namespace Diploma
         }
         #endregion
 
-        #region Сохранение лица в файл (абсолютный путь)
+        #region Сохранение лица в файл
         private void SaveDetectedFaceToDisk(int id, string base64)
         {
             byte[] bytes = Convert.FromBase64String(base64);
@@ -321,6 +318,10 @@ namespace Diploma
                 guna2CheckBox1.Checked || guna2CheckBox2.Checked;
         }
         #endregion
+        public void ClearVisitLog()
+        {
+            BindLog(new DataTable());
+        }
 
         public void DisposeRecognition()
         {

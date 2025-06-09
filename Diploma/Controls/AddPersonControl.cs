@@ -109,6 +109,11 @@ namespace Diploma
             rdoStudent.CheckedChanged += rdoStudent_CheckedChanged;
             rdoEmployee.CheckedChanged += rdoEmployee_CheckedChanged;
         }
+        public void ReloadReferenceData()
+        {
+            LoadReferenceData();
+        }
+
         #endregion
 
         #region Камера

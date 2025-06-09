@@ -45,6 +45,9 @@ namespace Diploma
             contentLoader = new ContentLoader(panelMainContent);
             uiManager.HighlightButton(guna2BtnControlToggle);
             contentLoader.Load(GetPage<EnableControl>());
+
+            var dbPage = GetPage<DatabaseControl>();
+            dbPage.DataImported += (s, e) => GetPage<AddPersonControl>().ReloadReferenceData();
         }
         #endregion
 
@@ -95,22 +98,6 @@ namespace Diploma
             uiManager.HighlightColor = color;
             if (uiManager.ActiveButton != null)
                 uiManager.HighlightButton(uiManager.ActiveButton);
-        }
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            foreach (var ctrl in _pages.Values)
-            {
-                if (ctrl is AddPersonControl add)
-                    add.DisposeCamera();
-                else if (ctrl is EnableControl enable)
-                    enable.DisposeRecognition();
-
-                ctrl.Dispose();
-            }
-
-            ServerProcessManager.Stop();
-
-            base.OnFormClosing(e);
         }
 
         private T GetPage<T>() where T : UserControl, new()

@@ -47,6 +47,7 @@ namespace Diploma
             Disposed += (s, e) => client.Dispose();
         }
         #endregion
+
         #region Методы
 
         private void guna2Button1_Click(object sender, EventArgs e)

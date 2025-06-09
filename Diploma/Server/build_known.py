@@ -6,11 +6,7 @@ import pathlib
 
 
 def build_known(faces_dir=None, output_file="encodings.pkl"):
-    """Build face encodings for all images under *faces_dir* and write them to
-    *output_file*.
 
-    Returns a dictionary with keys ``encodings`` and ``ids``.
-    """
     faces_dir = faces_dir or os.path.join(os.path.dirname(__file__), "Faces")
     known_enc, known_ids = [], []
 

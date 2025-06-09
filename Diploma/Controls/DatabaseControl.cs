@@ -25,6 +25,7 @@ namespace Diploma
         private readonly DbEntryService _entry;
         private readonly GridConfigurator _gridCfg;
         private readonly SearchFilterManager _filter;
+        public event EventHandler DataImported;
         #endregion
 
         #region Поля
@@ -297,6 +298,7 @@ namespace Diploma
             _ui.HandleAdd();
             _ui.UpdateGrid();
             UpdateSearchGrid();
+            DataImported?.Invoke(this, EventArgs.Empty);
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
@@ -318,12 +320,14 @@ namespace Diploma
 
                 _ui.UpdateGrid();
                 UpdateSearchGrid();
+                DataImported?.Invoke(this, EventArgs.Empty);
             }
         }
 
         private void guna2Button4_Click(object sender, EventArgs e)
         {
             _updater.UpdateCheckedIfConfirmed();
+            DataImported?.Invoke(this, EventArgs.Empty);
         }
 
         private void guna2Button5_Click(object sender, EventArgs e)
@@ -336,6 +340,7 @@ namespace Diploma
             int index = _editState.GetCheckedIndex();
             _deleter.DeleteCheckedIfConfirmed(index);
             UpdateSearchGrid();
+            DataImported?.Invoke(this, EventArgs.Empty);
         }
         #endregion
         #region Просмотр посещений (чек-боксы 9,10 + поиск)
@@ -497,6 +502,15 @@ namespace Diploma
                 MessageBox.Show("База данных очищена.", "Готово",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _ui.UpdateGrid();
+                if (FindForm() is FaceControl face)
+                {
+                    var enable = face.Controls.Find("panelMainContent", true)
+                                             .FirstOrDefault()?
+                                             .Controls
+                                             .OfType<EnableControl>()
+                                             .FirstOrDefault();
+                    enable?.ClearVisitLog();
+                }
             }
             catch (Exception ex)
             {

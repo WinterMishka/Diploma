@@ -7,7 +7,8 @@ namespace Diploma.Data
         #region Посещения
         void SaveVisit(int photoId, bool isArrival);
         DataTable GetVisitLog();
-        (string FullName, string Status) GetPersonInfo(int photoId);
+        (string FullName, string Status, bool IsStudent, string GroupName) GetPersonInfo(int photoId);
+
         #endregion
 
         #region Выборки справочников

@@ -7,8 +7,8 @@ namespace Diploma.Services
     {
         #region Корневые директории
         public static string ProjectRoot =>
-            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                          "..", ".."));
+            AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar);
+
         public static string ServerRoot => Path.Combine(ProjectRoot, "Server");
         public static string ServerDist => Path.Combine(ServerRoot, "dist");
         public static string FacesRoot => Path.Combine(ServerRoot, "Faces");

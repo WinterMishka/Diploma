@@ -40,12 +40,8 @@ COOLDOWN_SECONDS = 30
 
 
 def get_db_connection():
-    primary = os.path.abspath(
-        os.path.join(APP_DIR, '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
-    )
-    secondary = os.path.abspath(
-        os.path.join(APP_DIR, '..', '..', 'bin', 'Debug', 'EducationAccessSystem.mdf')
-    )
+    primary = os.path.abspath(os.path.join(APP_DIR, '..', 'EducationAccessSystem.mdf'))
+    secondary = os.path.abspath(os.path.join(APP_DIR, '..', '..', 'EducationAccessSystem.mdf'))
     db_path = primary if os.path.exists(primary) else secondary
     if not os.path.exists(db_path):
         raise FileNotFoundError(
@@ -252,9 +248,9 @@ def api_absent_students():
 def api_confirmed_subscribers():
     with get_db_connection() as con:
         cur = con.cursor()
-        cur.execute('SELECT [TelegramID], [Группы] FROM [ПодписчикиТелеграм] WHERE [Статус]=1')
+        cur.execute('SELECT [TelegramID], [Группы], [ФИО] FROM [ПодписчикиТелеграм] WHERE [Статус]=1')
         rows = cur.fetchall()
-    return jsonify([{'telegram_id': r[0], 'groups': r[1]} for r in rows])
+    return jsonify([{'telegram_id': r[0], 'groups': r[1], 'full_name': r[2]} for r in rows])
 
 
 @app.route('/api/subscribers')
@@ -318,11 +314,12 @@ def api_notify_visit():
     data = request.get_json() or {}
     full_name = data.get('full_name')
     status = data.get('status')
-    if not full_name or not status:
+    group = data.get('group')
+    person_type = data.get('type')
+    if not full_name or not status or not person_type:
         return jsonify({'error': 'invalid data'}), 400
-    telegram_bot.notify_visit(full_name, status)
+    telegram_bot.notify_visit(full_name, status, group, person_type)
     return jsonify({'status': 'ok'})
-
 
 if __name__ == '__main__':
     print("[INFO] Строим базу лиц...")

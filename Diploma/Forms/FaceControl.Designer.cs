@@ -54,7 +54,6 @@
             // 
             // guna2BorderlessForm1
             // 
-            this.guna2BorderlessForm1.BorderRadius = 30;
             this.guna2BorderlessForm1.ContainerControl = this;
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
@@ -165,7 +164,6 @@
             // guna2BtnSidebarToggle
             // 
             this.guna2BtnSidebarToggle.Animated = true;
-            this.guna2BtnSidebarToggle.CustomBorderThickness = System.Windows.Forms.Padding.Empty;
             this.guna2BtnSidebarToggle.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.guna2BtnSidebarToggle.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2BtnSidebarToggle.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
@@ -369,6 +367,7 @@
             this.Controls.Add(this.guna2Panel1);
             this.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "FaceControl";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

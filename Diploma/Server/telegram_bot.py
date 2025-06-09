@@ -138,13 +138,23 @@ def handle_group(message):
     user_states.pop(message.chat.id, None)
 
 
-def notify_visit(full_name, status):
+def notify_visit(full_name, status, group, person_type):
     settings = load_settings()
     if not settings.get('send_daily_updates'):
         return
+
+    if person_type != 'student' or not group:
+        return
+
     subs = api_get('/api/confirmed_subscribers') or []
     for sub in subs:
-        bot.send_message(sub['telegram_id'], f'{full_name}: {status}')
+        groups = sub.get('groups')
+        if not groups:
+            continue
+        group_list = [g.strip() for g in groups.split(',') if g.strip()]
+        if group in group_list:
+            bot.send_message(sub['telegram_id'], f'{full_name}: {status}')
+
 
 
 def send_notifications():

@@ -72,20 +72,30 @@ IF @@ROWCOUNT = 0
             return LoadTable("EXEC ПолучитьПосещения");
         }
 
-        public (string FullName, string Status) GetPersonInfo(int photoId)
+        public (string FullName, string Status, bool IsStudent, string GroupName) GetPersonInfo(int photoId)
         {
             const string sql = @"
 SELECT TOP 1
-       LTRIM(RTRIM(
-           COALESCE(s.Фамилия ,u.Фамилия ) + ' ' +
-           COALESCE(s.Имя     ,u.Имя     ) + ' ' +
-           COALESCE(NULLIF(s.Отчество,''), NULLIF(u.Отчество,''), '')
-       ))                                       AS ФИО,
-       ISNULL(st.Название, N'Студент')          AS Статус
+    -- ФИО
+    LTRIM(RTRIM(
+        COALESCE(s.Фамилия ,u.Фамилия ) + ' ' +
+        COALESCE(s.Имя     ,u.Имя     ) + ' ' +
+        COALESCE(NULLIF(s.Отчество,''), NULLIF(u.Отчество,''), '')
+    )) AS ФИО,
+    -- Статус (должность или 'Студент')
+    ISNULL(st.Название, N'Студент') AS Статус,
+    -- Признак: студент или нет
+    CASE WHEN u.id_учащегося IS NOT NULL THEN 1 ELSE 0 END AS IsStudent,
+    -- Имя группы (если студент)
+    CASE WHEN u.id_группы IS NOT NULL THEN (SELECT gc.Код + '-' + CAST(g.Год AS NVARCHAR(4))
+                                            FROM Группа g
+                                            JOIN Группа_код gc ON gc.id_код = g.id_код
+                                            WHERE g.id_группы = u.id_группы)
+         ELSE NULL END AS GroupName
 FROM   Лицо l
-LEFT JOIN Сотрудники      s  ON s.id_фото = l.id_фото
+LEFT JOIN Сотрудники s  ON s.id_фото = l.id_фото
 LEFT JOIN Статус_должность st ON st.id_статуса = s.id_статуса
-LEFT JOIN Учащиеся        u  ON u.id_фото = l.id_фото
+LEFT JOIN Учащиеся u ON u.id_фото = l.id_фото
 WHERE  l.id_фото = @id;";
 
             using (var c = new SqlConnection(_conn))
@@ -95,9 +105,15 @@ WHERE  l.id_фото = @id;";
                 c.Open();
                 using (var r = cmd.ExecuteReader())
                 {
-                    return r.Read()
-                        ? (r.GetString(0), r.GetString(1))
-                        : ("-", "Студент");
+                    if (r.Read())
+                    {
+                        var fullName = r.GetString(0);
+                        var status = r.GetString(1);
+                        var isStudent = r.GetInt32(2) == 1;
+                        var groupName = r.IsDBNull(3) ? null : r.GetString(3);
+                        return (fullName, status, isStudent, groupName);
+                    }
+                    return ("-", "Студент", false, null);
                 }
             }
         }

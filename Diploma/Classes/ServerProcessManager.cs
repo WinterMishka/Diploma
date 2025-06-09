@@ -5,6 +5,7 @@ using System.IO;
 using Diploma.Services;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 #endregion
 
 namespace Diploma.Classes
@@ -17,7 +18,7 @@ namespace Diploma.Classes
         private static readonly System.Collections.Generic.List<string> _logLines = new System.Collections.Generic.List<string>();
         public static event Action<string> OutputReceived;
         public static string LastOutput => _lastOutput;
-        public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly()
+        public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly();
         #endregion
 
         #region API
@@ -26,16 +27,17 @@ namespace Diploma.Classes
             if (PingServer() || IsProcessRunning())
                 return;
 
-            string distDir = Path.Combine(AppPaths.ServerRoot, "dist");
+            string distDir = AppPaths.ServerDist;
             string exePath = Path.Combine(distDir, "server.exe");
 
             if (!File.Exists(exePath))
+            {
+                System.Windows.Forms.MessageBox.Show("server.exe не найден: " + exePath);
+                Application.Exit();
                 return;
+            }
 
-            string file = exePath;
-            string args = string.Empty;
-
-            var psi = new ProcessStartInfo(file, args)
+            var psi = new ProcessStartInfo(exePath)
             {
                 WorkingDirectory = distDir,
                 UseShellExecute = false,
@@ -73,7 +75,10 @@ namespace Diploma.Classes
                     _process.BeginErrorReadLine();
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Ошибка запуска сервера: " + ex);
+            }
         }
 
         public static async void Restart()
