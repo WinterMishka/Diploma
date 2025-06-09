@@ -90,7 +90,7 @@ namespace Diploma.Classes
                 if (_process != null && !_process.HasExited)
                 {
                     _process.Kill();
-                    _process.WaitForExit();
+                    _process.WaitForExit(2000);
                 }
             }
             catch { }
@@ -162,7 +162,7 @@ namespace Diploma.Classes
                             if (!proc.HasExited)
                             {
                                 proc.Kill();
-                                proc.WaitForExit();
+                                proc.WaitForExit(2000);
                             }
                         }
                     }
