@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using Diploma.Services;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -9,7 +10,10 @@ namespace Diploma.Classes
     internal static class ServerProcessManager
     {
         private static Process _process;
+        private static string _lastOutput = string.Empty;
         public static event Action<string> OutputReceived;
+
+        public static string LastOutput => _lastOutput;
 
         public static void Start()
         {
@@ -18,23 +22,12 @@ namespace Diploma.Classes
 
             string distDir = Path.Combine(AppPaths.ServerRoot, "dist");
             string exePath = Path.Combine(distDir, "server.exe");
-            string pyPath = Path.Combine(distDir, "server.py");
 
-            string file;
-            string args = string.Empty;
-            if (File.Exists(exePath))
-            {
-                file = exePath;
-            }
-            else if (File.Exists(pyPath))
-            {
-                file = "python";
-                args = pyPath;
-            }
-            else
-            {
+            if (!File.Exists(exePath))
                 return;
-            }
+
+            string file = exePath;
+            string args = string.Empty;
 
             var psi = new ProcessStartInfo(file, args)
             {
@@ -47,11 +40,26 @@ namespace Diploma.Classes
 
             try
             {
+                _lastOutput = string.Empty;
                 _process = Process.Start(psi);
                 if (_process != null)
                 {
-                    _process.OutputDataReceived += (s, e) => { if (e.Data != null) OutputReceived?.Invoke(e.Data); };
-                    _process.ErrorDataReceived += (s, e) => { if (e.Data != null) OutputReceived?.Invoke(e.Data); };
+                    _process.OutputDataReceived += (s, e) =>
+                    {
+                        if (e.Data != null)
+                        {
+                            _lastOutput = e.Data;
+                            OutputReceived?.Invoke(e.Data);
+                        }
+                    };
+                    _process.ErrorDataReceived += (s, e) =>
+                    {
+                        if (e.Data != null)
+                        {
+                            _lastOutput = e.Data;
+                            OutputReceived?.Invoke(e.Data);
+                        }
+                    };
                     _process.BeginOutputReadLine();
                     _process.BeginErrorReadLine();
                 }
@@ -111,7 +119,7 @@ namespace Diploma.Classes
                         string file = string.Empty;
                         try { file = proc.MainModule.FileName.ToLowerInvariant(); } catch { }
 
-                        if (file.EndsWith("server.exe") || file.EndsWith("server.py") || name == "server")
+                        if (file.EndsWith("server.exe") || name == "server")
                             return true;
                     }
                     catch { }
