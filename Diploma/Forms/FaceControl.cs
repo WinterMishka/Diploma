@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using Diploma.Classes;
 
 namespace Diploma
 {
@@ -106,6 +107,8 @@ namespace Diploma
 
                 ctrl.Dispose();
             }
+
+            ServerProcessManager.Stop();
 
             base.OnFormClosing(e);
         }
