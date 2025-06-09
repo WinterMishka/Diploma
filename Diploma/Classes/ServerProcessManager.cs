@@ -20,7 +20,7 @@ namespace Diploma.Classes
         public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly()
         #endregion
 
-        #region АПИ
+        #region API
         public static void Start()
         {
             if (PingServer() || IsProcessRunning())
