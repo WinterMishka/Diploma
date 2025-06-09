@@ -27,7 +27,7 @@ namespace Diploma.Services
         private bool _disposed;
         #endregion
 
-        #region Публичное АПИ
+        #region Публичное API
         public IReadOnlyList<string> Enumerate()
         {
             return EnsureDevices().Cast<FilterInfo>().Select(d => d.Name).ToList();

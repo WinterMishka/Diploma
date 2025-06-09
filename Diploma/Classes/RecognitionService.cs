@@ -32,7 +32,7 @@ namespace Diploma.Recognition
         }
         #endregion
 
-        #region АПИ
+        #region API
         public void Start()
         {
             _running = true;

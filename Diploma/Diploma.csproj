@@ -206,6 +206,7 @@
     <Compile Include="Classes\FormManager.cs" />
     <Compile Include="Classes\GridConfigurator.cs" />
     <Compile Include="Classes\GridSelectionBinder.cs" />
+    <Compile Include="Classes\ServerProcessManager.cs" />
     <Compile Include="Classes\UiSettings.cs" />
     <Compile Include="Classes\PhotoService.cs" />
     <Compile Include="Classes\RecognitionService.cs" />

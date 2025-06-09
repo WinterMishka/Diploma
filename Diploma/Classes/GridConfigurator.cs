@@ -32,7 +32,7 @@ namespace Diploma.Helpers
         }
         #endregion
 
-        #region Публичный АПИ
+        #region Публичный API
         public void HideAllFilters()
         {
             foreach (var cb in _combo.Values) cb.Visible = false;

@@ -5,9 +5,7 @@ installing all dependencies from `requirements.txt`.
 Recommended command:
 
 ```
-pyinstaller --onefile server.py \
-    --add-data "C:\\path\\to\\face_recognition_models\\models;face_recognition_models\\models" \
-    --add-data "bot_settings.json;."
+pyinstaller --onefile server.py --add-data "C:\Users\artyo\source\repos\Diploma\Diploma\Server\.venv\Lib\site-packages\face_recognition_models\models;face_recognition_models\models" --add-data "bot_settings.json;."
 ```
 
 The `Faces` directory should be placed next to the executable so new

@@ -11,6 +11,7 @@ namespace Diploma
 {
     internal static class Program
     {
+        #region Запуск сервера и программы
         [STAThread]
         static void Main()
         {
@@ -32,6 +33,7 @@ namespace Diploma
             Application.Run(form);
             ServerProcessManager.Stop();
         }
+        #endregion
 
         #region Методы
 

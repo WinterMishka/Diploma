@@ -19,7 +19,7 @@ namespace Diploma.Services
         private static readonly string _facesDir = AppPaths.FacesRoot;
         #endregion
 
-        #region АПИ
+        #region API
         public int Save(Image img)
         {
             int id;
