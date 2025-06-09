@@ -13,9 +13,8 @@ namespace Diploma.Classes
         private static string _lastOutput = string.Empty;
         private static readonly System.Collections.Generic.List<string> _logLines = new System.Collections.Generic.List<string>();
         public static event Action<string> OutputReceived;
-
         public static string LastOutput => _lastOutput;
-        public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly();
+        public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly()
 
         public static void Start()
         {
