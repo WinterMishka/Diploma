@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using Diploma.Services;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -21,23 +22,12 @@ namespace Diploma.Classes
 
             string distDir = Path.Combine(AppPaths.ServerRoot, "dist");
             string exePath = Path.Combine(distDir, "server.exe");
-            string pyPath = Path.Combine(distDir, "server.py");
 
-            string file;
-            string args = string.Empty;
-            if (File.Exists(exePath))
-            {
-                file = exePath;
-            }
-            else if (File.Exists(pyPath))
-            {
-                file = "python";
-                args = pyPath;
-            }
-            else
-            {
+            if (!File.Exists(exePath))
                 return;
-            }
+
+            string file = exePath;
+            string args = string.Empty;
 
             var psi = new ProcessStartInfo(file, args)
             {
@@ -129,7 +119,7 @@ namespace Diploma.Classes
                         string file = string.Empty;
                         try { file = proc.MainModule.FileName.ToLowerInvariant(); } catch { }
 
-                        if (file.EndsWith("server.exe") || file.EndsWith("server.py") || name == "server")
+                        if (file.EndsWith("server.exe") || name == "server")
                             return true;
                     }
                     catch { }
