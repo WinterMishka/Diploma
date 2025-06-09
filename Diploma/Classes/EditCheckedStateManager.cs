@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region Используемые пространства имён
 using System.Collections.Generic;
 using Guna.UI2.WinForms;
 #endregion

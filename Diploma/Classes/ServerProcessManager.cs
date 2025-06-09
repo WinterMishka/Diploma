@@ -1,4 +1,4 @@
-#region using
+#region Используемые пространства имён
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +11,7 @@ namespace Diploma.Classes
 {
     internal static class ServerProcessManager
     {
-        #region Fields
+        #region Поля
         private static Process _process;
         private static string _lastOutput = string.Empty;
         private static readonly System.Collections.Generic.List<string> _logLines = new System.Collections.Generic.List<string>();
@@ -20,7 +20,7 @@ namespace Diploma.Classes
         public static System.Collections.Generic.IReadOnlyList<string> LogLines => _logLines.AsReadOnly()
         #endregion
 
-        #region API
+        #region АПИ
         public static void Start()
         {
             if (PingServer() || IsProcessRunning())
@@ -100,7 +100,7 @@ namespace Diploma.Classes
 
         #endregion
 
-        #region Helpers
+        #region Вспомогательные методы
         private static bool PingServer()
         {
             try

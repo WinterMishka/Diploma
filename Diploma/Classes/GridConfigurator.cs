@@ -1,4 +1,4 @@
-﻿#region using
+﻿#region Используемые пространства имён
 using Diploma.Data;
 using Diploma.Classes;
 using System;
@@ -19,7 +19,7 @@ namespace Diploma.Helpers
         private readonly IAppDbService _db;
         #endregion
 
-        #region .ctor
+        #region Конструктор
         public GridConfigurator(DataGridView grid,
                                 Dictionary<string, ComboBox> comboBoxes,
                                 Dictionary<string, Label> labels,
@@ -32,7 +32,7 @@ namespace Diploma.Helpers
         }
         #endregion
 
-        #region Публичный API
+        #region Публичный АПИ
         public void HideAllFilters()
         {
             foreach (var cb in _combo.Values) cb.Visible = false;
