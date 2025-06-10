@@ -92,7 +92,8 @@ namespace Diploma.Helpers
                 AddChange(changes, "Имя", row["Имя"], _boxes["comboBox4"].Text);
                 AddChange(changes, "Отчество", row["Отчество"], _boxes["comboBox5"].Text);
                 AddChange(changes, "Должность", row["Должность"], _boxes["comboBox6"].Text);
-                AddChange(changes, "id_фото", row["id_фото"], TryParseInt(_boxes["comboBox7"].Text, Convert.ToInt32(row["id_фото"])));
+                AddChange(changes, "id_фото", row["id_фото"],
+                           GetComboValueNullable("comboBox7", row["id_фото"] as int?));
             }
             else if (mode == 5)
             {
@@ -111,7 +112,8 @@ namespace Diploma.Helpers
                 AddChange(changes, "Специальность", row["Специальность"], _boxes["comboBox6"].Text);
                 AddChange(changes, "Курс", row["Курс"], _boxes["comboBox7"].Text);
                 AddChange(changes, "Группа", row["Группа"], _boxes["comboBox8"].Text);
-                AddChange(changes, "id_фото", row["id_фото"], TryParseInt(_boxes["comboBox9"].Text, Convert.ToInt32(row["id_фото"])));
+                AddChange(changes, "id_фото", row["id_фото"],
+                           GetComboValueNullable("comboBox9", row["id_фото"] as int?));
             }
 
             if (changes.Count == 0)
@@ -260,8 +262,7 @@ WHERE id_фото     = @id;";
             string first = _boxes["comboBox4"].Text.Trim();
             string mid = _boxes["comboBox5"].Text.Trim();
             int status = GetComboValue("comboBox6", Convert.ToInt32(row["id_статуса"]));
-            int fotoId = TryParseInt(_boxes["comboBox7"].Text,
-                                       Convert.ToInt32(row["id_фото"]));
+            int? fotoId = GetComboValueNullable("comboBox7", row["id_фото"] as int?);
 
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = con.CreateCommand())
@@ -279,7 +280,7 @@ WHERE  id_сотрудника = @id;";
                 cmd.Parameters.AddWithValue("@mid", string.IsNullOrWhiteSpace(mid)
                                                         ? (object)DBNull.Value : mid);
                 cmd.Parameters.AddWithValue("@st", status);
-                cmd.Parameters.AddWithValue("@foto", fotoId);
+                cmd.Parameters.AddWithValue("@foto", (object)fotoId ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@id", idEmp);
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -333,9 +334,7 @@ WHERE  id_статуса = @id;";
             int course = GetComboValue("comboBox7", Convert.ToInt32(row["id_курса"]));
             int group = GetComboValue("comboBox8", Convert.ToInt32(row["id_группы"]));
 
-            int? photoId = string.IsNullOrWhiteSpace(_boxes["comboBox9"].Text)
-                ? (int?)null
-                : TryParseInt(_boxes["comboBox9"].Text, Convert.ToInt32(row["id_фото"]));
+            int? photoId = GetComboValueNullable("comboBox9", row["id_фото"] as int?);
 
             using (var con = new SqlConnection(_mgr.ConnStr))
             using (var cmd = con.CreateCommand())
