@@ -392,9 +392,13 @@ WHERE  id_учащегося    = @id;";
                 return fallback;
 
             if (cb.DropDownStyle == ComboBoxStyle.DropDownList)
-                return cb.SelectedValue == null
-                    ? (int?)null
-                    : Convert.ToInt32(cb.SelectedValue);
+            {
+                var val = cb.SelectedValue;
+                if (val == null || val == DBNull.Value)
+                    return null;
+
+                return Convert.ToInt32(val);
+            }
 
             string txt = cb.Text;
             if (string.IsNullOrWhiteSpace(txt))
