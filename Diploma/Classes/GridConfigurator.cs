@@ -235,13 +235,25 @@ namespace Diploma.Helpers
                 cb.Visible = true;
                 cb.DropDownStyle = ComboBoxStyle.Simple;
 
-                if (src != null && src.Columns.Contains(col))
+                if (col == "id_фото")
+                {
+                    cb.DataSource = _db.GetFaces()
+                                        .AsEnumerable()
+                                        .Select(r => r.Field<int>("id_фото"))
+                                        .Distinct()
+                                        .ToList();
+                }
+                else if (src != null && src.Columns.Contains(col))
+                {
                     cb.DataSource = src.AsEnumerable()
                                        .Select(r => r[col])
                                        .Distinct()
                                        .ToList();
+                }
                 else
+                {
                     cb.DataSource = null;
+                }
 
                 visual++;
             }
